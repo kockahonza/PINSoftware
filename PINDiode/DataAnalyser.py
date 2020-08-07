@@ -15,6 +15,7 @@ class DataAnalyser():
 
         self.ys = [0]
         self.markers = []
+        self.marker_timestamps = []
 
         self.first_processed_timestamp = None
         self.actual_append = self.actual_append_first
@@ -67,7 +68,6 @@ class DataAnalyser():
         up_avg = self.last_up_sum / self.last_up_count if self.last_up_count else self.ys[-1]
         diff = new_y - up_avg
         if abs(diff) > self.edge_detection_threshold:
-            self.markers.append(len(self.ys))
             if diff < 0 and self.last_up_count > 0 and self.last_down_count > 0:
                 avg_up_diff = self.last_up_diff_sum / self.last_up_count
 
@@ -75,6 +75,8 @@ class DataAnalyser():
 
                 if up_avg >= down_avg:
                     spike = (up_avg - avg_up_diff * (self.last_up_count / 2))
+                    self.markers.append(spike)
+                    self.marker_timestamps.append(len(self.ys))
                     processed_y = self.correction_func(spike - down_avg)
                     self.actual_append(processed_y)
                 else:

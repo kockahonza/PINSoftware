@@ -116,8 +116,11 @@ class Hdf5DataSaver(BaseDataSaver):
                 self.data_sources.append(self.data.averaged_processed_timestamps)
             if "markers" in items:
                 self.hdf_datasets.append(self.hdf_file.create_dataset("markers", (0,), chunks=True, maxshape=(None,), dtype='f4'))
+                self.hdf_datasets.append(self.hdf_file.create_dataset("marker_timestamps", (0,), chunks=True, maxshape=(None,), dtype='f8'))
+                self.indices.append(0)
                 self.indices.append(0)
                 self.data_sources.append(self.data.markers)
+                self.data_sources.append(self.data.marker_timestamps)
         except:
             raise SavingException("Could not open file \"" + full_filename + "\" to log data in.")
 
