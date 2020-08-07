@@ -391,7 +391,7 @@ def get_app(ms):
                     )
                 ])
         ]),
-        dbc.Container(id='extras', className='mb-5', children=[
+        dbc.Container(id='extras', className='mb-5', style={'display': 'none'}, children=[
             dcc.Store(id='session-id', storage_type='session'),
             dcc.Store(id='full-graph-indices', storage_type='session', data={'pro_index': 0, 'avg_index': 0}),
             html.Div(id='ut-on_load'),
@@ -403,10 +403,7 @@ def get_app(ms):
             html.Div(id='ut-show-warning-modal-0'),
             html.Div(id='ut-show-warning-modal-1'),
             html.Div(id='ut-show-warning-modal-2'),
-            html.Div(id='ut-show-warning-modal-3'),
-            html.Div(id='ut-show-warning-modal-4'),
-            html.Div(id='reset-graphs'),
-            dbc.Button(id='test')
+            html.Div(id='ut-show-warning-modal-3')
         ])
     ])
 
@@ -422,7 +419,7 @@ def get_app(ms):
             return [42, sid, sid, ""]
         return [42, old_sid, old_sid, ""]
 
-    warning_modal_count = 5
+    warning_modal_count = 4
     warning_modal_div_names = ['ut-show-warning-modal-' + str(i) for i in range(warning_modal_count)]
     warning_modal_prop_id_names = [warning_modal_div_name + '.children' for warning_modal_div_name in warning_modal_div_names]
 
