@@ -2,7 +2,7 @@ import random
 import threading
 import time
 
-from PINDiode.DataUpdaterClasses.BaseDataUpdater import BaseDataUpdater
+from PINSoftware.DataUpdaterClasses.BaseDataUpdater import BaseDataUpdater
 
 class RandomDataUpdater(BaseDataUpdater):
     def __init__(self, data, **kw):

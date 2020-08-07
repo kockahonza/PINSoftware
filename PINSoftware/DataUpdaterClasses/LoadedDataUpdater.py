@@ -1,7 +1,7 @@
 import threading
 import time
 
-from PINDiode.DataUpdaterClasses.BaseDataUpdater import BaseDataUpdater
+from PINSoftware.DataUpdaterClasses.BaseDataUpdater import BaseDataUpdater
 
 class LoadedDataUpdater(BaseDataUpdater):
     def __init__(self, filename, *args, freq=50000, **kw):

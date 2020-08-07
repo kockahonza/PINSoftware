@@ -2,8 +2,8 @@ import random
 import threading
 import time
 
-from PINDiode.Debugger import Debugger
-from PINDiode.DataAnalyser import DataAnalyser
+from PINSoftware.Debugger import Debugger
+from PINSoftware.DataAnalyser import DataAnalyser
 
 class BaseDataUpdater(threading.Thread):
     def __init__(self, data, debugger=Debugger(), profiler=None):

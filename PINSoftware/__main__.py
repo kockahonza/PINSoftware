@@ -5,8 +5,8 @@ import threading
 
 import matplotlib.pyplot as plt
 
-from PINDiode.MachineStuff import MachineStuff
-from PINDiode.DashApp import get_app
+from PINSoftware.MachineStuff import MachineStuff
+from PINSoftware.DashApp import get_app
 
 from waitress import serve
 

@@ -2,11 +2,11 @@ import os
 
 import matplotlib.animation as animation
 
-from PINDiode.Profiler import Profiler
-from PINDiode.DataAnalyser import DataAnalyser
-from PINDiode.DataSaver import CsvDataSaver, Hdf5DataSaver, Filetype, SavingException
-from PINDiode.DataUpdaterClasses.LoadedDataUpdater import LoadedDataUpdater
-from PINDiode.DataUpdaterClasses.NiDAQmxDataUpdater import NiDAQmxDataUpdater
+from PINSoftware.Profiler import Profiler
+from PINSoftware.DataAnalyser import DataAnalyser
+from PINSoftware.DataSaver import CsvDataSaver, Hdf5DataSaver, Filetype, SavingException
+from PINSoftware.DataUpdaterClasses.LoadedDataUpdater import LoadedDataUpdater
+from PINSoftware.DataUpdaterClasses.NiDAQmxDataUpdater import NiDAQmxDataUpdater
 
 class MachineStuff():
     def __init__(self, plt, dummy, dummy_log, profiler=False, plot_update_interval=10, log_directory="logs"):

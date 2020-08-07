@@ -4,8 +4,8 @@ import os
 import uuid
 import urllib
 
-from PINDiode.DashComponents import FullRedrawGraph, ExtendableGraph, SingleSwitch
-from PINDiode.DataSaver import Filetype
+from PINSoftware.DashComponents import FullRedrawGraph, ExtendableGraph, SingleSwitch
+from PINSoftware.DataSaver import Filetype
 
 import flask
 import dash

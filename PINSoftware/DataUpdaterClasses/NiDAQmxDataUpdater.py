@@ -2,7 +2,7 @@ import  threading
 
 import nidaqmx
 
-from PINDiode.DataUpdaterClasses.BaseDataUpdater import BaseDataUpdater
+from PINSoftware.DataUpdaterClasses.BaseDataUpdater import BaseDataUpdater
 
 class NiDAQmxDataUpdater(BaseDataUpdater):
     def __init__(self, *args, **kw):

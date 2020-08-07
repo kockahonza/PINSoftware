@@ -2,7 +2,7 @@ import datetime
 
 from os import path
 
-from PINDiode.Debugger import Debugger
+from PINSoftware.Debugger import Debugger
 
 
 class DataAnalyser():
