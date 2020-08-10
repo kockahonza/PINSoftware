@@ -6,9 +6,9 @@ The code is entirely in python and runs on all platforms where its dependencies 
 
 ## Install
 
-You may rebuild the package by running `python setup.py sdist bdist_wheel` in the repo root directory.
+First you need to build the package by running `python setup.py sdist bdist_wheel` in the repo root directory.
 
-Then go into the `dist` directory (`cd dist`) and pip install it (`pip install PINSoftware-<version>-py3-none-any.whl` where <version> is the current version).
+Then go into the `dist` directory (`cd dist`) and pip install it (`pip install PINSoftware-<version>-py3-none-any.whl` where \<version\> is the current version).
 This should also install all the dependencies (unless I missed some).
 
 ## Running
