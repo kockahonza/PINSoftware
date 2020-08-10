@@ -658,6 +658,7 @@ def get_app(ms : MachineStuff) -> dash.Dash:
                     ac = int(v)
                 else:
                     ms.debugger.warning("Config loading: \"" + k + "\" does not match any of the parameter names.")
+                    raise Exception()
             return [edt, ca, cb, ac, ""]
         except:
             return [old_edt, old_ca, old_cb, old_ac, "The uploaded file could not be parsed, try a different one."]
@@ -670,14 +671,14 @@ def get_app(ms : MachineStuff) -> dash.Dash:
             Input('ut-on_load-2', 'children')
         ])
     def save_config(edt, ca, cb, ac, not_used):
+        """Sets the href on the download link to the new value whenever the parameters change."""
         config = 'edge_detection_threshold=' + str(edt) + '\n' + 'correction_a=' + str(ca) + '\n' + 'correction_b=' + str(cb) + '\n' + 'average_count=' + str(ac) + '\n'
         return 'data:text/csv;charset=utf-8,' + urllib.parse.quote(config),
 
     @app.server.route('/logs/<path:path>')
     def get_log(path):
-        root_dir = os.getcwd()
-        return flask.send_from_directory(
-            os.path.join(root_dir, 'logs'), path
-        )
+        """This enables downloading logs, whenever a request is made to /logs/something,
+        the file named something is downloaded from the current log folder"""
+        return flask.send_from_directory(ms.log_directory, path)
 
     return app
