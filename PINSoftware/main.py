@@ -12,6 +12,10 @@ from waitress import serve
 
 
 def main():
+    """
+    The program entrypoint, here the arguments are parser and the program is started.
+    If graphing is enabled, then the web server goes in a non-main thread, otherwise otherwise.
+    """
     parser = argparse.ArgumentParser(
             description='Server for the control of NI-6002 in use with a Sample and Hold amplifier and an xPIN diode, made at ELI Beamlines.')
     parser.add_argument("--dummy", "-d", dest="dummy", action="store_true", help="Run the server in dummy mode - do not actually use the NI-6002 but instead use data from a file.")
