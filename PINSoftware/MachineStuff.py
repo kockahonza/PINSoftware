@@ -2,6 +2,7 @@ import os
 
 import matplotlib.animation as animation
 
+from PINSoftware.Debugger import Debugger
 from PINSoftware.Profiler import Profiler
 from PINSoftware.DataAnalyser import DataAnalyser
 from PINSoftware.DataSaver import CsvDataSaver, Hdf5DataSaver, Filetype, SavingException
@@ -16,7 +17,10 @@ class MachineStuff():
         self.profiler = profiler
         self.plot_update_interval = plot_update_interval
         self.log_directory = os.path.join(os.path.curdir, log_directory)
+
         self.init_graph()
+
+        self.debugger = Debugger()
         self.controller = None
         self.du = None
         self.data = None
@@ -56,7 +60,7 @@ class MachineStuff():
         self.stop_experiment()
 
     def start_experiment(self, save_base_filename=None, save_filetype=Filetype.Csv, items=["ys","processed_ys"], **kwargs):
-        self.data = DataAnalyser(50000, plot_buffer_len=200, **kwargs)
+        self.data = DataAnalyser(50000, plot_buffer_len=200, debugger=self.debugger, **kwargs)
         if save_base_filename:
             if save_filetype == Filetype.Csv:
                 self.saver = CsvDataSaver(self.data, self.log_directory, save_base_filename)
@@ -65,9 +69,9 @@ class MachineStuff():
         else:
             self.saver = None
         if self.dummy:
-            self.du = LoadedDataUpdater(self.dummy_data_file, self.data, freq=50000)
+            self.du = LoadedDataUpdater(self.dummy_data_file, self.data, freq=50000, debugger=self.debugger)
         else:
-            self.du = NiDAQmxDataUpdater(self.data)
+            self.du = NiDAQmxDataUpdater(self.data, debugger=self.debugger)
         if self.profiler:
             self.du.profiler = Profiler(name="DataUpdater RPS", start_delay=3)
         self.du.start()

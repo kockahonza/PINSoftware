@@ -4,6 +4,7 @@ import os
 import uuid
 import urllib
 
+from PINSoftware.MachineStuff import MachineStuff
 from PINSoftware.DashComponents import FullRedrawGraph, ExtendableGraph, SingleSwitch
 from PINSoftware.DataSaver import Filetype
 
@@ -17,15 +18,27 @@ from dash.dependencies import Input, Output, State
 from dash.exceptions import PreventUpdate
 
 
-def get_app(ms):
+def linear_correct_func(cor_a, cor_b):
+    """Get a linear function with `a` and `b` as its coefficients"""
+    return lambda x: cor_a * x + cor_b
+
+
+def get_app(ms : MachineStuff) -> dash.Dash:
+    """
+        Creates the Dash app and creates all the callbacks.
+        `ms` is the MachineStuff instance to which callbacks should be connected.
+        Returns a `dash.Dash` instance to be run.
+    """
     app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
     app.config.suppress_callback_exceptions = False
     app.logger.disabled = False
 
-    def timestamp_to_datetime(x):
+    def timestamp_to_datetime(x : int) -> datetime.datetime:
+        """Converts the timestamps sotred in `PINSoftware.DataAnalyser.DataAnalyser` to a `datetime.datetime` object"""
         return datetime.datetime.fromtimestamp(ms.data.first_processed_timestamp + x * ms.data.period)
 
     def full_graph_base_fig():
+        """Full graph base figure function"""
         fig = {'data': [
                 {
                     'x': [],
@@ -44,6 +57,7 @@ def get_app(ms):
         return fig
 
     def full_graph_extend(n, graph_indices):
+        """Full graph extend function"""
         pro_index = min(graph_indices['pro_index'], len(ms.data.processed_ys))
         avg_index = min(graph_indices['avg_index'], len(ms.data.averaged_processed_ys))
         pro_top_index = min(pro_index + 30000, len(ms.data.processed_ys))
@@ -65,6 +79,7 @@ def get_app(ms):
         return [result, graph_indices]
 
     def live_graph_func(n, T):
+        """Live graph figure function"""
         show_from = len(ms.data.ys) - T * 50000
         data = []
         current_avg = None
@@ -101,9 +116,6 @@ def get_app(ms):
                 "The average value is: " + str(current_avg) if current_avg else "",
                 "Current peak voltages per second are: " + str(current_count) if current_avg else ""
                 ]
-
-    def linear_correct_func(cor_a, cor_b):
-        return lambda x: cor_a * x + cor_b
 
     app.layout = lambda: dbc.Container([
         html.H1("xPIN, Sample and Hold, NI-DAQmx system software", style={'textAlign': 'center'}),
@@ -414,6 +426,7 @@ def get_app(ms):
             Output('ut-update-controller-status', 'children')
         ], [Input('ut-on_load', 'children')], [State('session-id', 'data')])
     def on_load(not_used, old_sid):
+        """Triggers on load"""
         if not old_sid:
             sid = str(uuid.uuid4())
             return [42, sid, sid, ""]
@@ -428,6 +441,10 @@ def get_app(ms):
             Output('warning-modal-body', 'children')
         ], [Input(warning_modal_div_name, 'children') for warning_modal_div_name in warning_modal_div_names])
     def show_warning_modal(*args):
+        """
+        This shows a modal with a warning whenever the children of one of the warning-modal divs
+        change. It displays the contents of the div in the modal.
+        """
         prop_id = dash.callback_context.triggered[0]['prop_id']
         try:
             children = args[warning_modal_prop_id_names.index(prop_id)]
@@ -452,6 +469,7 @@ def get_app(ms):
             Input('ut-update-controller-status-4', 'children')
         ], [State('session-id', 'data'), State('main-tabs', 'active_tab')])
     def update_controller_status(not_used, not_used_2, not_used_3, not_used_4, sid, active):
+        """Updates the current controller information box"""
         if not ms.controller:
             return [False, True, True, True, "There is currently no controller!", 'administration-tab']
         elif ms.controller == sid:
@@ -466,6 +484,7 @@ def get_app(ms):
             Output('ut-show-warning-modal-1', 'children'),
         ], [Input('ad-grab', 'n_clicks'), Input('ad-release', 'n_clicks')], [State('session-id', 'data')])
     def grab_release(not_used, not_used_2, sid):
+        """Handles the "Grab" and "Release" buttons"""
         prop_id = dash.callback_context.triggered[0]['prop_id']
         if prop_id.startswith('ad-grab'):
             if not ms.controller:
@@ -492,6 +511,7 @@ def get_app(ms):
             State('ut-show-warning-modal-2', 'children')
         ])
     def force_release(n_clicks, controller_info, warning_msg):
+        """Handles the "Force Release" button"""
         if n_clicks:
             if ms.controller:
                 if controller_info[0].startswith(ms.controller):
@@ -531,6 +551,17 @@ def get_app(ms):
     def start_stop(start_ncl, stop_ncl, sid,
             should_save, save_filename, save_filetype, save_items,
             edge_detection_threshold, average_count, correction_a, correction_b):
+        """
+        Handles the "Start" and "Stop" buttons, this is the most complicated callback.
+
+        First if the client isn't the current controller it disables the control tabs for him,
+        updates his current controller info and shows a warning modal explaining what happened to him.
+
+        Otherwise it splits based on if he pressed "Start" or "Stop".
+        If he pressed "Start", it tries to start data acquisition and shows an info box
+        telling the client if it worked, failed or what, it also disables one of the buttons.
+        For "Stop" it just stops the data acquisition and shows a message with possibly a link to the data.
+        """
         prop_id = dash.callback_context.triggered[0]['prop_id']
         if (start_ncl or stop_ncl) and sid != ms.controller:
             return ["Someone has forcefully removed your control of the system.", prop_id.startswith('cp-start'),
@@ -575,6 +606,7 @@ def get_app(ms):
             Input('cp-save-select_ft', 'value')
         ])
     def cp_save_ui_callbacks(should_save, filetype):
+        """This toggles visibility of the save options based on if saving is enabled"""
         out = [{}, {}, {}]
         if not should_save:
             out[0]['display']= 'none'
@@ -597,6 +629,16 @@ def get_app(ms):
             State('cp-da-average_count', 'value'),
         ])
     def upload_config(cont, edt, ca, cb, ac):
+        """
+        This handles the processing configuration uploading.
+
+        It processes the file line by line, stripping each line. Then it tries
+        to split it on the '=' character into exactly two parts. Then if the
+        first part matches any of the property names, the second part is converted
+        to the correct type and assigned as the property value.
+
+        If anything goes wrong during it, then all of the values stay the same.
+        """
         if not cont:
             raise PreventUpdate()
         old_edt = edt
@@ -614,6 +656,8 @@ def get_app(ms):
                     cb = float(v)
                 elif k == 'average_count':
                     ac = int(v)
+                else:
+                    ms.debugger.warning("Config loading: \"" + k + "\" does not match any of the parameter names.")
             return [edt, ca, cb, ac, ""]
         except:
             return [old_edt, old_ca, old_cb, old_ac, "The uploaded file could not be parsed, try a different one."]
