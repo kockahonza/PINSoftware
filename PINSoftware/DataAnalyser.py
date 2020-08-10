@@ -80,7 +80,7 @@ class DataAnalyser():
                     processed_y = self.correction_func(spike - down_avg)
                     self.actual_append(processed_y)
                 else:
-                    print("ss")
+                    self.debugger.warning("Irregular data, something may be wrong.")
 
             if self.last_up_count > 0:
                 self.last_down_sum = self.last_up_sum

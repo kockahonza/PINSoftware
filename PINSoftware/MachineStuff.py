@@ -9,10 +9,10 @@ from PINSoftware.DataUpdaterClasses.LoadedDataUpdater import LoadedDataUpdater
 from PINSoftware.DataUpdaterClasses.NiDAQmxDataUpdater import NiDAQmxDataUpdater
 
 class MachineStuff():
-    def __init__(self, plt, dummy, dummy_log, profiler=False, plot_update_interval=10, log_directory="logs"):
+    def __init__(self, plt, dummy, dummy_data_file, profiler=False, plot_update_interval=10, log_directory="logs"):
         self.plt = plt
         self.dummy = dummy
-        self.dummy_log = dummy_log
+        self.dummy_data_file = dummy_data_file
         self.profiler = profiler
         self.plot_update_interval = plot_update_interval
         self.log_directory = os.path.join(os.path.curdir, log_directory)
@@ -65,7 +65,7 @@ class MachineStuff():
         else:
             self.saver = None
         if self.dummy:
-            self.du = LoadedDataUpdater(self.dummy_log, self.data, freq=50000)
+            self.du = LoadedDataUpdater(self.dummy_data_file, self.data, freq=50000)
         else:
             self.du = NiDAQmxDataUpdater(self.data)
         if self.profiler:

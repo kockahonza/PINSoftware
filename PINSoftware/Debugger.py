@@ -1,5 +1,8 @@
+import os
+import sys
+
 class Debugger():
-    def __init__(self, exit_on_error=False):
+    def __init__(self, exit_on_error=True):
         self.exit_on_error = exit_on_error
 
     def info(self, msg):
@@ -11,5 +14,4 @@ class Debugger():
     def error(self, msg):
         print("Error: " + msg)
         if self.exit_on_error:
-            # TODO: implement the exit
-            pass
+            os._exit(1)
