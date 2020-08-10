@@ -8,8 +8,7 @@ from PINSoftware.Debugger import Debugger
 from PINSoftware.Profiler import Profiler
 from PINSoftware.DataAnalyser import DataAnalyser
 from PINSoftware.DataSaver import CsvDataSaver, Hdf5DataSaver, Filetype, SavingException
-from PINSoftware.DataUpdaterClasses.LoadedDataUpdater import LoadedDataUpdater
-from PINSoftware.DataUpdaterClasses.NiDAQmxDataUpdater import NiDAQmxDataUpdater
+from PINSoftware.DataUpdater import NiDAQmxDataUpdater, LoadedDataUpdater
 
 class MachineStuff():
     """
@@ -91,7 +90,7 @@ class MachineStuff():
             items : List[str] = ["ys","processed_ys"], **kwargs):
         """
         This starts a data acquisition run. It creates a new `PINSoftware.DataAnalyser.DataAnalyser` and an appropriate `DataUpdater`.
-        Then it may also start a `DataSaver` and or a `Profiler` based on the situation.
+        Then it may also create and start a `DataSaver` and/or a `Profiler` based on the situation.
 
         `save_base_filename` is the base part of the filename for the
         new log file. The `save_base_filename` is appended with a timestamp and an appropriate file extension
