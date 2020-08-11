@@ -4,7 +4,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="PINSoftware", # Replace with your own username
+    name="PINSoftware",
     version="0.1",
     author="Jan Kocka",
     author_email="kockahonza@gmail.com",
