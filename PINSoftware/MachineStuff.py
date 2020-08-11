@@ -97,6 +97,8 @@ class MachineStuff():
         and that makes up the filename. `save_filetype` determines the `DataSaver` type, more information in
         `PINSoftware.DataSaver`. `items` is used when `save_filetype` is `PINSoftware.DataSaver.Filetype.Hdf5` and is passed to the
         `PINSoftware.DataSaver.Hdf5DataSaver`. The rest of the keyword arguments are passed to the `PINSoftware.DataAnalyser.DataAnalyser`.
+
+        More information on how it all works look in the module documentation: `PINSoftware`.
         """
         self.data = DataAnalyser(50000, plot_buffer_len=200, debugger=self.debugger, **kwargs)
         if save_base_filename:
