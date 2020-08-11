@@ -679,6 +679,7 @@ def get_app(ms : MachineStuff) -> dash.Dash:
     def get_log(path):
         """This enables downloading logs, whenever a request is made to /logs/something,
         the file named something is downloaded from the current log folder"""
-        return flask.send_from_directory(ms.log_directory, path)
+        result = flask.send_from_directory(ms.log_directory, path)
+        return result
 
     return app
