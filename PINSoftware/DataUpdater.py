@@ -107,7 +107,7 @@ class LoadedDataUpdater(BaseDataUpdater):
             new_y = float(self.file.readline())
         except ValueError:
             if self.file.readline() == "":
-                self.debugger.error("Reached end of file")
+                self.debugger.warning("Reached end of file")
                 return
         except:
             self.debugger.warning("Couldn't parse line")
