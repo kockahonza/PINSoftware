@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="PINSoftware",
-    version="0.1",
+    version="0.1.1",
     author="Jan Kocka",
     author_email="kockahonza@gmail.com",
     description="Software for the xPIN + Sample and Hold + NI-6002 setup at ELI Beamlines",
