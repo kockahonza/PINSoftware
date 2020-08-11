@@ -2,8 +2,15 @@ import datetime
 
 from os import path
 
+import numpy as np
+
 from PINSoftware.Debugger import Debugger
 
+
+def remove_outliers(data):
+    u = np.mean(data)
+    s = np.std(data)
+    return [e for e in data if (u - 2 * s < e < u + 2 * s)]
 
 class DataAnalyser():
     """
@@ -62,12 +69,8 @@ class DataAnalyser():
         self.averaged_processed_timestamps = []
 
         self.edge_detection_threshold = edge_detection_threshold
-        self.last_up_sum = 0
-        self.last_up_diff_sum = 0
-        self.last_up_count = 0
-        self.last_down_sum = 0
-        self.last_down_diff_sum = 0
-        self.last_down_count = 0
+        self.last_up_section = []
+        self.last_down_section = []
 
         self.correction_func = correction_func
 
@@ -120,34 +123,35 @@ class DataAnalyser():
         a warning is printed. I won't describe the logic here as it is described in the manual and also
         it may still be best to look through the code.
         """
-        up_avg = self.last_up_sum / self.last_up_count if self.last_up_count else self.ys[-1]
-        diff = new_y - up_avg
+        diff = new_y - self.ys[-1]
         if abs(diff) > self.edge_detection_threshold:
-            if diff < 0 and self.last_up_count > 0 and self.last_down_count > 0:
-                avg_up_diff = self.last_up_diff_sum / self.last_up_count
+            if diff < 0 and len(self.last_up_section) > 0 and len(self.last_down_section) > 0:
+                last_up_section = remove_outliers(self.last_up_section)
+                last_down_section = remove_outliers(self.last_down_section)
 
-                down_avg = self.last_down_sum / self.last_down_count
+                last_up_diffs = [post - pre for pre, post in zip(last_up_section, last_up_section[1:])]
+                avg_up_diff = sum(last_up_diffs) / len(last_up_diffs)
+
+                up_avg = sum(last_up_section) / len(last_up_section)
+
+                down_avg = sum(last_down_section) / len(last_down_section)
 
                 if up_avg >= down_avg:
-                    spike = (up_avg - avg_up_diff * (self.last_up_count / 2))
+                    spike = (up_avg - avg_up_diff * (len(self.last_up_section) / 2))
                     self.markers.append(spike)
                     self.marker_timestamps.append(len(self.ys))
                     processed_y = self.correction_func(spike - down_avg)
                     self.actual_append(processed_y)
                 else:
+                    # self.markers.append(down_avg)
+                    # self.marker_timestamps.append(len(self.ys))
                     self.debugger.warning("Irregular data, something may be wrong.")
 
-            if self.last_up_count > 0:
-                self.last_down_sum = self.last_up_sum
-                self.last_down_diff_sum = self.last_up_diff_sum
-                self.last_down_count = self.last_up_count
-                self.last_up_sum = 0
-                self.last_up_diff_sum = 0
-                self.last_up_count = 0
+            if len(self.last_up_section) > 0:
+                self.last_down_section = self.last_up_section
+                self.last_up_section = []
         else:
-            self.last_up_sum += new_y
-            self.last_up_diff_sum += new_y - self.ys[-1]
-            self.last_up_count += 1
+            self.last_up_section.append(new_y)
 
     def append(self, new_y):
         """
