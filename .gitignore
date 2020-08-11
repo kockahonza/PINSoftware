@@ -3,5 +3,5 @@ dist
 *.egg-info
 __pycache__
 install
-build_docs
-clean
+docs_build
+docs_clean
