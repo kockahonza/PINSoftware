@@ -13,7 +13,9 @@ class DataAnalyser():
     use `DataAnalyser.ys` to get the raw data, `DataAnalyser.processed` to get the peak voltages,
     `DataAnalyser.processed_timestamps` are timestamps corresponding to the peak voltages,
     `DataAnalyser.averaged_processed_ys` are the averaged peak voltages and `DataAnalyser.averaged_processed_timestamps`
-    are timestamps corresponding to the averages.
+    are timestamps corresponding to the averages. Lastly `DataAnalyser.markers` and `DataAnalyser.marker_timestamps`
+    are debug markers and their timestamps, those can be anything and are only adjustable from code, they should
+    not be used normally.
 
     All the timestamps used here are based on the length of `DataAnalyser.ys` at the time. This is very
     useful for two reasons, its easy to calculate so also fast. Bu mostly because later when you plot the data,
