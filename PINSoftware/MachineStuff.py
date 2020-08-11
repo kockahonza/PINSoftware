@@ -20,11 +20,18 @@ class MachineStuff():
             plot_update_interval : int = 100, log_directory : str = "logs"):
         """
         `plt` should be the `matplotlib.pyplot` module or something equivalent, this is for plotting the live
-        data graph on the host machine when the graphing option is enabled. `dummy` determines whether
-        the data should be grabbed from the NI-6002 or a dummy file. If `dummy` is True, `dummy_data_file` should
-        be specified otherwise the program will crash, `dummy_data_file` is a path to the data to use for dummy mode.
-        `profiler` is whether the DataUpdater should be profiled, `plot_update_interval` is the update interval of
-        the live data graph and `log_directory` is the directory where to put saved data.
+        data graph on the host machine when the graphing option is enabled.
+
+        `dummy` determines whether the data should be grabbed from the NI-6002 or a dummy file. If `dummy` is
+        True, `dummy_data_file` should be specified otherwise the program will crash.
+
+        `dummy_data_file` is a path to the data to use for dummy mode.
+
+        `profiler` is whether the DataUpdater should be profiled.
+
+        `plot_update_interval` is the update interval of the live data graph.
+
+        `log_directory` is the directory where to put saved data.
         """
         self.plt = plt
         self.dummy = dummy
@@ -70,12 +77,12 @@ class MachineStuff():
         self.fig.canvas.mpl_connect('key_press_event', self.onKeyPress)
         self.plt.show()
 
-    def grab_control(self, controller_info):
+    def grab_control(self, controller_sid):
         """
         Wrapper around the `MachineStuff.controller` field where extra effects can be added,
         called when someone grabs control.
         """
-        self.controller = controller_info
+        self.controller = controller_sid
         self.stop_experiment()
 
     def release_control(self):
@@ -92,11 +99,15 @@ class MachineStuff():
         This starts a data acquisition run. It creates a new `PINSoftware.DataAnalyser.DataAnalyser` and an appropriate `DataUpdater`.
         Then it may also create and start a `DataSaver` and/or a `Profiler` based on the situation.
 
-        `save_base_filename` is the base part of the filename for the
-        new log file. The `save_base_filename` is appended with a timestamp and an appropriate file extension
-        and that makes up the filename. `save_filetype` determines the `DataSaver` type, more information in
-        `PINSoftware.DataSaver`. `items` is used when `save_filetype` is `PINSoftware.DataSaver.Filetype.Hdf5` and is passed to the
-        `PINSoftware.DataSaver.Hdf5DataSaver`. The rest of the keyword arguments are passed to the `PINSoftware.DataAnalyser.DataAnalyser`.
+        `save_base_filename` is the base part of the filename for the new log file. The `save_base_filename`
+        is appended with a timestamp and an appropriate file extension and that makes up the filename.
+
+        `save_filetype` determines the `DataSaver` type, more information in `PINSoftware.DataSaver`.
+
+        `items` is used when `save_filetype` is `PINSoftware.DataSaver.Filetype.Hdf5` and is passed to the
+        `PINSoftware.DataSaver.Hdf5DataSaver`.
+
+        `kwargs` are passed to the new `PINSoftware.DataAnalyser.DataAnalyser` instance.
 
         More information on how it all works look in the module documentation: `PINSoftware`.
         """

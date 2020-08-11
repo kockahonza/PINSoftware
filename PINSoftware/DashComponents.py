@@ -1,12 +1,39 @@
+"""
+This file has all the custom dash components used for the app. Some of the
+most important ones are the graphs so I will give a bit of explanation to them.
+
+There are two types of graphs defined here - `FullRedrawGraph` and `ExtendableGraph`.
+The difference being that only the ExtendableGraph can be extended without resending all the data.
+Both graphs are created in a container with a title, controls and an interval. Both have
+at least two switches, the "Show graph" and the "Update graph" buttons. When "Show graph" is
+off the graph is not rendered and its "Update graph" button is disabled. The "Update graph"
+toggles the interval, when it is enabled the interval runs, otherwise not. Each type uses the
+interval differently but both use it to update. More on in their respective documentations.
+"""
+
 import dash_core_components as dcc
 import dash_html_components as html
 import dash_bootstrap_components as dbc
 
+import dash
+
 from dash.dependencies import Input, Output, State
 from dash.exceptions import PreventUpdate
 
+from PINSoftware.MachineStuff import MachineStuff
+
 
 def SingleSwitch(id_, label, default=False):
+    """
+    This returns a dash component containing a single switch (a nice looking checkbox)
+    (not a part of a Checklist) using bootstrap.
+
+    `id` is the id of the Checkbox component inside.
+
+    `label` is the label shown beside it.
+
+    `default` is the default value of the switch.
+    """
     return html.Div([
                         dbc.Checkbox(id=id_, className='custom-control-input', checked=default),
                         html.Label(label, htmlFor=id_, className='custom-control-label'),
@@ -16,7 +43,12 @@ def SingleSwitch(id_, label, default=False):
                 )
 
 
-def get_base_graph_callbacks(app, ms, name):
+def get_base_graph_callbacks(app : dash.Dash, name : str):
+    """
+    This adds the most basic callbacks to a graph. It takes car of two things.
+    Disabling the interval when the "Update graph" switch is off and disabling the
+    "Update graph" when the "Show graph" button is off.
+    """
     @app.callback([
             Output(name + '-row', 'style'),
             Output(name + '-clock-toggle', 'disabled'),
@@ -33,9 +65,25 @@ def get_base_graph_callbacks(app, ms, name):
 
 base_graph_callbacks_done = []
 
-def BaseGraph(app, ms, name, title, interval=2000, additional_controls=[]):
+def BaseGraph(app : dash.Dash, name : str, title : str, interval : int = 2000, additional_controls=[]):
+    """
+    This creates a dash component with the most basic stuff for an updating graph.
+    It sets up the container, the controls and the `dash_core_components.Interval`.
+    It also sets up the basic callbacks using `get_base_graph_callbacks`.
+
+    `app` is the app to add the callbacks to.
+    
+    `name` is the `dash_core_components.Graph` component id.
+
+    `title` is the title of the graph, shown at the top of the container.
+
+    `interval` is the `dash_core_components.Interval` interval in milliseconds.
+
+    `additional_controls` is a list of dash components with should be added in the container,
+    this is useful when you want to add additional controls to the graph.
+    """
     if name not in base_graph_callbacks_done:
-        get_base_graph_callbacks(app, ms, name)
+        get_base_graph_callbacks(app, name)
         base_graph_callbacks_done.append(name)
     return dbc.Container([
             dbc.Row(html.H4(title), justify='center', className='mt-1'),
@@ -62,7 +110,21 @@ def BaseGraph(app, ms, name, title, interval=2000, additional_controls=[]):
     )
 
 
-def get_full_redraw_graph_callbacks(app, ms, name, fig_func, **kwargs):
+def get_full_redraw_graph_callbacks(app : dash.Dash, ms : MachineStuff, name : str, fig_func, **kwargs):
+    """
+    Adds callbacks to a `FullRedrawGraph`. Specifically, whenever the `dash_core_components.Interval`
+    triggers, if there is `ms.data` then the `figure_func` is called and its result is set as the new figure.
+
+    `app` the dash app to add the callbacks to.
+
+    If `fig_func_output` is a keyword argument, then its value is set as the output of the interval
+    trigger callback (this is the one where `fig_func` is used).
+
+    If `fig_func_state` is a keyword argument, then its value is set as the state of the interval
+    trigger callback (this is the one where `fig_func` is used).
+
+    The only thing that is fixed is the callback inputs.
+    """
     fig_func_output = kwargs.setdefault('fig_func_output', Output(name, 'figure'))
     fig_func_state = kwargs.setdefault('fig_func_state', [])
 
@@ -74,14 +136,58 @@ def get_full_redraw_graph_callbacks(app, ms, name, fig_func, **kwargs):
 
 full_redraw_graph_callbacks_done = []
 
-def FullRedrawGraph(app, ms, name, title, fig_func, interval=2000, additional_controls=[], **kwargs):
+def FullRedrawGraph(app : dash.Dash, ms : MachineStuff, name : str, title : str, fig_func,
+        interval : int = 2000, additional_controls=[], **kwargs):
+    """
+    Get a graph which whenever it is updated, the whole figure is changed and passed over the network.
+
+    `app` the dash app to add the callbacks to.
+
+    `ms` the `PINSoftware.MachineStuff.MachineStuff` to use for checking for data.
+
+    `name` is the `dash_core_components.Graph` component id.
+
+    `title` is the title of the graph, shown at the top of the container.
+
+    `fig_func` is the function to call on update. It is only called when `ms.data` is not None.
+    Its output is the graph figure by default but can be changed using the `fig_func_output` keyword
+    argument. It can also get more arguments, the callback state can be changed by the `fig_func_state`
+    keyword argument.
+
+    `interval` is the `dash_core_components.Interval` interval in milliseconds.
+
+    `additional_controls` is a list of dash components with should be added in the container,
+    this is useful when you want to add additional controls to the graph.
+    """
     if name not in full_redraw_graph_callbacks_done:
         get_full_redraw_graph_callbacks(app, ms, name, fig_func, **kwargs)
         full_redraw_graph_callbacks_done.append(name)
-    return BaseGraph(app, ms, name, title, interval, additional_controls)
+    return BaseGraph(app, name, title, interval, additional_controls)
 
 
-def get_extendable_graph_callbacks(app, ms, name, extend_func, base_fig_func, **kwargs):
+def get_extendable_graph_callbacks(app : dash.Dash, ms : MachineStuff, name : str, extend_func,
+        base_fig_func, **kwargs):
+    """
+    Adds callbacks to a `ExtendableGraph`. It adds two callbacks, Firstly, when the page loads or whenever
+    the "Stop" button is enabled, the graph is reset using `base_fig_func`. Then whenever the interval
+    triggers, the graph is extended using `extend_func`.
+
+    `app` the dash app to add the callbacks to.
+
+    If `base_fig_func_output` is a keyword argument, then its value is set as the output of the callback
+    using `base_fig_func` (the reset one). The default is the graph figure.
+
+    If `base_fig_func_state` is a keyword argument, then its value is set as the state of the callback
+    using `base_fig_func` (the reset one). The default is an empty list.
+
+    If `extend_func_output` is a keyword argument, then its value is set as the output of the callback
+    using `extend_func` (the interval one). The default is the graph 'extendData'.
+
+    If `extend_func_state` is a keyword argument, then its value is set as the state of the callback
+    using `extend_func` (the interval one). The default is an empty list.
+
+    The only thing that is fixed is the callback inputs.
+    """
     base_fig_func_output = kwargs.setdefault('base_fig_func_output', Output(name, 'figure'))
     base_fig_func_state = kwargs.setdefault('base_fig_func_state', [])
     extend_func_output = kwargs.setdefault('extend_func_output', Output(name, 'extendData'))
@@ -101,8 +207,35 @@ def get_extendable_graph_callbacks(app, ms, name, extend_func, base_fig_func, **
 
 extendable_graph_callbacks_done = []
 
-def ExtendableGraph(app, ms, name, title, base_fig_func, extend_func, interval=2000, additional_controls=[], **kwargs):
+def ExtendableGraph(app : dash.Dash, ms : MachineStuff, name : str, title : str,
+        base_fig_func, extend_func, interval : int = 2000, additional_controls=[], **kwargs):
+    """
+    Get a graph to which new data is added instead of redrawing it completely. It is
+    first set by `base_fig_func` and then updated using `extend_func`.
+
+    `app` the dash app to add the callbacks to.
+
+    `ms` the `PINSoftware.MachineStuff.MachineStuff` to use for checking for data.
+
+    `name` is the `dash_core_components.Graph` component id.
+
+    `title` is the title of the graph, shown at the top of the container.
+
+    `base_fig_func` is the function to call on 'reset', this is when the page loads or whenever the
+    "Stop" button is enabled. Its output is the graph `figure` by default but can be changed using
+    the `base_fig_func_output` keyword argument. It can also get more arguments, the callback state can be
+    changed by the `base_fig_func_state` keyword argument.
+
+    `extend_func` is the function to call on 'update', this is whenever the interval triggers.  Its output
+    is the graph `extendData` by default but can be changed using the `extend_func_output` keyword argument.
+    It can also get more arguments, the callback state can be changed by the `extend_func_state` keyword argument.
+
+    `interval` is the `dash_core_components.Interval` interval in milliseconds.
+
+    `additional_controls` is a list of dash components with should be added in the container,
+    this is useful when you want to add additional controls to the graph.
+    """
     if name not in extendable_graph_callbacks_done:
         get_extendable_graph_callbacks(app, ms, name, extend_func, base_fig_func, **kwargs)
         extendable_graph_callbacks_done.append(name)
-    return BaseGraph(app, ms, name, title, interval, additional_controls)
+    return BaseGraph(app, name, title, interval, additional_controls)

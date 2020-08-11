@@ -328,7 +328,7 @@ def get_app(ms : MachineStuff) -> dash.Dash:
                     html.P("""
                         The device processes the data by detecting sections and it then gets the differences between certain sections.
                         The Edge detection threshold parameter is the voltage difference which constitutes a section transition.
-                        What is meant by that is that when the difference between the new datapoint and the average of the current section is greater than this, then this is labeled as an edge and a new section begins.
+                        What is meant by that is that when the difference between the new datapoint and the average of the current section is greater than the EDT, then this is labeled as an edge and a new section begins.
                     """),
                     html.P("""
                         Peak voltage is a term which refers to the max voltage of the peak.

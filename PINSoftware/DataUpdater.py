@@ -35,7 +35,7 @@ class BaseDataUpdater(threading.Thread):
         """
         pass
 
-    def loop(self):
+    def loop(self) -> int:
         """
         This should be overridden by the actual data loading. This will be called continuously as the
         `PINSoftware.DataUpdater` runs. It should return the number of datapoints added (for the Profiler to use).
