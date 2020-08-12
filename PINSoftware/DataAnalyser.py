@@ -10,7 +10,7 @@ from PINSoftware.Debugger import Debugger
 def remove_outliers(data):
     u = np.mean(data)
     s = np.std(data)
-    return [e for e in data if (u - 2 * s < e < u + 2 * s)]
+    return [e for e in data if (u - 2 * s <= e <= u + 2 * s)]
 
 class DataAnalyser():
     """
