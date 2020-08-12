@@ -10,7 +10,7 @@ from PINSoftware.DataAnalyser import DataAnalyser
 from PINSoftware.DataSaver import CsvDataSaver, Hdf5DataSaver, Filetype, SavingException
 from PINSoftware.DataUpdater import NiDAQmxDataUpdater, LoadedDataUpdater
 
-class MachineStuff():
+class MachineState():
     """
     This is the main class covering all hardware control and data analysis (everything except the UI).
     There should always be only one instance at a time and the program keeps it for the whole duration
@@ -79,7 +79,7 @@ class MachineStuff():
 
     def grab_control(self, controller_sid):
         """
-        Wrapper around the `MachineStuff.controller` field where extra effects can be added,
+        Wrapper around the `MachineState.controller` field where extra effects can be added,
         called when someone grabs control.
         """
         self.controller = controller_sid
@@ -87,7 +87,7 @@ class MachineStuff():
 
     def release_control(self):
         """
-        Wrapper around the `MachineStuff.controller` field where extra effects can be added,
+        Wrapper around the `MachineState.controller` field where extra effects can be added,
         called when the control is released.
         """
         self.controller = None

@@ -5,7 +5,7 @@ import threading
 
 import matplotlib.pyplot as plt
 
-from PINSoftware.MachineStuff import MachineStuff
+from PINSoftware.MachineState import MachineState
 from PINSoftware.DashApp import get_app
 
 from waitress import serve
@@ -24,7 +24,7 @@ def main():
     parser.add_argument("--profiler", "-p", dest="profiler", action="store_true", help="Run a profiler along to monitor performance.")
     args = parser.parse_args()
 
-    ms = MachineStuff(plt, args.dummy, dummy_data_file=args.dummy_data, profiler=args.profiler)
+    ms = MachineState(plt, args.dummy, dummy_data_file=args.dummy_data, profiler=args.profiler)
 
     app = get_app(ms)
 

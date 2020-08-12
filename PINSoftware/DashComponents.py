@@ -20,7 +20,7 @@ import dash
 from dash.dependencies import Input, Output, State
 from dash.exceptions import PreventUpdate
 
-from PINSoftware.MachineStuff import MachineStuff
+from PINSoftware.MachineState import MachineState
 
 
 def SingleSwitch(id_, label, default=False):
@@ -113,7 +113,7 @@ def BaseGraph(app : dash.Dash, name : str, title : str, interval : int = 2000, a
     )
 
 
-def get_full_redraw_graph_callbacks(app : dash.Dash, ms : MachineStuff, name : str, fig_func, **kwargs):
+def get_full_redraw_graph_callbacks(app : dash.Dash, ms : MachineState, name : str, fig_func, **kwargs):
     """
     Adds callbacks to a `FullRedrawGraph`. Specifically, whenever the `dash_core_components.Interval`
     triggers, if there is `ms.data` then the `figure_func` is called and its result is set as the new figure.
@@ -139,14 +139,14 @@ def get_full_redraw_graph_callbacks(app : dash.Dash, ms : MachineStuff, name : s
 
 full_redraw_graph_callbacks_done = []
 
-def FullRedrawGraph(app : dash.Dash, ms : MachineStuff, name : str, title : str, fig_func,
+def FullRedrawGraph(app : dash.Dash, ms : MachineState, name : str, title : str, fig_func,
         interval : int = 2000, additional_controls=[], **kwargs):
     """
     Get a graph which whenever it is updated, the whole figure is changed and passed over the network.
 
     `app` the dash app to add the callbacks to.
 
-    `ms` the `PINSoftware.MachineStuff.MachineStuff` to use for checking for data.
+    `ms` the `PINSoftware.MachineState.MachineState` to use for checking for data.
 
     `name` is the `dash_core_components.Graph` component id.
 
@@ -168,7 +168,7 @@ def FullRedrawGraph(app : dash.Dash, ms : MachineStuff, name : str, title : str,
     return BaseGraph(app, name, title, interval, additional_controls)
 
 
-def get_extendable_graph_callbacks(app : dash.Dash, ms : MachineStuff, name : str, extend_func,
+def get_extendable_graph_callbacks(app : dash.Dash, ms : MachineState, name : str, extend_func,
         base_fig, **kwargs):
     """
     Adds callbacks to a `ExtendableGraph`. It adds two callbacks, Firstly, whenever
@@ -204,7 +204,7 @@ def get_extendable_graph_callbacks(app : dash.Dash, ms : MachineStuff, name : st
 
 extendable_graph_callbacks_done = []
 
-def ExtendableGraph(app : dash.Dash, ms : MachineStuff, name : str, title : str,
+def ExtendableGraph(app : dash.Dash, ms : MachineState, name : str, title : str,
         base_fig, extend_func, interval : int = 2000, additional_controls=[], **kwargs):
     """
     Get a graph to which new data is added instead of redrawing it completely. Its figure
@@ -212,7 +212,7 @@ def ExtendableGraph(app : dash.Dash, ms : MachineStuff, name : str, title : str,
 
     `app` the dash app to add the callbacks to.
 
-    `ms` the `PINSoftware.MachineStuff.MachineStuff` to use for checking for data.
+    `ms` the `PINSoftware.MachineState.MachineState` to use for checking for data.
 
     `name` is the `dash_core_components.Graph` component id.
 

@@ -32,7 +32,7 @@ import os
 import uuid
 import urllib
 
-from PINSoftware.MachineStuff import MachineStuff
+from PINSoftware.MachineState import MachineState
 from PINSoftware.DashComponents import FullRedrawGraph, ExtendableGraph, SingleSwitch
 from PINSoftware.DataSaver import Filetype
 
@@ -51,10 +51,10 @@ def linear_correct_func(cor_a, cor_b):
     return lambda x: cor_a * x + cor_b
 
 
-def get_app(ms : MachineStuff) -&gt; dash.Dash:
+def get_app(ms : MachineState) -&gt; dash.Dash:
     &#34;&#34;&#34;
         Creates the Dash app and creates all the callbacks.
-        `ms` is the MachineStuff instance to which callbacks should be connected.
+        `ms` is the MachineState instance to which callbacks should be connected.
         Returns a `dash.Dash` instance to be run.
     &#34;&#34;&#34;
     app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
@@ -732,20 +732,20 @@ def get_app(ms : MachineStuff) -&gt; dash.Dash:
 </details>
 </dd>
 <dt id="PINSoftware.DashApp.get_app"><code class="name flex">
-<span>def <span class="ident">get_app</span></span>(<span>ms: <a title="PINSoftware.MachineStuff.MachineStuff" href="MachineStuff.html#PINSoftware.MachineStuff.MachineStuff">MachineStuff</a>) ‑> dash.dash.Dash</span>
+<span>def <span class="ident">get_app</span></span>(<span>ms: <a title="PINSoftware.MachineState.MachineState" href="MachineState.html#PINSoftware.MachineState.MachineState">MachineState</a>) ‑> dash.dash.Dash</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Creates the Dash app and creates all the callbacks.
-<code>ms</code> is the MachineStuff instance to which callbacks should be connected.
+<code>ms</code> is the MachineState instance to which callbacks should be connected.
 Returns a <code>dash.Dash</code> instance to be run.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def get_app(ms : MachineStuff) -&gt; dash.Dash:
+<pre><code class="python">def get_app(ms : MachineState) -&gt; dash.Dash:
     &#34;&#34;&#34;
         Creates the Dash app and creates all the callbacks.
-        `ms` is the MachineStuff instance to which callbacks should be connected.
+        `ms` is the MachineState instance to which callbacks should be connected.
         Returns a `dash.Dash` instance to be run.
     &#34;&#34;&#34;
     app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])

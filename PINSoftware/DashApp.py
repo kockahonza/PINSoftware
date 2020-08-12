@@ -4,7 +4,7 @@ import os
 import uuid
 import urllib
 
-from PINSoftware.MachineStuff import MachineStuff
+from PINSoftware.MachineState import MachineState
 from PINSoftware.DashComponents import FullRedrawGraph, ExtendableGraph, SingleSwitch
 from PINSoftware.DataSaver import Filetype
 
@@ -23,10 +23,10 @@ def linear_correct_func(cor_a, cor_b):
     return lambda x: cor_a * x + cor_b
 
 
-def get_app(ms : MachineStuff) -> dash.Dash:
+def get_app(ms : MachineState) -> dash.Dash:
     """
         Creates the Dash app and creates all the callbacks.
-        `ms` is the MachineStuff instance to which callbacks should be connected.
+        `ms` is the MachineState instance to which callbacks should be connected.
         Returns a `dash.Dash` instance to be run.
     """
     app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
