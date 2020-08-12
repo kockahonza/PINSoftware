@@ -153,7 +153,7 @@ class DataAnalyser():
         &#34;&#34;&#34;
         diff = new_y - self.ys[-1]
         if abs(diff) &gt; self.edge_detection_threshold:
-            if diff &lt; 0 and len(self.last_up_section) &gt; 0 and len(self.last_down_section) &gt; 0:
+            if diff &lt; 0 and len(self.last_up_section) &gt; 1 and len(self.last_down_section) &gt; 1:
                 last_up_section = remove_outliers(self.last_up_section)
                 last_down_section = remove_outliers(self.last_down_section)
 
@@ -373,7 +373,7 @@ to correct some systematic errors or do some calculations.</p></div>
         &#34;&#34;&#34;
         diff = new_y - self.ys[-1]
         if abs(diff) &gt; self.edge_detection_threshold:
-            if diff &lt; 0 and len(self.last_up_section) &gt; 0 and len(self.last_down_section) &gt; 0:
+            if diff &lt; 0 and len(self.last_up_section) &gt; 1 and len(self.last_down_section) &gt; 1:
                 last_up_section = remove_outliers(self.last_up_section)
                 last_down_section = remove_outliers(self.last_down_section)
 
@@ -505,7 +505,7 @@ it may still be best to look through the code.</p></div>
     &#34;&#34;&#34;
     diff = new_y - self.ys[-1]
     if abs(diff) &gt; self.edge_detection_threshold:
-        if diff &lt; 0 and len(self.last_up_section) &gt; 0 and len(self.last_down_section) &gt; 0:
+        if diff &lt; 0 and len(self.last_up_section) &gt; 1 and len(self.last_down_section) &gt; 1:
             last_up_section = remove_outliers(self.last_up_section)
             last_down_section = remove_outliers(self.last_down_section)
 

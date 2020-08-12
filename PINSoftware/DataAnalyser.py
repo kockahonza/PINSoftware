@@ -125,7 +125,7 @@ class DataAnalyser():
         """
         diff = new_y - self.ys[-1]
         if abs(diff) > self.edge_detection_threshold:
-            if diff < 0 and len(self.last_up_section) > 0 and len(self.last_down_section) > 0:
+            if diff < 0 and len(self.last_up_section) > 1 and len(self.last_down_section) > 1:
                 last_up_section = remove_outliers(self.last_up_section)
                 last_down_section = remove_outliers(self.last_down_section)
 
