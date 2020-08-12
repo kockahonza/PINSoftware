@@ -6,11 +6,11 @@ The code is entirely in python and runs on all platforms where its dependencies 
 
 ## Install
 
-First you need to build the package by running `python setup.py sdist bdist_wheel` in the repo root directory.
-(You can skip this step by downloading the .whl package from the releases (then you don't need to go in the `dist` directory))
-
-Then go into the `dist` directory (`cd dist`) and pip install it (`pip install PINSoftware-<version>-py3-none-any.whl` where \<version\> is the current version).
-This should also install all the dependencies (unless I missed some).
+The program can be packaged into a pip package, so you will need [pip](https://pypi.org/project/pip) to install it.
+You can either download a prebuilt package from the releases (download the .whl file for new versions of pip) or you can build it yourself.
+To build it yourself you will need `setuptools` and `wheel` installed, you can install them by running `pip install setuptools wheel`
+Then to build it run `python setup.py sdist bdist_wheel`, that will create a bunch of folders and the .whl file you need is in the dist directory.
+To install the .whl file run `pip install filename.whl` where filename is the name of the .whl file.
 
 ## Running
 
@@ -27,3 +27,12 @@ Technical documentation is in the docstrings and a html or pdf can be created fr
 To generate them you need pdoc3 (not pdoc!) which you can install using pip (`pip install pdoc3`).
 Afterwards delete the `docs/PINSoftware` directory if it exists (`rm -r docs/PINSoftware`) and run pdoc3 `pdoc --html --output-dir docs --template-dir docs/templates ./PINSoftware`.
 Then open `docs/PINSoftware/index.html` in a web browser.
+
+## Troubleshooting
+
+#### `s.libnipalu.so failed to initialize, Verify that nipalk.ko is built and loaded.`
+This most definitely means that the nidaqmx drivers aren't installed or working.
+
+#### `ModuleNotFoundError: No module named ??`
+While pip should install all the dependencies, there might be some missing in the specification, if this happens, search and install the package that provides the module.
+
