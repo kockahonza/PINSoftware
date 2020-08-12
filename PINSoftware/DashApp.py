@@ -37,24 +37,21 @@ def get_app(ms : MachineStuff) -> dash.Dash:
         """Converts the timestamps sotred in `PINSoftware.DataAnalyser.DataAnalyser` to a `datetime.datetime` object"""
         return datetime.datetime.fromtimestamp(ms.data.first_processed_timestamp + x * ms.data.period)
 
-    def full_graph_base_fig():
-        """Full graph base figure function"""
-        fig = {'data': [
-                {
-                    'x': [],
-                    'y': [],
-                    'type': 'scatter',
-                    'name': 'Live peak voltage'
-                },
-                {
-                    'x': [],
-                    'y': [],
-                    'type': 'scatter',
-                    'name': 'Live averaged peak voltage'
-                }
-            ]
-        }
-        return fig
+    full_graph_base_fig = {'data': [
+            {
+                'x': [],
+                'y': [],
+                'type': 'scatter',
+                'name': 'Live peak voltage'
+            },
+            {
+                'x': [],
+                'y': [],
+                'type': 'scatter',
+                'name': 'Live averaged peak voltage'
+            }
+        ]
+    }
 
     def full_graph_extend(n, graph_indices):
         """Full graph extend function"""
