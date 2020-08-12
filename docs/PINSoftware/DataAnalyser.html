@@ -1,0 +1,618 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.8.4" />
+<title>PINSoftware.DataAnalyser API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js" integrity="sha256-eOgo0OtLL4cdq7RdwRUiGKLX9XsIJ7nGhWEKbohmVAQ=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>PINSoftware.DataAnalyser</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">import datetime
+
+from os import path
+
+import numpy as np
+
+from PINSoftware.Debugger import Debugger
+
+
+def remove_outliers(data):
+    u = np.mean(data)
+    s = np.std(data)
+    return [e for e in data if (u - 2 * s &lt; e &lt; u + 2 * s)]
+
+class DataAnalyser():
+    &#34;&#34;&#34;
+    This class takes care of data analysis and storage.
+
+    Once this function is created, you should call `DataAnalyser.append` to add a new data point,
+    use `DataAnalyser.ys` to get the raw data, `DataAnalyser.processed` to get the peak voltages,
+    `DataAnalyser.processed_timestamps` are timestamps corresponding to the peak voltages,
+    `DataAnalyser.averaged_processed_ys` are the averaged peak voltages and `DataAnalyser.averaged_processed_timestamps`
+    are timestamps corresponding to the averages. Lastly `DataAnalyser.markers` and `DataAnalyser.marker_timestamps`
+    are debug markers and their timestamps, those can be anything and are only adjustable from code, they should
+    not be used normally.
+
+    All the timestamps used here are based on the length of `DataAnalyser.ys` at the time. This is very
+    useful for two reasons, its easy to calculate so also fast. Bu mostly because later when you plot the data,
+    you can plot the `DataAnalyser.ys` with &#34;x0=0&#34; and &#34;dx=1&#34; and then plot the peak averaged directly and the data
+    will be correctly scaled on the x axis. The problem is however that this assumes that the data comes at a
+    precise frequency but the NI-6002 can offer that so it should be alright.
+    &#34;&#34;&#34;
+    def __init__(self, data_frequency : int, plot_buffer_len : int = 200, debugger : Debugger = Debugger(),
+            edge_detection_threshold : float = 0.005, average_count : int = 50, correction_func=lambda x: x):
+        &#34;&#34;&#34;
+        `data_frequency` is the frequency of the incoming data, this is used for calculating real timestamps
+        and is saved if hdf5 saving is enabled.
+
+        `plot_buffer_len` determines how many datapoints should be plotted in the live plot graph (if the
+        server has been run with the graphing option).
+
+        `debugger` is the debugger to use.
+
+        `edge_detection_threshold`, `average_count` and `correction_func` are processing parameters. They
+        are described in the Help tab of the program.
+
+        `edge_detection_threshold` sets the voltage difference required to find a section transition.
+
+        `average_count` is how many peak voltages should be averaged to get the averaged peak voltages.
+
+        `correction_func` is the function to run the peak voltages through before using them. This is
+        to correct some systematic errors or do some calculations.
+        &#34;&#34;&#34;
+        self.freq = data_frequency
+        self.period = 1 / data_frequency
+        self.plot_buffer_len = plot_buffer_len
+        self.debugger = debugger
+
+        self.ys = [0]
+        self.markers = []
+        self.marker_timestamps = []
+
+        self.first_processed_timestamp = None
+        self.actual_append = self.actual_append_first
+
+        self.processed_ys = []
+        self.processed_timestamps = []
+        self.averaged_processed_ys = []
+        self.averaged_processed_timestamps = []
+
+        self.edge_detection_threshold = edge_detection_threshold
+        self.last_up_section = []
+        self.last_down_section = []
+
+        self.correction_func = correction_func
+
+        self.average_count = average_count
+        self.average_running_sum = 0
+        self.average_index = 0
+
+        self.ready_to_plot = True
+
+    def actual_append_first(self, new_processed_y):
+        &#34;&#34;&#34;
+        This appends the new processed value, works on the averaged processed values and
+        possibly appends that too. This is when the first processed value comes in.
+        It sets some initial values, after it runs once `DataAnalyser.actual_append_main`
+        is called instead.
+        &#34;&#34;&#34;
+        self.processed_ys.append(new_processed_y)
+        self.first_processed_timestamp = datetime.datetime.now().timestamp()
+        self.processed_timestamps.append(len(self.ys))
+
+        self.average_running_sum += new_processed_y
+        self.average_index += 1
+
+        self.actual_append = self.actual_append_main
+
+    def actual_append_main(self, new_processed_y):
+        &#34;&#34;&#34;
+        This appends the new processed value, works on the averaged processed values and
+        possibly appends that too. For the first processed value, `DataAnalyser.actual_append_first`
+        is run instead, but afterwards this is.
+        &#34;&#34;&#34;
+        self.processed_ys.append(new_processed_y)
+        self.processed_timestamps.append(len(self.ys))
+
+        self.average_running_sum += new_processed_y
+        self.average_index += 1
+
+        if self.average_index == self.average_count:
+            self.averaged_processed_ys.append(self.average_running_sum / self.average_count)
+            self.averaged_processed_timestamps.append(self.processed_timestamps[-1])
+            self.average_running_sum = 0
+            self.average_index = 0
+
+    def handle_processing(self, new_y):
+        &#34;&#34;&#34;
+        This is the main processing function. It gets the new y (which
+        at this point is not in `DataAnalyser.ys` yet) and does some processing on it.
+        It may add new values to `DataAnalyser.processed` and `DataAnalyser.averaged_processed_ys`
+        if new values were found through `DataAnalyser.actual_append`. If the data does not add up
+        a warning is printed. I won&#39;t describe the logic here as it is described in the manual and also
+        it may still be best to look through the code.
+        &#34;&#34;&#34;
+        diff = new_y - self.ys[-1]
+        if abs(diff) &gt; self.edge_detection_threshold:
+            if diff &lt; 0 and len(self.last_up_section) &gt; 0 and len(self.last_down_section) &gt; 0:
+                last_up_section = remove_outliers(self.last_up_section)
+                last_down_section = remove_outliers(self.last_down_section)
+
+                last_up_diffs = [post - pre for pre, post in zip(last_up_section, last_up_section[1:])]
+                avg_up_diff = sum(last_up_diffs) / len(last_up_diffs)
+
+                up_avg = sum(last_up_section) / len(last_up_section)
+
+                down_avg = sum(last_down_section) / len(last_down_section)
+
+                if up_avg &gt;= down_avg:
+                    spike = (up_avg - avg_up_diff * (len(self.last_up_section) / 2))
+                    self.markers.append(spike)
+                    self.marker_timestamps.append(len(self.ys))
+                    processed_y = self.correction_func(spike - down_avg)
+                    self.actual_append(processed_y)
+                else:
+                    # self.markers.append(down_avg)
+                    # self.marker_timestamps.append(len(self.ys))
+                    self.debugger.warning(&#34;Irregular data, something may be wrong.&#34;)
+
+            if len(self.last_up_section) &gt; 0:
+                self.last_down_section = self.last_up_section
+                self.last_up_section = []
+        else:
+            self.last_up_section.append(new_y)
+
+    def append(self, new_y):
+        &#34;&#34;&#34;
+        The main apppend function through which new data is added. It just passes
+        the value to the processing function and appends it to `DataAnalyser.ys` in the end.
+        &#34;&#34;&#34;
+        self.ready_to_plot = False
+
+        self.handle_processing(new_y)
+
+        self.ys.append(new_y)
+
+        self.ready_to_plot = True
+
+    def plot(self, plt):
+        &#34;&#34;&#34;This is what plots the data on the raw data graph if graphing is enabled&#34;&#34;&#34;
+        if self.ready_to_plot:
+            plt.plot(self.ys[-self.plot_buffer_len:])</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="PINSoftware.DataAnalyser.remove_outliers"><code class="name flex">
+<span>def <span class="ident">remove_outliers</span></span>(<span>data)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def remove_outliers(data):
+    u = np.mean(data)
+    s = np.std(data)
+    return [e for e in data if (u - 2 * s &lt; e &lt; u + 2 * s)]</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="PINSoftware.DataAnalyser.DataAnalyser"><code class="flex name class">
+<span>class <span class="ident">DataAnalyser</span></span>
+<span>(</span><span>data_frequency: int, plot_buffer_len: int = 200, debugger: <a title="PINSoftware.Debugger.Debugger" href="Debugger.html#PINSoftware.Debugger.Debugger">Debugger</a> = &lt;PINSoftware.Debugger.Debugger object&gt;, edge_detection_threshold: float = 0.005, average_count: int = 50, correction_func=&lt;function DataAnalyser.&lt;lambda&gt;&gt;)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>This class takes care of data analysis and storage.</p>
+<p>Once this function is created, you should call <code><a title="PINSoftware.DataAnalyser.DataAnalyser.append" href="#PINSoftware.DataAnalyser.DataAnalyser.append">DataAnalyser.append()</a></code> to add a new data point,
+use <code>DataAnalyser.ys</code> to get the raw data, <code>DataAnalyser.processed</code> to get the peak voltages,
+<code>DataAnalyser.processed_timestamps</code> are timestamps corresponding to the peak voltages,
+<code>DataAnalyser.averaged_processed_ys</code> are the averaged peak voltages and <code>DataAnalyser.averaged_processed_timestamps</code>
+are timestamps corresponding to the averages. Lastly <code>DataAnalyser.markers</code> and <code>DataAnalyser.marker_timestamps</code>
+are debug markers and their timestamps, those can be anything and are only adjustable from code, they should
+not be used normally.</p>
+<p>All the timestamps used here are based on the length of <code>DataAnalyser.ys</code> at the time. This is very
+useful for two reasons, its easy to calculate so also fast. Bu mostly because later when you plot the data,
+you can plot the <code>DataAnalyser.ys</code> with "x0=0" and "dx=1" and then plot the peak averaged directly and the data
+will be correctly scaled on the x axis. The problem is however that this assumes that the data comes at a
+precise frequency but the NI-6002 can offer that so it should be alright.</p>
+<p><code>data_frequency</code> is the frequency of the incoming data, this is used for calculating real timestamps
+and is saved if hdf5 saving is enabled.</p>
+<p><code>plot_buffer_len</code> determines how many datapoints should be plotted in the live plot graph (if the
+server has been run with the graphing option).</p>
+<p><code>debugger</code> is the debugger to use.</p>
+<p><code>edge_detection_threshold</code>, <code>average_count</code> and <code>correction_func</code> are processing parameters. They
+are described in the Help tab of the program.</p>
+<p><code>edge_detection_threshold</code> sets the voltage difference required to find a section transition.</p>
+<p><code>average_count</code> is how many peak voltages should be averaged to get the averaged peak voltages.</p>
+<p><code>correction_func</code> is the function to run the peak voltages through before using them. This is
+to correct some systematic errors or do some calculations.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class DataAnalyser():
+    &#34;&#34;&#34;
+    This class takes care of data analysis and storage.
+
+    Once this function is created, you should call `DataAnalyser.append` to add a new data point,
+    use `DataAnalyser.ys` to get the raw data, `DataAnalyser.processed` to get the peak voltages,
+    `DataAnalyser.processed_timestamps` are timestamps corresponding to the peak voltages,
+    `DataAnalyser.averaged_processed_ys` are the averaged peak voltages and `DataAnalyser.averaged_processed_timestamps`
+    are timestamps corresponding to the averages. Lastly `DataAnalyser.markers` and `DataAnalyser.marker_timestamps`
+    are debug markers and their timestamps, those can be anything and are only adjustable from code, they should
+    not be used normally.
+
+    All the timestamps used here are based on the length of `DataAnalyser.ys` at the time. This is very
+    useful for two reasons, its easy to calculate so also fast. Bu mostly because later when you plot the data,
+    you can plot the `DataAnalyser.ys` with &#34;x0=0&#34; and &#34;dx=1&#34; and then plot the peak averaged directly and the data
+    will be correctly scaled on the x axis. The problem is however that this assumes that the data comes at a
+    precise frequency but the NI-6002 can offer that so it should be alright.
+    &#34;&#34;&#34;
+    def __init__(self, data_frequency : int, plot_buffer_len : int = 200, debugger : Debugger = Debugger(),
+            edge_detection_threshold : float = 0.005, average_count : int = 50, correction_func=lambda x: x):
+        &#34;&#34;&#34;
+        `data_frequency` is the frequency of the incoming data, this is used for calculating real timestamps
+        and is saved if hdf5 saving is enabled.
+
+        `plot_buffer_len` determines how many datapoints should be plotted in the live plot graph (if the
+        server has been run with the graphing option).
+
+        `debugger` is the debugger to use.
+
+        `edge_detection_threshold`, `average_count` and `correction_func` are processing parameters. They
+        are described in the Help tab of the program.
+
+        `edge_detection_threshold` sets the voltage difference required to find a section transition.
+
+        `average_count` is how many peak voltages should be averaged to get the averaged peak voltages.
+
+        `correction_func` is the function to run the peak voltages through before using them. This is
+        to correct some systematic errors or do some calculations.
+        &#34;&#34;&#34;
+        self.freq = data_frequency
+        self.period = 1 / data_frequency
+        self.plot_buffer_len = plot_buffer_len
+        self.debugger = debugger
+
+        self.ys = [0]
+        self.markers = []
+        self.marker_timestamps = []
+
+        self.first_processed_timestamp = None
+        self.actual_append = self.actual_append_first
+
+        self.processed_ys = []
+        self.processed_timestamps = []
+        self.averaged_processed_ys = []
+        self.averaged_processed_timestamps = []
+
+        self.edge_detection_threshold = edge_detection_threshold
+        self.last_up_section = []
+        self.last_down_section = []
+
+        self.correction_func = correction_func
+
+        self.average_count = average_count
+        self.average_running_sum = 0
+        self.average_index = 0
+
+        self.ready_to_plot = True
+
+    def actual_append_first(self, new_processed_y):
+        &#34;&#34;&#34;
+        This appends the new processed value, works on the averaged processed values and
+        possibly appends that too. This is when the first processed value comes in.
+        It sets some initial values, after it runs once `DataAnalyser.actual_append_main`
+        is called instead.
+        &#34;&#34;&#34;
+        self.processed_ys.append(new_processed_y)
+        self.first_processed_timestamp = datetime.datetime.now().timestamp()
+        self.processed_timestamps.append(len(self.ys))
+
+        self.average_running_sum += new_processed_y
+        self.average_index += 1
+
+        self.actual_append = self.actual_append_main
+
+    def actual_append_main(self, new_processed_y):
+        &#34;&#34;&#34;
+        This appends the new processed value, works on the averaged processed values and
+        possibly appends that too. For the first processed value, `DataAnalyser.actual_append_first`
+        is run instead, but afterwards this is.
+        &#34;&#34;&#34;
+        self.processed_ys.append(new_processed_y)
+        self.processed_timestamps.append(len(self.ys))
+
+        self.average_running_sum += new_processed_y
+        self.average_index += 1
+
+        if self.average_index == self.average_count:
+            self.averaged_processed_ys.append(self.average_running_sum / self.average_count)
+            self.averaged_processed_timestamps.append(self.processed_timestamps[-1])
+            self.average_running_sum = 0
+            self.average_index = 0
+
+    def handle_processing(self, new_y):
+        &#34;&#34;&#34;
+        This is the main processing function. It gets the new y (which
+        at this point is not in `DataAnalyser.ys` yet) and does some processing on it.
+        It may add new values to `DataAnalyser.processed` and `DataAnalyser.averaged_processed_ys`
+        if new values were found through `DataAnalyser.actual_append`. If the data does not add up
+        a warning is printed. I won&#39;t describe the logic here as it is described in the manual and also
+        it may still be best to look through the code.
+        &#34;&#34;&#34;
+        diff = new_y - self.ys[-1]
+        if abs(diff) &gt; self.edge_detection_threshold:
+            if diff &lt; 0 and len(self.last_up_section) &gt; 0 and len(self.last_down_section) &gt; 0:
+                last_up_section = remove_outliers(self.last_up_section)
+                last_down_section = remove_outliers(self.last_down_section)
+
+                last_up_diffs = [post - pre for pre, post in zip(last_up_section, last_up_section[1:])]
+                avg_up_diff = sum(last_up_diffs) / len(last_up_diffs)
+
+                up_avg = sum(last_up_section) / len(last_up_section)
+
+                down_avg = sum(last_down_section) / len(last_down_section)
+
+                if up_avg &gt;= down_avg:
+                    spike = (up_avg - avg_up_diff * (len(self.last_up_section) / 2))
+                    self.markers.append(spike)
+                    self.marker_timestamps.append(len(self.ys))
+                    processed_y = self.correction_func(spike - down_avg)
+                    self.actual_append(processed_y)
+                else:
+                    # self.markers.append(down_avg)
+                    # self.marker_timestamps.append(len(self.ys))
+                    self.debugger.warning(&#34;Irregular data, something may be wrong.&#34;)
+
+            if len(self.last_up_section) &gt; 0:
+                self.last_down_section = self.last_up_section
+                self.last_up_section = []
+        else:
+            self.last_up_section.append(new_y)
+
+    def append(self, new_y):
+        &#34;&#34;&#34;
+        The main apppend function through which new data is added. It just passes
+        the value to the processing function and appends it to `DataAnalyser.ys` in the end.
+        &#34;&#34;&#34;
+        self.ready_to_plot = False
+
+        self.handle_processing(new_y)
+
+        self.ys.append(new_y)
+
+        self.ready_to_plot = True
+
+    def plot(self, plt):
+        &#34;&#34;&#34;This is what plots the data on the raw data graph if graphing is enabled&#34;&#34;&#34;
+        if self.ready_to_plot:
+            plt.plot(self.ys[-self.plot_buffer_len:])</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="PINSoftware.DataAnalyser.DataAnalyser.actual_append_first"><code class="name flex">
+<span>def <span class="ident">actual_append_first</span></span>(<span>self, new_processed_y)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>This appends the new processed value, works on the averaged processed values and
+possibly appends that too. This is when the first processed value comes in.
+It sets some initial values, after it runs once <code><a title="PINSoftware.DataAnalyser.DataAnalyser.actual_append_main" href="#PINSoftware.DataAnalyser.DataAnalyser.actual_append_main">DataAnalyser.actual_append_main()</a></code>
+is called instead.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def actual_append_first(self, new_processed_y):
+    &#34;&#34;&#34;
+    This appends the new processed value, works on the averaged processed values and
+    possibly appends that too. This is when the first processed value comes in.
+    It sets some initial values, after it runs once `DataAnalyser.actual_append_main`
+    is called instead.
+    &#34;&#34;&#34;
+    self.processed_ys.append(new_processed_y)
+    self.first_processed_timestamp = datetime.datetime.now().timestamp()
+    self.processed_timestamps.append(len(self.ys))
+
+    self.average_running_sum += new_processed_y
+    self.average_index += 1
+
+    self.actual_append = self.actual_append_main</code></pre>
+</details>
+</dd>
+<dt id="PINSoftware.DataAnalyser.DataAnalyser.actual_append_main"><code class="name flex">
+<span>def <span class="ident">actual_append_main</span></span>(<span>self, new_processed_y)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>This appends the new processed value, works on the averaged processed values and
+possibly appends that too. For the first processed value, <code><a title="PINSoftware.DataAnalyser.DataAnalyser.actual_append_first" href="#PINSoftware.DataAnalyser.DataAnalyser.actual_append_first">DataAnalyser.actual_append_first()</a></code>
+is run instead, but afterwards this is.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def actual_append_main(self, new_processed_y):
+    &#34;&#34;&#34;
+    This appends the new processed value, works on the averaged processed values and
+    possibly appends that too. For the first processed value, `DataAnalyser.actual_append_first`
+    is run instead, but afterwards this is.
+    &#34;&#34;&#34;
+    self.processed_ys.append(new_processed_y)
+    self.processed_timestamps.append(len(self.ys))
+
+    self.average_running_sum += new_processed_y
+    self.average_index += 1
+
+    if self.average_index == self.average_count:
+        self.averaged_processed_ys.append(self.average_running_sum / self.average_count)
+        self.averaged_processed_timestamps.append(self.processed_timestamps[-1])
+        self.average_running_sum = 0
+        self.average_index = 0</code></pre>
+</details>
+</dd>
+<dt id="PINSoftware.DataAnalyser.DataAnalyser.handle_processing"><code class="name flex">
+<span>def <span class="ident">handle_processing</span></span>(<span>self, new_y)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>This is the main processing function. It gets the new y (which
+at this point is not in <code>DataAnalyser.ys</code> yet) and does some processing on it.
+It may add new values to <code>DataAnalyser.processed</code> and <code>DataAnalyser.averaged_processed_ys</code>
+if new values were found through <code>DataAnalyser.actual_append</code>. If the data does not add up
+a warning is printed. I won't describe the logic here as it is described in the manual and also
+it may still be best to look through the code.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def handle_processing(self, new_y):
+    &#34;&#34;&#34;
+    This is the main processing function. It gets the new y (which
+    at this point is not in `DataAnalyser.ys` yet) and does some processing on it.
+    It may add new values to `DataAnalyser.processed` and `DataAnalyser.averaged_processed_ys`
+    if new values were found through `DataAnalyser.actual_append`. If the data does not add up
+    a warning is printed. I won&#39;t describe the logic here as it is described in the manual and also
+    it may still be best to look through the code.
+    &#34;&#34;&#34;
+    diff = new_y - self.ys[-1]
+    if abs(diff) &gt; self.edge_detection_threshold:
+        if diff &lt; 0 and len(self.last_up_section) &gt; 0 and len(self.last_down_section) &gt; 0:
+            last_up_section = remove_outliers(self.last_up_section)
+            last_down_section = remove_outliers(self.last_down_section)
+
+            last_up_diffs = [post - pre for pre, post in zip(last_up_section, last_up_section[1:])]
+            avg_up_diff = sum(last_up_diffs) / len(last_up_diffs)
+
+            up_avg = sum(last_up_section) / len(last_up_section)
+
+            down_avg = sum(last_down_section) / len(last_down_section)
+
+            if up_avg &gt;= down_avg:
+                spike = (up_avg - avg_up_diff * (len(self.last_up_section) / 2))
+                self.markers.append(spike)
+                self.marker_timestamps.append(len(self.ys))
+                processed_y = self.correction_func(spike - down_avg)
+                self.actual_append(processed_y)
+            else:
+                # self.markers.append(down_avg)
+                # self.marker_timestamps.append(len(self.ys))
+                self.debugger.warning(&#34;Irregular data, something may be wrong.&#34;)
+
+        if len(self.last_up_section) &gt; 0:
+            self.last_down_section = self.last_up_section
+            self.last_up_section = []
+    else:
+        self.last_up_section.append(new_y)</code></pre>
+</details>
+</dd>
+<dt id="PINSoftware.DataAnalyser.DataAnalyser.append"><code class="name flex">
+<span>def <span class="ident">append</span></span>(<span>self, new_y)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>The main apppend function through which new data is added. It just passes
+the value to the processing function and appends it to <code>DataAnalyser.ys</code> in the end.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def append(self, new_y):
+    &#34;&#34;&#34;
+    The main apppend function through which new data is added. It just passes
+    the value to the processing function and appends it to `DataAnalyser.ys` in the end.
+    &#34;&#34;&#34;
+    self.ready_to_plot = False
+
+    self.handle_processing(new_y)
+
+    self.ys.append(new_y)
+
+    self.ready_to_plot = True</code></pre>
+</details>
+</dd>
+<dt id="PINSoftware.DataAnalyser.DataAnalyser.plot"><code class="name flex">
+<span>def <span class="ident">plot</span></span>(<span>self, plt)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>This is what plots the data on the raw data graph if graphing is enabled</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def plot(self, plt):
+    &#34;&#34;&#34;This is what plots the data on the raw data graph if graphing is enabled&#34;&#34;&#34;
+    if self.ready_to_plot:
+        plt.plot(self.ys[-self.plot_buffer_len:])</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="PINSoftware" href="index.html">PINSoftware</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="PINSoftware.DataAnalyser.remove_outliers" href="#PINSoftware.DataAnalyser.remove_outliers">remove_outliers</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="PINSoftware.DataAnalyser.DataAnalyser" href="#PINSoftware.DataAnalyser.DataAnalyser">DataAnalyser</a></code></h4>
+<ul class="">
+<li><code><a title="PINSoftware.DataAnalyser.DataAnalyser.actual_append_first" href="#PINSoftware.DataAnalyser.DataAnalyser.actual_append_first">actual_append_first</a></code></li>
+<li><code><a title="PINSoftware.DataAnalyser.DataAnalyser.actual_append_main" href="#PINSoftware.DataAnalyser.DataAnalyser.actual_append_main">actual_append_main</a></code></li>
+<li><code><a title="PINSoftware.DataAnalyser.DataAnalyser.handle_processing" href="#PINSoftware.DataAnalyser.DataAnalyser.handle_processing">handle_processing</a></code></li>
+<li><code><a title="PINSoftware.DataAnalyser.DataAnalyser.append" href="#PINSoftware.DataAnalyser.DataAnalyser.append">append</a></code></li>
+<li><code><a title="PINSoftware.DataAnalyser.DataAnalyser.plot" href="#PINSoftware.DataAnalyser.DataAnalyser.plot">plot</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.8.4</a>.</p>
+</footer>
+</body>
+</html>

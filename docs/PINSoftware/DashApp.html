@@ -1,0 +1,1433 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.8.4" />
+<title>PINSoftware.DashApp API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js" integrity="sha256-eOgo0OtLL4cdq7RdwRUiGKLX9XsIJ7nGhWEKbohmVAQ=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>PINSoftware.DashApp</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">import base64
+import datetime
+import os
+import uuid
+import urllib
+
+from PINSoftware.MachineStuff import MachineStuff
+from PINSoftware.DashComponents import FullRedrawGraph, ExtendableGraph, SingleSwitch
+from PINSoftware.DataSaver import Filetype
+
+import flask
+import dash
+import dash_core_components as dcc
+import dash_html_components as html
+import dash_bootstrap_components as dbc
+
+from dash.dependencies import Input, Output, State
+from dash.exceptions import PreventUpdate
+
+
+def linear_correct_func(cor_a, cor_b):
+    &#34;&#34;&#34;Get a linear function with `a` and `b` as its coefficients&#34;&#34;&#34;
+    return lambda x: cor_a * x + cor_b
+
+
+def get_app(ms : MachineStuff) -&gt; dash.Dash:
+    &#34;&#34;&#34;
+        Creates the Dash app and creates all the callbacks.
+        `ms` is the MachineStuff instance to which callbacks should be connected.
+        Returns a `dash.Dash` instance to be run.
+    &#34;&#34;&#34;
+    app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+    app.config.suppress_callback_exceptions = False
+    app.logger.disabled = False
+
+    def timestamp_to_datetime(x : int) -&gt; datetime.datetime:
+        &#34;&#34;&#34;Converts the timestamps sotred in `PINSoftware.DataAnalyser.DataAnalyser` to a `datetime.datetime` object&#34;&#34;&#34;
+        return datetime.datetime.fromtimestamp(ms.data.first_processed_timestamp + x * ms.data.period)
+
+    full_graph_base_fig = {&#39;data&#39;: [
+            {
+                &#39;x&#39;: [],
+                &#39;y&#39;: [],
+                &#39;type&#39;: &#39;scatter&#39;,
+                &#39;name&#39;: &#39;Live peak voltage&#39;
+            },
+            {
+                &#39;x&#39;: [],
+                &#39;y&#39;: [],
+                &#39;type&#39;: &#39;scatter&#39;,
+                &#39;name&#39;: &#39;Live averaged peak voltage&#39;
+            }
+        ]
+    }
+
+    def full_graph_extend(n, graph_indices):
+        &#34;&#34;&#34;Full graph extend function&#34;&#34;&#34;
+        pro_index = min(graph_indices[&#39;pro_index&#39;], len(ms.data.processed_ys))
+        avg_index = min(graph_indices[&#39;avg_index&#39;], len(ms.data.averaged_processed_ys))
+        pro_top_index = min(pro_index + 30000, len(ms.data.processed_ys))
+        avg_top_index = min(avg_index + 30000, len(ms.data.averaged_processed_ys))
+        result = [
+                {
+                    &#39;x&#39;: [
+                        list(map(timestamp_to_datetime, ms.data.processed_timestamps[pro_index:pro_top_index])),
+                        list(map(timestamp_to_datetime, ms.data.averaged_processed_timestamps[avg_index:avg_top_index]))
+                    ],
+                    &#39;y&#39;: [
+                        ms.data.processed_ys[pro_index:pro_top_index],
+                        ms.data.averaged_processed_ys[avg_index:avg_top_index]
+                        ]
+                }
+            ]
+        graph_indices[&#39;pro_index&#39;] = pro_top_index
+        graph_indices[&#39;avg_index&#39;] = avg_top_index
+        return [result, graph_indices]
+
+    def live_graph_func(n, T):
+        &#34;&#34;&#34;Live graph figure function&#34;&#34;&#34;
+        show_from = len(ms.data.ys) - T * 50000
+        data = []
+        current_avg = None
+        current_count = None
+        if ms.data.processed_ys and ms.data.processed_timestamps[-1] &gt;= show_from:
+            pro_index = -1
+            max_pro_index = -len(ms.data.processed_timestamps)
+            while ms.data.processed_timestamps[pro_index] &gt; show_from and pro_index &gt; max_pro_index:
+                pro_index -= 1
+            data.append(
+                {
+                    &#39;x&#39;: list(map(timestamp_to_datetime, ms.data.processed_timestamps[pro_index:])),
+                    &#39;y&#39;: ms.data.processed_ys[pro_index:],
+                    &#39;type&#39;: &#39;scatter&#39;,
+                    &#39;name&#39;: &#39;Live averaged peak voltage&#39;
+                }
+            )
+            current_count = -pro_index / T
+        if ms.data.averaged_processed_ys and ms.data.averaged_processed_timestamps[-1] &gt;= show_from:
+            avg_index = -1
+            max_avg_index = -len(ms.data.averaged_processed_timestamps)
+            while ms.data.averaged_processed_timestamps[avg_index] &gt; show_from and avg_index &gt; max_avg_index:
+                avg_index -= 1
+            data.append(
+                {
+                    &#39;x&#39;: list(map(timestamp_to_datetime, ms.data.averaged_processed_timestamps[avg_index:])),
+                    &#39;y&#39;: ms.data.averaged_processed_ys[avg_index:],
+                    &#39;type&#39;: &#39;scatter&#39;,
+                    &#39;name&#39;: &#39;Live peak voltage&#39;
+                }
+            )
+            current_avg = sum(ms.data.averaged_processed_ys[avg_index:]) / -avg_index
+        return [{&#39;data&#39;: data},
+                &#34;The average value is: &#34; + str(current_avg) if current_avg else &#34;&#34;,
+                &#34;Current peak voltages per second are: &#34; + str(current_count) if current_avg else &#34;&#34;
+                ]
+
+    app.layout = lambda: dbc.Container([
+        html.H1(&#34;xPIN, Sample and Hold, NI-DAQmx system software&#34;, style={&#39;textAlign&#39;: &#39;center&#39;}),
+        dbc.Modal([
+                dbc.ModalHeader(&#34;Warning&#34;),
+                dbc.ModalBody(&#34;Something went wrong&#34;, id=&#39;warning-modal-body&#39;)
+            ],
+            id=&#39;warning-modal&#39;
+        ),
+        dbc.Container([
+            dbc.Tabs([
+                dbc.Tab(dbc.Container([
+                    dbc.Row(
+                        dbc.Col(
+                            id=&#39;ad-session_id&#39;,
+                            width=&#39;auto&#39;
+                        ),
+                        justify=&#39;center&#39;
+                    ),
+                    dbc.Row(
+                        dbc.Col(
+                            dbc.ButtonGroup([
+                                dbc.Button(&#34;Grab control&#34;, id=&#39;ad-grab&#39;, color=&#39;warning&#39;, disabled=ms.experiment_running),
+                                dbc.Button(&#34;Release control&#34;, id=&#39;ad-release&#39;, color=&#39;secondary&#39;, disabled=(not ms.experiment_running))
+                            ]),
+                            width=&#39;auto&#39;
+                        ),
+                        justify=&#39;center&#39;
+                    ),
+                    dbc.Row(
+                        dbc.Col(
+                            &#34;There is currently no controller.&#34;,
+                            id=&#39;ad-controller-info&#39;,
+                            width=&#39;auto&#39;
+                        ),
+                        justify=&#39;center&#39;
+                    )],
+                    className=&#39;mt-3 mb-3&#39;
+                ), label=&#34;Administration&#34;, tab_id=&#39;administration-tab&#39;),
+                dbc.Tab(dbc.Container([
+                    dbc.Row([
+                        dbc.Col(
+                            dbc.ButtonGroup([
+                                dbc.Button(&#34;Start&#34;, id=&#39;cp-start&#39;, color=&#39;success&#39;, disabled=ms.experiment_running),
+                                dbc.Button(&#34;Stop&#34;, id=&#39;cp-stop&#39;, color=&#39;danger&#39;, disabled=(not ms.experiment_running))
+                            ]),
+                            width=&#39;auto&#39;
+                        )],
+                        justify=&#39;center&#39;,
+                        className=&#39;mt-3 mb-2&#39;
+                    ),
+                    dbc.Row(
+                        dbc.Col(
+                            html.Fieldset(dbc.Container([
+                                dbc.Row(
+                                    dbc.Col(
+                                        SingleSwitch(&#39;cp-save-toggle&#39;, &#34;Save captured data?&#34;, default=False),
+                                        width=&#39;auto&#39;
+                                    ),
+                                    justify=&#39;center&#39;
+                                ),
+                                dbc.Row(
+                                    dbc.Col(
+                                        dbc.Input(id=&#39;cp-save-base_filename&#39;, value=&#34;log&#34;, type=&#39;text&#39;),
+                                        width=&#39;auto&#39;
+                                    ),
+                                    id=&#39;cp-save-base_filename-row&#39;,
+                                    justify=&#39;center&#39;
+                                ),
+                                dbc.Row(
+                                    dbc.Col(
+                                        dbc.Select(
+                                            id=&#39;cp-save-select_ft&#39;,
+                                            value=&#34;hdf5&#34;,
+                                            options=[
+                                                {&#34;label&#34;: &#34;csv&#34;, &#34;value&#34;: &#34;csv&#34;},
+                                                {&#34;label&#34;: &#34;hdf5&#34;, &#34;value&#34;: &#34;hdf5&#34;}
+                                            ],
+                                        ),
+                                        width=2
+                                    ),
+                                    id=&#39;cp-save-select_ft-row&#39;,
+                                    justify=&#39;center&#39;,
+                                    className=&#39;mt-1&#39;
+                                ),
+                                dbc.Row(
+                                    dbc.Col(
+                                        dbc.Checklist(
+                                            id=&#39;cp-save-items&#39;,
+                                            options=[
+                                                {&#39;label&#39;: &#34;Save raw data&#34;, &#39;value&#39;: &#39;ys&#39;},
+                                                {&#39;label&#39;: &#34;Save processed data&#34;, &#39;value&#39;: &#39;processed_ys&#39;},
+                                                {&#39;label&#39;: &#34;Save averaged data&#34;, &#39;value&#39;: &#39;averaged_processed_ys&#39;},
+                                                {&#39;label&#39;: &#34;Save debug markers&#34;, &#39;value&#39;: &#39;markers&#39;}
+                                            ],
+                                            value=[&#39;ys&#39;, &#39;processed_ys&#39;],
+                                            switch=True,
+                                            inline=True
+                                        ),
+                                        width=&#39;auto&#39;
+                                    ),
+                                    id=&#39;cp-save-items-row&#39;,
+                                    justify=&#39;center&#39;
+                                ),
+                                dbc.Row(
+                                    dbc.Col(
+                                        id=&#39;cp-save-messagebox&#39;,
+                                        width=&#39;auto&#39;
+                                    ),
+                                    justify=&#39;center&#39;
+                                )],
+                                id=&#39;cp-saving-options&#39;,
+                                fluid=True,
+                                className=&#39;border mt-1 mb-1 pt-1 pb-2&#39;
+                            ), id=&#39;cp-saving-options-fieldset&#39;),
+                            width=8
+                        ),
+                        justify=&#39;center&#39;
+                    )]
+                ), label=&#34;Run controls&#34;, id=&#39;run-options&#39;, tab_id=&#39;run-options-tab&#39;, disabled=True),
+                dbc.Tab(dbc.Container([
+                    dbc.Row(
+                        dbc.Col(
+                            html.Fieldset(dbc.Container([
+                                    dbc.Row(
+                                        dbc.Col(
+                                            dbc.ButtonGroup([
+                                                dcc.Upload(dbc.Button(&#34;Load configuration from file&#34;, color=&#39;info&#39;),
+                                                    id=&#39;cp-da-config_upload&#39;,
+                                                    max_size=256*1024*1024),
+                                                dcc.Link(
+                                                    dbc.Button(&#34;Save configuration to file&#34;, color=&#39;secondary&#39;),
+                                                    id=&#39;cp-da-config_link&#39;,
+                                                    href=&#39;&#39;,
+                                                    refresh=True
+                                                ),
+                                            ]),
+                                            width=&#39;auto&#39;
+                                        ),
+                                        className=&#39;mt-2 mb-2&#39;,
+                                        justify=&#39;center&#39;
+                                    ),
+                                    dbc.Row(dbc.Col(dbc.FormGroup([
+                                            dbc.Label(&#34;Edge detection threshold [V]:&#34;, html_for=&#39;cp-da-edge_detection_threshold&#39;, width=&#39;auto&#39;),
+                                            dbc.Col(
+                                                dbc.Input(id=&#39;cp-da-edge_detection_threshold&#39;, type=&#39;number&#39;, min=0, value=0.005, step=0.0001),
+                                                width=3
+                                            )
+                                        ],
+                                        row=True
+                                    ))),
+                                    dbc.Row([
+                                        dbc.Col(dbc.FormGroup([
+                                                dbc.Label(&#34;Correction a&#34;, html_for=&#39;cp-da-correction_a&#39;, width=&#39;auto&#39;),
+                                                dbc.Col(
+                                                    dbc.Input(id=&#39;cp-da-correction_a&#39;, type=&#39;number&#39;, value=2, step=0.01),
+                                                    width=5
+                                                )
+                                            ],
+                                            row=True
+                                        )),
+                                        dbc.Col(dbc.FormGroup([
+                                                dbc.Label(&#34;Correction b&#34;, html_for=&#39;cp-da-correction_b&#39;, width=&#39;auto&#39;),
+                                                dbc.Col(
+                                                    dbc.Input(id=&#39;cp-da-correction_b&#39;, type=&#39;number&#39;, value=0.0022, step=0.0001),
+                                                    width=5
+                                                )
+                                            ],
+                                            row=True
+                                        ))
+                                    ]),
+                                    dbc.Row(dbc.Col(dbc.FormGroup([
+                                            dbc.Label(&#34;Average count:&#34;, html_for=&#39;cp-da-average_count&#39;, width=&#39;auto&#39;),
+                                            dbc.Col(
+                                                dbc.Input(id=&#39;cp-da-average_count&#39;, type=&#39;number&#39;, min=0, value=50, step=1),
+                                                width=3
+                                            )
+                                        ],
+                                        row=True
+                                    ))),
+                                ],
+                                id=&#39;cp-dataanalyser-options&#39;,
+                                fluid=True,
+                                className=&#39;border mt-1 mb-1 pt-1 pb-2&#39;
+                            ), id=&#39;cp-dataanalyser-options-fieldset&#39;),
+                            width=10
+                        ),
+                        justify=&#39;center&#39;,
+                        className=&#39;mt-3&#39;
+                    )]
+                ), label=&#34;Processing controls&#34;, id=&#39;processing-options&#39;, tab_id=&#39;processing-options-tab&#39;, disabled=True),
+                dbc.Tab(dbc.Container([
+                    html.H3(&#34;System overview&#34;),
+                    html.P(&#34;&#34;&#34;
+                        The application is internally divided into two parts, the machine controls themselves and the user interface.
+                        There are only one machine controls per server but there can be multiple user interfaces if multiple people open the website at once.
+                        Because of this there is a &#39;user&#39; system and only the current controller can control the machine controls.
+                        When you open the website you are given a session id which can be seen at the top of the Administration tab and looks like this &#34;9fb86f8a-51f5-40f0-b629-1f508a904e6a&#34;.
+                        Under the session id there are two buttons, those are used to grab and release control of the machine.
+                        Under those is the current controller info box, this shows if there is a controller and who it is.
+                        If there is a controller which isn&#39;t you, you can force remove their control.
+                        This has its problems but since the device is meant to be run in a controlled environment it should be good enough.
+                    &#34;&#34;&#34;),
+                    html.P(&#34;&#34;&#34;
+                        Once you are the current controller you get access to two controls tabs.
+                        In the Run controls tab you can start and stop data acquisition and choose how/if the data should be saved.
+                        In the Processing controls tab you can modify parameters which are used during data analysis.
+                    &#34;&#34;&#34;),
+                    html.H3(&#34;Notes on data analysis&#34;),
+                    html.P(&#34;&#34;&#34;
+                        The device processes the data by detecting sections and it then gets the differences between certain sections.
+                        The Edge detection threshold parameter is the voltage difference which constitutes a section transition.
+                        What is meant by that is that when the difference between the new datapoint and the average of the current section is greater than the EDT, then this is labeled as an edge and a new section begins.
+                    &#34;&#34;&#34;),
+                    html.P(&#34;&#34;&#34;
+                        Peak voltage is a term which refers to the max voltage of the peak.
+                        If there are a 1000 pulses per second then there should be a 1000 peak voltages per second.
+                        Correction a and Correction b modify this value.
+                        It has been observed that the sample and hold alters the voltages it gets, thereby this is necessary.
+                        When the data analysis gets a new peak voltage it then multiplies that value by Correction a and adds Correction b to it.
+                        The defaults have been calibrated for our setup using a signal generator and should be fine but you want to get raw data just set them to 1 and 0 respectively.
+                    &#34;&#34;&#34;),
+                    html.P(&#34;&#34;&#34;
+                        Lastly, there are also the Averaged peak voltages, those are calculated from Peak voltages by averaging a set amount of them, this is done to reduce noise.
+                        The Average count parameter sets how many peak voltages should be averaged.
+                    &#34;&#34;&#34;),
+                    html.H3(&#34;Graph commentary&#34;),
+                    html.P(&#34;&#34;&#34;
+                        Both graphs have two options.
+                        First is to show the graph and the second is to update it.
+                        When both are on then the graph checks every 2 seconds for new data.
+                        If you switch Update graph off, the graph will no longer update but will still be visible.
+                        If you switch Update graph back on after a while it&#39;s still going to update every 2 seconds but it might not be able to catch up instantly, there is a set maximum datapoints that it can transfer not to overload the network.
+                        When switch Show graph off, it automatically switches Update graph off too.
+                        When you plan to let the acquisition run for a longer time it is strongly recommended to switch Show graph off for graphs of all data, otherwise they might cause issues.
+                    &#34;&#34;&#34;),
+                    html.P(&#34;&#34;&#34;
+                        On the live graph there are two extra things.
+                        First you can set how much data it will show and secondly, once it&#39;s running it will tell you how many Peak voltages it gets per second (in that interval).
+                        The Peaks per second display can be very useful to find the right value for Edge detection threshold.
+                    &#34;&#34;&#34;)],
+                    className=&#39;mt-3&#39;
+                ), label=&#34;Help&#34;, tab_id=&#39;help-tab&#39;)
+            ], id=&#39;main-tabs&#39;)
+        ]),
+        dbc.Container(id=&#39;graphs&#39;, children=[
+            ExtendableGraph(app, ms, &#39;full-graph&#39;, &#34;All data from this measurement&#34;, full_graph_base_fig, full_graph_extend,
+                extend_func_output=[Output(&#39;full-graph&#39;, &#39;extendData&#39;), Output(&#39;full-graph-indices&#39;, &#39;data&#39;)],
+                extend_func_state=[State(&#39;full-graph-indices&#39;, &#39;data&#39;)]),
+            FullRedrawGraph(app, ms, &#39;live-graph&#39;, &#34;Data from the last few seconds&#34;, live_graph_func,
+                fig_func_output=[Output(&#39;live-graph&#39;, &#39;figure&#39;), Output(&#39;live-graph-average&#39;, &#39;children&#39;),
+                    Output(&#39;live-graph-count&#39;, &#39;children&#39;)],
+                fig_func_state=[State(&#39;live-graph-T&#39;, &#39;value&#39;)],
+                additional_controls=[
+                    dbc.Row([
+                        dbc.Col(
+                            dbc.FormGroup([
+                                dbc.Label(&#34;How many seconds to look in the past:&#34;, html_for=&#39;live-graph-T&#39;, width=&#39;auto&#39;),
+                                    dbc.Col(
+                                        dbc.Input(id=&#39;live-graph-T&#39;, type=&#39;number&#39;, min=0, value=5, step=0.01),
+                                        width=4
+                                    )
+                                ],
+                                row=True
+                            ),
+                            width=&#39;auto&#39;
+                        )],
+                        justify=&#39;center&#39;
+                    ),
+                    dbc.Row([
+                        dbc.Col(
+                            &#34;&#34;,
+                            id=&#39;live-graph-average&#39;,
+                            width=&#39;auto&#39;
+                        )],
+                        justify=&#39;center&#39;
+                    ),
+                    dbc.Row([
+                        dbc.Col(
+                            &#34;&#34;,
+                            id=&#39;live-graph-count&#39;,
+                            width=&#39;auto&#39;
+                        )],
+                        justify=&#39;center&#39;
+                    )
+                ])
+        ]),
+        dbc.Container(id=&#39;extras&#39;, className=&#39;mb-5&#39;, style={&#39;display&#39;: &#39;none&#39;}, children=[
+            dcc.Store(id=&#39;session-id&#39;, storage_type=&#39;session&#39;),
+            dcc.Store(id=&#39;full-graph-indices&#39;, storage_type=&#39;session&#39;, data={&#39;pro_index&#39;: 0, &#39;avg_index&#39;: 0}),
+            html.Div(id=&#39;ut-on_load&#39;),
+            html.Div(id=&#39;ut-on_load-2&#39;),
+            html.Div(id=&#39;ut-update-controller-status&#39;),
+            html.Div(id=&#39;ut-update-controller-status-2&#39;),
+            html.Div(id=&#39;ut-update-controller-status-3&#39;),
+            html.Div(id=&#39;ut-update-controller-status-4&#39;),
+            html.Div(id=&#39;ut-show-warning-modal-0&#39;),
+            html.Div(id=&#39;ut-show-warning-modal-1&#39;),
+            html.Div(id=&#39;ut-show-warning-modal-2&#39;),
+            html.Div(id=&#39;ut-show-warning-modal-3&#39;)
+        ])
+    ])
+
+    @app.callback([
+            Output(&#39;ad-grab&#39;, &#39;n_clicks&#39;),
+            Output(&#39;session-id&#39;, &#39;data&#39;),
+            Output(&#39;ad-session_id&#39;, &#39;children&#39;),
+            Output(&#39;ut-update-controller-status&#39;, &#39;children&#39;)
+        ], [Input(&#39;ut-on_load&#39;, &#39;children&#39;)], [State(&#39;session-id&#39;, &#39;data&#39;)])
+    def on_load(not_used, old_sid):
+        &#34;&#34;&#34;Triggers on load&#34;&#34;&#34;
+        if not old_sid:
+            sid = str(uuid.uuid4())
+            return [42, sid, sid, &#34;&#34;]
+        return [42, old_sid, old_sid, &#34;&#34;]
+
+    warning_modal_count = 4
+    warning_modal_div_names = [&#39;ut-show-warning-modal-&#39; + str(i) for i in range(warning_modal_count)]
+    warning_modal_prop_id_names = [warning_modal_div_name + &#39;.children&#39; for warning_modal_div_name in warning_modal_div_names]
+
+    @app.callback([
+            Output(&#39;warning-modal&#39;, &#39;is_open&#39;),
+            Output(&#39;warning-modal-body&#39;, &#39;children&#39;)
+        ], [Input(warning_modal_div_name, &#39;children&#39;) for warning_modal_div_name in warning_modal_div_names])
+    def show_warning_modal(*args):
+        &#34;&#34;&#34;
+        This shows a modal with a warning whenever the children of one of the warning-modal divs
+        change. It displays the contents of the div in the modal.
+        &#34;&#34;&#34;
+        prop_id = dash.callback_context.triggered[0][&#39;prop_id&#39;]
+        try:
+            children = args[warning_modal_prop_id_names.index(prop_id)]
+            if children:
+                return [True, children]
+            else:
+                raise PreventUpdate()
+        except ValueError:
+            raise PreventUpdate()
+
+    @app.callback([
+            Output(&#39;ad-grab&#39;, &#39;disabled&#39;),
+            Output(&#39;ad-release&#39;, &#39;disabled&#39;),
+            Output(&#39;run-options&#39;, &#39;disabled&#39;),
+            Output(&#39;processing-options&#39;, &#39;disabled&#39;),
+            Output(&#39;ad-controller-info&#39;, &#39;children&#39;),
+            Output(&#39;main-tabs&#39;, &#39;active_tab&#39;)
+        ], [
+            Input(&#39;ut-update-controller-status&#39;, &#39;children&#39;),
+            Input(&#39;ut-update-controller-status-2&#39;, &#39;children&#39;),
+            Input(&#39;ut-update-controller-status-3&#39;, &#39;children&#39;),
+            Input(&#39;ut-update-controller-status-4&#39;, &#39;children&#39;)
+        ], [State(&#39;session-id&#39;, &#39;data&#39;), State(&#39;main-tabs&#39;, &#39;active_tab&#39;)])
+    def update_controller_status(not_used, not_used_2, not_used_3, not_used_4, sid, active):
+        &#34;&#34;&#34;Updates the current controller information box&#34;&#34;&#34;
+        if not ms.controller:
+            return [False, True, True, True, &#34;There is currently no controller!&#34;, &#39;administration-tab&#39;]
+        elif ms.controller == sid:
+            return [True, False, False, False, &#34;Tou are the current controller&#34;, active]
+        else:
+            infobox = [ms.controller + &#34; is the current controller&#34;]
+            infobox.append(dbc.Button(&#34;Force release?&#34;, id=&#39;ad-force_release&#39;, color=&#39;danger&#39;, className=&#39;ml-3 mr-3&#39;))
+            return [True, True, True, True, infobox, &#39;administration-tab&#39;]
+
+    @app.callback([
+            Output(&#39;ut-update-controller-status-2&#39;, &#39;children&#39;),
+            Output(&#39;ut-show-warning-modal-1&#39;, &#39;children&#39;),
+        ], [Input(&#39;ad-grab&#39;, &#39;n_clicks&#39;), Input(&#39;ad-release&#39;, &#39;n_clicks&#39;)], [State(&#39;session-id&#39;, &#39;data&#39;)])
+    def grab_release(not_used, not_used_2, sid):
+        &#34;&#34;&#34;Handles the &#34;Grab&#34; and &#34;Release&#34; buttons&#34;&#34;&#34;
+        prop_id = dash.callback_context.triggered[0][&#39;prop_id&#39;]
+        if prop_id.startswith(&#39;ad-grab&#39;):
+            if not ms.controller:
+                ms.grab_control(sid)
+                return [&#34;&#34;, &#34;&#34;]
+            else:
+                return [&#34;&#34;, &#34;Sorry, someone has grabbed control before you have.&#34;]
+        elif prop_id.startswith(&#39;ad-release&#39;):
+            if ms.controller == sid:
+                ms.release_control()
+                return [&#34;&#34;, &#34;You are now not in control of the system.&#34;]
+            else:
+                return [&#34;&#34;, &#34;Someone has removed your control before, you are now not the controller.&#34;]
+        else:
+            raise PreventUpdate()
+
+    @app.callback([
+            Output(&#39;ut-update-controller-status-3&#39;, &#39;children&#39;),
+            Output(&#39;ut-show-warning-modal-2&#39;, &#39;children&#39;)
+        ], [
+            Input(&#39;ad-force_release&#39;, &#39;n_clicks&#39;),
+        ], [
+            State(&#39;ad-controller-info&#39;, &#39;children&#39;),
+            State(&#39;ut-show-warning-modal-2&#39;, &#39;children&#39;)
+        ])
+    def force_release(n_clicks, controller_info, warning_msg):
+        &#34;&#34;&#34;Handles the &#34;Force Release&#34; button&#34;&#34;&#34;
+        if n_clicks:
+            if ms.controller:
+                if controller_info[0].startswith(ms.controller):
+                    ms.release_control()
+                    return [&#34;&#34;, &#34;&#34;]
+                else:
+                    return [&#34;&#34;, &#34;Someone else has become the controller since last refresh.&#34;]
+            else:
+                return [&#34;&#34;, &#34;&#34;]
+        return [&#34;&#34;, warning_msg]
+
+    @app.callback(
+            [
+                Output(&#39;ut-show-warning-modal-0&#39;, &#39;children&#39;),
+                Output(&#39;cp-start&#39;, &#39;disabled&#39;),
+                Output(&#39;cp-stop&#39;, &#39;disabled&#39;),
+                Output(&#39;cp-saving-options-fieldset&#39;, &#39;disabled&#39;),
+                Output(&#39;cp-dataanalyser-options-fieldset&#39;, &#39;disabled&#39;),
+                Output(&#39;cp-save-messagebox&#39;, &#39;children&#39;),
+                Output(&#39;ut-update-controller-status-4&#39;, &#39;children&#39;)
+            ],
+            [
+                Input(&#39;cp-start&#39;, &#39;n_clicks&#39;),
+                Input(&#39;cp-stop&#39;, &#39;n_clicks&#39;)
+            ],
+            [
+                State(&#39;session-id&#39;, &#39;data&#39;),
+                State(&#39;cp-save-toggle&#39;, &#39;checked&#39;),
+                State(&#39;cp-save-base_filename&#39;, &#39;value&#39;),
+                State(&#39;cp-save-select_ft&#39;, &#39;value&#39;),
+                State(&#39;cp-save-items&#39;, &#39;value&#39;),
+                State(&#39;cp-da-edge_detection_threshold&#39;, &#39;value&#39;),
+                State(&#39;cp-da-average_count&#39;, &#39;value&#39;),
+                State(&#39;cp-da-correction_a&#39;, &#39;value&#39;),
+                State(&#39;cp-da-correction_b&#39;, &#39;value&#39;)
+            ])
+    def start_stop(start_ncl, stop_ncl, sid,
+            should_save, save_filename, save_filetype, save_items,
+            edge_detection_threshold, average_count, correction_a, correction_b):
+        &#34;&#34;&#34;
+        Handles the &#34;Start&#34; and &#34;Stop&#34; buttons, this is the most complicated callback.
+
+        First if the client isn&#39;t the current controller it disables the control tabs for him,
+        updates his current controller info and shows a warning modal explaining what happened to him.
+
+        Otherwise it splits based on if he pressed &#34;Start&#34; or &#34;Stop&#34;.
+        If he pressed &#34;Start&#34;, it tries to start data acquisition and shows an info box
+        telling the client if it worked, failed or what, it also disables one of the buttons.
+        For &#34;Stop&#34; it just stops the data acquisition and shows a message with possibly a link to the data.
+        &#34;&#34;&#34;
+        prop_id = dash.callback_context.triggered[0][&#39;prop_id&#39;]
+        if (start_ncl or stop_ncl) and sid != ms.controller:
+            return [&#34;Someone has forcefully removed your control of the system.&#34;, prop_id.startswith(&#39;cp-start&#39;),
+                    prop_id.startswith(&#39;cp-stop&#39;), prop_id.startswith(&#39;cp-stop&#39;), prop_id.startswith(&#39;cp-stop&#39;), prop_id.startswith(&#39;cp-stop&#39;), &#34;&#34;]
+        out = []
+        if prop_id.startswith(&#39;cp-start&#39;):
+            if should_save and (not save_filename.isalnum()):
+                    return [&#34;The supplied filename is not valid, aborting. The filename must only contain letters and numbers.&#34;,
+                            False, True, False, False, &#34;Aborted due to invalid filename&#34;, &#34;&#34;]
+            ms.start_experiment(save_filename if should_save else None, Filetype.from_str(save_filetype),
+                    edge_detection_threshold=edge_detection_threshold, average_count=average_count, items=save_items,
+                    correction_func=linear_correct_func(correction_a, correction_b))
+            if should_save:
+                out = [&#34;&#34;, True, False, True, True]
+                if ms.saver:
+                    out.append(&#34;Started acquiring and saving to file \&#34;&#34; + ms.saver.full_filename + &#34;\&#34;&#34;)
+                elif should_save:
+                    out.append(&#34;Acquiring has started but there has been an error with saving the data&#34;)
+            else:
+                out = [&#34;&#34;, True, False, True, True, &#34;Acquisition has started successfully&#34;]
+        elif prop_id.startswith(&#39;cp-stop&#39;):
+            ms.stop_experiment()
+            msgbox = [&#34;The Acquisition has been successfully stopped.&#34;]
+            if ms.data:
+                if ms.saver:
+                    msgbox.append(html.A(
+                        &#34;Download the data here.&#34;,
+                        href=ms.saver.full_filename[1:]
+                    ))
+            out = [&#34;&#34;, False, True, False, False, msgbox]
+        else:
+            raise PreventUpdate()
+        return out + [&#34;&#34;]
+
+    @app.callback([
+            Output(&#39;cp-save-base_filename-row&#39;, &#39;style&#39;),
+            Output(&#39;cp-save-select_ft-row&#39;, &#39;style&#39;),
+            Output(&#39;cp-save-items-row&#39;, &#39;style&#39;)
+        ],
+        [
+            Input(&#39;cp-save-toggle&#39;, &#39;checked&#39;),
+            Input(&#39;cp-save-select_ft&#39;, &#39;value&#39;)
+        ])
+    def cp_save_ui_callbacks(should_save, filetype):
+        &#34;&#34;&#34;This toggles visibility of the save options based on if saving is enabled&#34;&#34;&#34;
+        out = [{}, {}, {}]
+        if not should_save:
+            out[0][&#39;display&#39;]= &#39;none&#39;
+            out[1][&#39;display&#39;]= &#39;none&#39;
+            out[2][&#39;display&#39;]= &#39;none&#39;
+        if filetype != &#34;hdf5&#34;:
+            out[2][&#39;display&#39;]= &#39;none&#39;
+        return out
+
+    @app.callback([
+            Output(&#39;cp-da-edge_detection_threshold&#39;, &#39;value&#39;),
+            Output(&#39;cp-da-correction_a&#39;, &#39;value&#39;),
+            Output(&#39;cp-da-correction_b&#39;, &#39;value&#39;),
+            Output(&#39;cp-da-average_count&#39;, &#39;value&#39;),
+            Output(&#39;ut-show-warning-modal-3&#39;, &#39;children&#39;),
+        ], [Input(&#39;cp-da-config_upload&#39;, &#39;contents&#39;)], [
+            State(&#39;cp-da-edge_detection_threshold&#39;, &#39;value&#39;),
+            State(&#39;cp-da-correction_a&#39;, &#39;value&#39;),
+            State(&#39;cp-da-correction_b&#39;, &#39;value&#39;),
+            State(&#39;cp-da-average_count&#39;, &#39;value&#39;),
+        ])
+    def upload_config(cont, edt, ca, cb, ac):
+        &#34;&#34;&#34;
+        This handles the processing configuration uploading.
+
+        It processes the file line by line, stripping each line. Then it tries
+        to split it on the &#39;=&#39; character into exactly two parts. Then if the
+        first part matches any of the property names, the second part is converted
+        to the correct type and assigned as the property value.
+
+        If anything goes wrong during it, then all of the values stay the same.
+        &#34;&#34;&#34;
+        if not cont:
+            raise PreventUpdate()
+        old_edt = edt
+        old_ca = ca
+        old_cb = cb
+        old_ac = ac
+        try:
+            for k, v in [map(lambda x: x.strip(), line.split(&#39;=&#39;)) for line in
+                    base64.b64decode(cont.split(&#39;,&#39;)[1]).decode().strip().split(&#39;\n&#39;)]:
+                if k == &#39;edge_detection_threshold&#39;:
+                    edt = float(v)
+                elif k == &#39;correction_a&#39;:
+                    ca = float(v)
+                elif k == &#39;correction_b&#39;:
+                    cb = float(v)
+                elif k == &#39;average_count&#39;:
+                    ac = int(v)
+                else:
+                    ms.debugger.warning(&#34;Config loading: \&#34;&#34; + k + &#34;\&#34; does not match any of the parameter names.&#34;)
+                    raise Exception()
+            return [edt, ca, cb, ac, &#34;&#34;]
+        except:
+            return [old_edt, old_ca, old_cb, old_ac, &#34;The uploaded file could not be parsed, try a different one.&#34;]
+
+    @app.callback(Output(&#39;cp-da-config_link&#39;, &#39;href&#39;), [
+            Input(&#39;cp-da-edge_detection_threshold&#39;, &#39;value&#39;),
+            Input(&#39;cp-da-correction_a&#39;, &#39;value&#39;),
+            Input(&#39;cp-da-correction_b&#39;, &#39;value&#39;),
+            Input(&#39;cp-da-average_count&#39;, &#39;value&#39;),
+            Input(&#39;ut-on_load-2&#39;, &#39;children&#39;)
+        ])
+    def save_config(edt, ca, cb, ac, not_used):
+        &#34;&#34;&#34;Sets the href on the download link to the new value whenever the parameters change.&#34;&#34;&#34;
+        config = &#39;edge_detection_threshold=&#39; + str(edt) + &#39;\n&#39; + &#39;correction_a=&#39; + str(ca) + &#39;\n&#39; + &#39;correction_b=&#39; + str(cb) + &#39;\n&#39; + &#39;average_count=&#39; + str(ac) + &#39;\n&#39;
+        return &#39;data:text/csv;charset=utf-8,&#39; + urllib.parse.quote(config),
+
+    @app.server.route(&#39;/logs/&lt;path:path&gt;&#39;)
+    def get_log(path):
+        &#34;&#34;&#34;This enables downloading logs, whenever a request is made to /logs/something,
+        the file named something is downloaded from the current log folder&#34;&#34;&#34;
+        result = flask.send_from_directory(ms.log_directory, path)
+        return result
+
+    return app</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="PINSoftware.DashApp.linear_correct_func"><code class="name flex">
+<span>def <span class="ident">linear_correct_func</span></span>(<span>cor_a, cor_b)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get a linear function with <code>a</code> and <code>b</code> as its coefficients</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def linear_correct_func(cor_a, cor_b):
+    &#34;&#34;&#34;Get a linear function with `a` and `b` as its coefficients&#34;&#34;&#34;
+    return lambda x: cor_a * x + cor_b</code></pre>
+</details>
+</dd>
+<dt id="PINSoftware.DashApp.get_app"><code class="name flex">
+<span>def <span class="ident">get_app</span></span>(<span>ms: <a title="PINSoftware.MachineStuff.MachineStuff" href="MachineStuff.html#PINSoftware.MachineStuff.MachineStuff">MachineStuff</a>) ‑> dash.dash.Dash</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Creates the Dash app and creates all the callbacks.
+<code>ms</code> is the MachineStuff instance to which callbacks should be connected.
+Returns a <code>dash.Dash</code> instance to be run.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_app(ms : MachineStuff) -&gt; dash.Dash:
+    &#34;&#34;&#34;
+        Creates the Dash app and creates all the callbacks.
+        `ms` is the MachineStuff instance to which callbacks should be connected.
+        Returns a `dash.Dash` instance to be run.
+    &#34;&#34;&#34;
+    app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+    app.config.suppress_callback_exceptions = False
+    app.logger.disabled = False
+
+    def timestamp_to_datetime(x : int) -&gt; datetime.datetime:
+        &#34;&#34;&#34;Converts the timestamps sotred in `PINSoftware.DataAnalyser.DataAnalyser` to a `datetime.datetime` object&#34;&#34;&#34;
+        return datetime.datetime.fromtimestamp(ms.data.first_processed_timestamp + x * ms.data.period)
+
+    full_graph_base_fig = {&#39;data&#39;: [
+            {
+                &#39;x&#39;: [],
+                &#39;y&#39;: [],
+                &#39;type&#39;: &#39;scatter&#39;,
+                &#39;name&#39;: &#39;Live peak voltage&#39;
+            },
+            {
+                &#39;x&#39;: [],
+                &#39;y&#39;: [],
+                &#39;type&#39;: &#39;scatter&#39;,
+                &#39;name&#39;: &#39;Live averaged peak voltage&#39;
+            }
+        ]
+    }
+
+    def full_graph_extend(n, graph_indices):
+        &#34;&#34;&#34;Full graph extend function&#34;&#34;&#34;
+        pro_index = min(graph_indices[&#39;pro_index&#39;], len(ms.data.processed_ys))
+        avg_index = min(graph_indices[&#39;avg_index&#39;], len(ms.data.averaged_processed_ys))
+        pro_top_index = min(pro_index + 30000, len(ms.data.processed_ys))
+        avg_top_index = min(avg_index + 30000, len(ms.data.averaged_processed_ys))
+        result = [
+                {
+                    &#39;x&#39;: [
+                        list(map(timestamp_to_datetime, ms.data.processed_timestamps[pro_index:pro_top_index])),
+                        list(map(timestamp_to_datetime, ms.data.averaged_processed_timestamps[avg_index:avg_top_index]))
+                    ],
+                    &#39;y&#39;: [
+                        ms.data.processed_ys[pro_index:pro_top_index],
+                        ms.data.averaged_processed_ys[avg_index:avg_top_index]
+                        ]
+                }
+            ]
+        graph_indices[&#39;pro_index&#39;] = pro_top_index
+        graph_indices[&#39;avg_index&#39;] = avg_top_index
+        return [result, graph_indices]
+
+    def live_graph_func(n, T):
+        &#34;&#34;&#34;Live graph figure function&#34;&#34;&#34;
+        show_from = len(ms.data.ys) - T * 50000
+        data = []
+        current_avg = None
+        current_count = None
+        if ms.data.processed_ys and ms.data.processed_timestamps[-1] &gt;= show_from:
+            pro_index = -1
+            max_pro_index = -len(ms.data.processed_timestamps)
+            while ms.data.processed_timestamps[pro_index] &gt; show_from and pro_index &gt; max_pro_index:
+                pro_index -= 1
+            data.append(
+                {
+                    &#39;x&#39;: list(map(timestamp_to_datetime, ms.data.processed_timestamps[pro_index:])),
+                    &#39;y&#39;: ms.data.processed_ys[pro_index:],
+                    &#39;type&#39;: &#39;scatter&#39;,
+                    &#39;name&#39;: &#39;Live averaged peak voltage&#39;
+                }
+            )
+            current_count = -pro_index / T
+        if ms.data.averaged_processed_ys and ms.data.averaged_processed_timestamps[-1] &gt;= show_from:
+            avg_index = -1
+            max_avg_index = -len(ms.data.averaged_processed_timestamps)
+            while ms.data.averaged_processed_timestamps[avg_index] &gt; show_from and avg_index &gt; max_avg_index:
+                avg_index -= 1
+            data.append(
+                {
+                    &#39;x&#39;: list(map(timestamp_to_datetime, ms.data.averaged_processed_timestamps[avg_index:])),
+                    &#39;y&#39;: ms.data.averaged_processed_ys[avg_index:],
+                    &#39;type&#39;: &#39;scatter&#39;,
+                    &#39;name&#39;: &#39;Live peak voltage&#39;
+                }
+            )
+            current_avg = sum(ms.data.averaged_processed_ys[avg_index:]) / -avg_index
+        return [{&#39;data&#39;: data},
+                &#34;The average value is: &#34; + str(current_avg) if current_avg else &#34;&#34;,
+                &#34;Current peak voltages per second are: &#34; + str(current_count) if current_avg else &#34;&#34;
+                ]
+
+    app.layout = lambda: dbc.Container([
+        html.H1(&#34;xPIN, Sample and Hold, NI-DAQmx system software&#34;, style={&#39;textAlign&#39;: &#39;center&#39;}),
+        dbc.Modal([
+                dbc.ModalHeader(&#34;Warning&#34;),
+                dbc.ModalBody(&#34;Something went wrong&#34;, id=&#39;warning-modal-body&#39;)
+            ],
+            id=&#39;warning-modal&#39;
+        ),
+        dbc.Container([
+            dbc.Tabs([
+                dbc.Tab(dbc.Container([
+                    dbc.Row(
+                        dbc.Col(
+                            id=&#39;ad-session_id&#39;,
+                            width=&#39;auto&#39;
+                        ),
+                        justify=&#39;center&#39;
+                    ),
+                    dbc.Row(
+                        dbc.Col(
+                            dbc.ButtonGroup([
+                                dbc.Button(&#34;Grab control&#34;, id=&#39;ad-grab&#39;, color=&#39;warning&#39;, disabled=ms.experiment_running),
+                                dbc.Button(&#34;Release control&#34;, id=&#39;ad-release&#39;, color=&#39;secondary&#39;, disabled=(not ms.experiment_running))
+                            ]),
+                            width=&#39;auto&#39;
+                        ),
+                        justify=&#39;center&#39;
+                    ),
+                    dbc.Row(
+                        dbc.Col(
+                            &#34;There is currently no controller.&#34;,
+                            id=&#39;ad-controller-info&#39;,
+                            width=&#39;auto&#39;
+                        ),
+                        justify=&#39;center&#39;
+                    )],
+                    className=&#39;mt-3 mb-3&#39;
+                ), label=&#34;Administration&#34;, tab_id=&#39;administration-tab&#39;),
+                dbc.Tab(dbc.Container([
+                    dbc.Row([
+                        dbc.Col(
+                            dbc.ButtonGroup([
+                                dbc.Button(&#34;Start&#34;, id=&#39;cp-start&#39;, color=&#39;success&#39;, disabled=ms.experiment_running),
+                                dbc.Button(&#34;Stop&#34;, id=&#39;cp-stop&#39;, color=&#39;danger&#39;, disabled=(not ms.experiment_running))
+                            ]),
+                            width=&#39;auto&#39;
+                        )],
+                        justify=&#39;center&#39;,
+                        className=&#39;mt-3 mb-2&#39;
+                    ),
+                    dbc.Row(
+                        dbc.Col(
+                            html.Fieldset(dbc.Container([
+                                dbc.Row(
+                                    dbc.Col(
+                                        SingleSwitch(&#39;cp-save-toggle&#39;, &#34;Save captured data?&#34;, default=False),
+                                        width=&#39;auto&#39;
+                                    ),
+                                    justify=&#39;center&#39;
+                                ),
+                                dbc.Row(
+                                    dbc.Col(
+                                        dbc.Input(id=&#39;cp-save-base_filename&#39;, value=&#34;log&#34;, type=&#39;text&#39;),
+                                        width=&#39;auto&#39;
+                                    ),
+                                    id=&#39;cp-save-base_filename-row&#39;,
+                                    justify=&#39;center&#39;
+                                ),
+                                dbc.Row(
+                                    dbc.Col(
+                                        dbc.Select(
+                                            id=&#39;cp-save-select_ft&#39;,
+                                            value=&#34;hdf5&#34;,
+                                            options=[
+                                                {&#34;label&#34;: &#34;csv&#34;, &#34;value&#34;: &#34;csv&#34;},
+                                                {&#34;label&#34;: &#34;hdf5&#34;, &#34;value&#34;: &#34;hdf5&#34;}
+                                            ],
+                                        ),
+                                        width=2
+                                    ),
+                                    id=&#39;cp-save-select_ft-row&#39;,
+                                    justify=&#39;center&#39;,
+                                    className=&#39;mt-1&#39;
+                                ),
+                                dbc.Row(
+                                    dbc.Col(
+                                        dbc.Checklist(
+                                            id=&#39;cp-save-items&#39;,
+                                            options=[
+                                                {&#39;label&#39;: &#34;Save raw data&#34;, &#39;value&#39;: &#39;ys&#39;},
+                                                {&#39;label&#39;: &#34;Save processed data&#34;, &#39;value&#39;: &#39;processed_ys&#39;},
+                                                {&#39;label&#39;: &#34;Save averaged data&#34;, &#39;value&#39;: &#39;averaged_processed_ys&#39;},
+                                                {&#39;label&#39;: &#34;Save debug markers&#34;, &#39;value&#39;: &#39;markers&#39;}
+                                            ],
+                                            value=[&#39;ys&#39;, &#39;processed_ys&#39;],
+                                            switch=True,
+                                            inline=True
+                                        ),
+                                        width=&#39;auto&#39;
+                                    ),
+                                    id=&#39;cp-save-items-row&#39;,
+                                    justify=&#39;center&#39;
+                                ),
+                                dbc.Row(
+                                    dbc.Col(
+                                        id=&#39;cp-save-messagebox&#39;,
+                                        width=&#39;auto&#39;
+                                    ),
+                                    justify=&#39;center&#39;
+                                )],
+                                id=&#39;cp-saving-options&#39;,
+                                fluid=True,
+                                className=&#39;border mt-1 mb-1 pt-1 pb-2&#39;
+                            ), id=&#39;cp-saving-options-fieldset&#39;),
+                            width=8
+                        ),
+                        justify=&#39;center&#39;
+                    )]
+                ), label=&#34;Run controls&#34;, id=&#39;run-options&#39;, tab_id=&#39;run-options-tab&#39;, disabled=True),
+                dbc.Tab(dbc.Container([
+                    dbc.Row(
+                        dbc.Col(
+                            html.Fieldset(dbc.Container([
+                                    dbc.Row(
+                                        dbc.Col(
+                                            dbc.ButtonGroup([
+                                                dcc.Upload(dbc.Button(&#34;Load configuration from file&#34;, color=&#39;info&#39;),
+                                                    id=&#39;cp-da-config_upload&#39;,
+                                                    max_size=256*1024*1024),
+                                                dcc.Link(
+                                                    dbc.Button(&#34;Save configuration to file&#34;, color=&#39;secondary&#39;),
+                                                    id=&#39;cp-da-config_link&#39;,
+                                                    href=&#39;&#39;,
+                                                    refresh=True
+                                                ),
+                                            ]),
+                                            width=&#39;auto&#39;
+                                        ),
+                                        className=&#39;mt-2 mb-2&#39;,
+                                        justify=&#39;center&#39;
+                                    ),
+                                    dbc.Row(dbc.Col(dbc.FormGroup([
+                                            dbc.Label(&#34;Edge detection threshold [V]:&#34;, html_for=&#39;cp-da-edge_detection_threshold&#39;, width=&#39;auto&#39;),
+                                            dbc.Col(
+                                                dbc.Input(id=&#39;cp-da-edge_detection_threshold&#39;, type=&#39;number&#39;, min=0, value=0.005, step=0.0001),
+                                                width=3
+                                            )
+                                        ],
+                                        row=True
+                                    ))),
+                                    dbc.Row([
+                                        dbc.Col(dbc.FormGroup([
+                                                dbc.Label(&#34;Correction a&#34;, html_for=&#39;cp-da-correction_a&#39;, width=&#39;auto&#39;),
+                                                dbc.Col(
+                                                    dbc.Input(id=&#39;cp-da-correction_a&#39;, type=&#39;number&#39;, value=2, step=0.01),
+                                                    width=5
+                                                )
+                                            ],
+                                            row=True
+                                        )),
+                                        dbc.Col(dbc.FormGroup([
+                                                dbc.Label(&#34;Correction b&#34;, html_for=&#39;cp-da-correction_b&#39;, width=&#39;auto&#39;),
+                                                dbc.Col(
+                                                    dbc.Input(id=&#39;cp-da-correction_b&#39;, type=&#39;number&#39;, value=0.0022, step=0.0001),
+                                                    width=5
+                                                )
+                                            ],
+                                            row=True
+                                        ))
+                                    ]),
+                                    dbc.Row(dbc.Col(dbc.FormGroup([
+                                            dbc.Label(&#34;Average count:&#34;, html_for=&#39;cp-da-average_count&#39;, width=&#39;auto&#39;),
+                                            dbc.Col(
+                                                dbc.Input(id=&#39;cp-da-average_count&#39;, type=&#39;number&#39;, min=0, value=50, step=1),
+                                                width=3
+                                            )
+                                        ],
+                                        row=True
+                                    ))),
+                                ],
+                                id=&#39;cp-dataanalyser-options&#39;,
+                                fluid=True,
+                                className=&#39;border mt-1 mb-1 pt-1 pb-2&#39;
+                            ), id=&#39;cp-dataanalyser-options-fieldset&#39;),
+                            width=10
+                        ),
+                        justify=&#39;center&#39;,
+                        className=&#39;mt-3&#39;
+                    )]
+                ), label=&#34;Processing controls&#34;, id=&#39;processing-options&#39;, tab_id=&#39;processing-options-tab&#39;, disabled=True),
+                dbc.Tab(dbc.Container([
+                    html.H3(&#34;System overview&#34;),
+                    html.P(&#34;&#34;&#34;
+                        The application is internally divided into two parts, the machine controls themselves and the user interface.
+                        There are only one machine controls per server but there can be multiple user interfaces if multiple people open the website at once.
+                        Because of this there is a &#39;user&#39; system and only the current controller can control the machine controls.
+                        When you open the website you are given a session id which can be seen at the top of the Administration tab and looks like this &#34;9fb86f8a-51f5-40f0-b629-1f508a904e6a&#34;.
+                        Under the session id there are two buttons, those are used to grab and release control of the machine.
+                        Under those is the current controller info box, this shows if there is a controller and who it is.
+                        If there is a controller which isn&#39;t you, you can force remove their control.
+                        This has its problems but since the device is meant to be run in a controlled environment it should be good enough.
+                    &#34;&#34;&#34;),
+                    html.P(&#34;&#34;&#34;
+                        Once you are the current controller you get access to two controls tabs.
+                        In the Run controls tab you can start and stop data acquisition and choose how/if the data should be saved.
+                        In the Processing controls tab you can modify parameters which are used during data analysis.
+                    &#34;&#34;&#34;),
+                    html.H3(&#34;Notes on data analysis&#34;),
+                    html.P(&#34;&#34;&#34;
+                        The device processes the data by detecting sections and it then gets the differences between certain sections.
+                        The Edge detection threshold parameter is the voltage difference which constitutes a section transition.
+                        What is meant by that is that when the difference between the new datapoint and the average of the current section is greater than the EDT, then this is labeled as an edge and a new section begins.
+                    &#34;&#34;&#34;),
+                    html.P(&#34;&#34;&#34;
+                        Peak voltage is a term which refers to the max voltage of the peak.
+                        If there are a 1000 pulses per second then there should be a 1000 peak voltages per second.
+                        Correction a and Correction b modify this value.
+                        It has been observed that the sample and hold alters the voltages it gets, thereby this is necessary.
+                        When the data analysis gets a new peak voltage it then multiplies that value by Correction a and adds Correction b to it.
+                        The defaults have been calibrated for our setup using a signal generator and should be fine but you want to get raw data just set them to 1 and 0 respectively.
+                    &#34;&#34;&#34;),
+                    html.P(&#34;&#34;&#34;
+                        Lastly, there are also the Averaged peak voltages, those are calculated from Peak voltages by averaging a set amount of them, this is done to reduce noise.
+                        The Average count parameter sets how many peak voltages should be averaged.
+                    &#34;&#34;&#34;),
+                    html.H3(&#34;Graph commentary&#34;),
+                    html.P(&#34;&#34;&#34;
+                        Both graphs have two options.
+                        First is to show the graph and the second is to update it.
+                        When both are on then the graph checks every 2 seconds for new data.
+                        If you switch Update graph off, the graph will no longer update but will still be visible.
+                        If you switch Update graph back on after a while it&#39;s still going to update every 2 seconds but it might not be able to catch up instantly, there is a set maximum datapoints that it can transfer not to overload the network.
+                        When switch Show graph off, it automatically switches Update graph off too.
+                        When you plan to let the acquisition run for a longer time it is strongly recommended to switch Show graph off for graphs of all data, otherwise they might cause issues.
+                    &#34;&#34;&#34;),
+                    html.P(&#34;&#34;&#34;
+                        On the live graph there are two extra things.
+                        First you can set how much data it will show and secondly, once it&#39;s running it will tell you how many Peak voltages it gets per second (in that interval).
+                        The Peaks per second display can be very useful to find the right value for Edge detection threshold.
+                    &#34;&#34;&#34;)],
+                    className=&#39;mt-3&#39;
+                ), label=&#34;Help&#34;, tab_id=&#39;help-tab&#39;)
+            ], id=&#39;main-tabs&#39;)
+        ]),
+        dbc.Container(id=&#39;graphs&#39;, children=[
+            ExtendableGraph(app, ms, &#39;full-graph&#39;, &#34;All data from this measurement&#34;, full_graph_base_fig, full_graph_extend,
+                extend_func_output=[Output(&#39;full-graph&#39;, &#39;extendData&#39;), Output(&#39;full-graph-indices&#39;, &#39;data&#39;)],
+                extend_func_state=[State(&#39;full-graph-indices&#39;, &#39;data&#39;)]),
+            FullRedrawGraph(app, ms, &#39;live-graph&#39;, &#34;Data from the last few seconds&#34;, live_graph_func,
+                fig_func_output=[Output(&#39;live-graph&#39;, &#39;figure&#39;), Output(&#39;live-graph-average&#39;, &#39;children&#39;),
+                    Output(&#39;live-graph-count&#39;, &#39;children&#39;)],
+                fig_func_state=[State(&#39;live-graph-T&#39;, &#39;value&#39;)],
+                additional_controls=[
+                    dbc.Row([
+                        dbc.Col(
+                            dbc.FormGroup([
+                                dbc.Label(&#34;How many seconds to look in the past:&#34;, html_for=&#39;live-graph-T&#39;, width=&#39;auto&#39;),
+                                    dbc.Col(
+                                        dbc.Input(id=&#39;live-graph-T&#39;, type=&#39;number&#39;, min=0, value=5, step=0.01),
+                                        width=4
+                                    )
+                                ],
+                                row=True
+                            ),
+                            width=&#39;auto&#39;
+                        )],
+                        justify=&#39;center&#39;
+                    ),
+                    dbc.Row([
+                        dbc.Col(
+                            &#34;&#34;,
+                            id=&#39;live-graph-average&#39;,
+                            width=&#39;auto&#39;
+                        )],
+                        justify=&#39;center&#39;
+                    ),
+                    dbc.Row([
+                        dbc.Col(
+                            &#34;&#34;,
+                            id=&#39;live-graph-count&#39;,
+                            width=&#39;auto&#39;
+                        )],
+                        justify=&#39;center&#39;
+                    )
+                ])
+        ]),
+        dbc.Container(id=&#39;extras&#39;, className=&#39;mb-5&#39;, style={&#39;display&#39;: &#39;none&#39;}, children=[
+            dcc.Store(id=&#39;session-id&#39;, storage_type=&#39;session&#39;),
+            dcc.Store(id=&#39;full-graph-indices&#39;, storage_type=&#39;session&#39;, data={&#39;pro_index&#39;: 0, &#39;avg_index&#39;: 0}),
+            html.Div(id=&#39;ut-on_load&#39;),
+            html.Div(id=&#39;ut-on_load-2&#39;),
+            html.Div(id=&#39;ut-update-controller-status&#39;),
+            html.Div(id=&#39;ut-update-controller-status-2&#39;),
+            html.Div(id=&#39;ut-update-controller-status-3&#39;),
+            html.Div(id=&#39;ut-update-controller-status-4&#39;),
+            html.Div(id=&#39;ut-show-warning-modal-0&#39;),
+            html.Div(id=&#39;ut-show-warning-modal-1&#39;),
+            html.Div(id=&#39;ut-show-warning-modal-2&#39;),
+            html.Div(id=&#39;ut-show-warning-modal-3&#39;)
+        ])
+    ])
+
+    @app.callback([
+            Output(&#39;ad-grab&#39;, &#39;n_clicks&#39;),
+            Output(&#39;session-id&#39;, &#39;data&#39;),
+            Output(&#39;ad-session_id&#39;, &#39;children&#39;),
+            Output(&#39;ut-update-controller-status&#39;, &#39;children&#39;)
+        ], [Input(&#39;ut-on_load&#39;, &#39;children&#39;)], [State(&#39;session-id&#39;, &#39;data&#39;)])
+    def on_load(not_used, old_sid):
+        &#34;&#34;&#34;Triggers on load&#34;&#34;&#34;
+        if not old_sid:
+            sid = str(uuid.uuid4())
+            return [42, sid, sid, &#34;&#34;]
+        return [42, old_sid, old_sid, &#34;&#34;]
+
+    warning_modal_count = 4
+    warning_modal_div_names = [&#39;ut-show-warning-modal-&#39; + str(i) for i in range(warning_modal_count)]
+    warning_modal_prop_id_names = [warning_modal_div_name + &#39;.children&#39; for warning_modal_div_name in warning_modal_div_names]
+
+    @app.callback([
+            Output(&#39;warning-modal&#39;, &#39;is_open&#39;),
+            Output(&#39;warning-modal-body&#39;, &#39;children&#39;)
+        ], [Input(warning_modal_div_name, &#39;children&#39;) for warning_modal_div_name in warning_modal_div_names])
+    def show_warning_modal(*args):
+        &#34;&#34;&#34;
+        This shows a modal with a warning whenever the children of one of the warning-modal divs
+        change. It displays the contents of the div in the modal.
+        &#34;&#34;&#34;
+        prop_id = dash.callback_context.triggered[0][&#39;prop_id&#39;]
+        try:
+            children = args[warning_modal_prop_id_names.index(prop_id)]
+            if children:
+                return [True, children]
+            else:
+                raise PreventUpdate()
+        except ValueError:
+            raise PreventUpdate()
+
+    @app.callback([
+            Output(&#39;ad-grab&#39;, &#39;disabled&#39;),
+            Output(&#39;ad-release&#39;, &#39;disabled&#39;),
+            Output(&#39;run-options&#39;, &#39;disabled&#39;),
+            Output(&#39;processing-options&#39;, &#39;disabled&#39;),
+            Output(&#39;ad-controller-info&#39;, &#39;children&#39;),
+            Output(&#39;main-tabs&#39;, &#39;active_tab&#39;)
+        ], [
+            Input(&#39;ut-update-controller-status&#39;, &#39;children&#39;),
+            Input(&#39;ut-update-controller-status-2&#39;, &#39;children&#39;),
+            Input(&#39;ut-update-controller-status-3&#39;, &#39;children&#39;),
+            Input(&#39;ut-update-controller-status-4&#39;, &#39;children&#39;)
+        ], [State(&#39;session-id&#39;, &#39;data&#39;), State(&#39;main-tabs&#39;, &#39;active_tab&#39;)])
+    def update_controller_status(not_used, not_used_2, not_used_3, not_used_4, sid, active):
+        &#34;&#34;&#34;Updates the current controller information box&#34;&#34;&#34;
+        if not ms.controller:
+            return [False, True, True, True, &#34;There is currently no controller!&#34;, &#39;administration-tab&#39;]
+        elif ms.controller == sid:
+            return [True, False, False, False, &#34;Tou are the current controller&#34;, active]
+        else:
+            infobox = [ms.controller + &#34; is the current controller&#34;]
+            infobox.append(dbc.Button(&#34;Force release?&#34;, id=&#39;ad-force_release&#39;, color=&#39;danger&#39;, className=&#39;ml-3 mr-3&#39;))
+            return [True, True, True, True, infobox, &#39;administration-tab&#39;]
+
+    @app.callback([
+            Output(&#39;ut-update-controller-status-2&#39;, &#39;children&#39;),
+            Output(&#39;ut-show-warning-modal-1&#39;, &#39;children&#39;),
+        ], [Input(&#39;ad-grab&#39;, &#39;n_clicks&#39;), Input(&#39;ad-release&#39;, &#39;n_clicks&#39;)], [State(&#39;session-id&#39;, &#39;data&#39;)])
+    def grab_release(not_used, not_used_2, sid):
+        &#34;&#34;&#34;Handles the &#34;Grab&#34; and &#34;Release&#34; buttons&#34;&#34;&#34;
+        prop_id = dash.callback_context.triggered[0][&#39;prop_id&#39;]
+        if prop_id.startswith(&#39;ad-grab&#39;):
+            if not ms.controller:
+                ms.grab_control(sid)
+                return [&#34;&#34;, &#34;&#34;]
+            else:
+                return [&#34;&#34;, &#34;Sorry, someone has grabbed control before you have.&#34;]
+        elif prop_id.startswith(&#39;ad-release&#39;):
+            if ms.controller == sid:
+                ms.release_control()
+                return [&#34;&#34;, &#34;You are now not in control of the system.&#34;]
+            else:
+                return [&#34;&#34;, &#34;Someone has removed your control before, you are now not the controller.&#34;]
+        else:
+            raise PreventUpdate()
+
+    @app.callback([
+            Output(&#39;ut-update-controller-status-3&#39;, &#39;children&#39;),
+            Output(&#39;ut-show-warning-modal-2&#39;, &#39;children&#39;)
+        ], [
+            Input(&#39;ad-force_release&#39;, &#39;n_clicks&#39;),
+        ], [
+            State(&#39;ad-controller-info&#39;, &#39;children&#39;),
+            State(&#39;ut-show-warning-modal-2&#39;, &#39;children&#39;)
+        ])
+    def force_release(n_clicks, controller_info, warning_msg):
+        &#34;&#34;&#34;Handles the &#34;Force Release&#34; button&#34;&#34;&#34;
+        if n_clicks:
+            if ms.controller:
+                if controller_info[0].startswith(ms.controller):
+                    ms.release_control()
+                    return [&#34;&#34;, &#34;&#34;]
+                else:
+                    return [&#34;&#34;, &#34;Someone else has become the controller since last refresh.&#34;]
+            else:
+                return [&#34;&#34;, &#34;&#34;]
+        return [&#34;&#34;, warning_msg]
+
+    @app.callback(
+            [
+                Output(&#39;ut-show-warning-modal-0&#39;, &#39;children&#39;),
+                Output(&#39;cp-start&#39;, &#39;disabled&#39;),
+                Output(&#39;cp-stop&#39;, &#39;disabled&#39;),
+                Output(&#39;cp-saving-options-fieldset&#39;, &#39;disabled&#39;),
+                Output(&#39;cp-dataanalyser-options-fieldset&#39;, &#39;disabled&#39;),
+                Output(&#39;cp-save-messagebox&#39;, &#39;children&#39;),
+                Output(&#39;ut-update-controller-status-4&#39;, &#39;children&#39;)
+            ],
+            [
+                Input(&#39;cp-start&#39;, &#39;n_clicks&#39;),
+                Input(&#39;cp-stop&#39;, &#39;n_clicks&#39;)
+            ],
+            [
+                State(&#39;session-id&#39;, &#39;data&#39;),
+                State(&#39;cp-save-toggle&#39;, &#39;checked&#39;),
+                State(&#39;cp-save-base_filename&#39;, &#39;value&#39;),
+                State(&#39;cp-save-select_ft&#39;, &#39;value&#39;),
+                State(&#39;cp-save-items&#39;, &#39;value&#39;),
+                State(&#39;cp-da-edge_detection_threshold&#39;, &#39;value&#39;),
+                State(&#39;cp-da-average_count&#39;, &#39;value&#39;),
+                State(&#39;cp-da-correction_a&#39;, &#39;value&#39;),
+                State(&#39;cp-da-correction_b&#39;, &#39;value&#39;)
+            ])
+    def start_stop(start_ncl, stop_ncl, sid,
+            should_save, save_filename, save_filetype, save_items,
+            edge_detection_threshold, average_count, correction_a, correction_b):
+        &#34;&#34;&#34;
+        Handles the &#34;Start&#34; and &#34;Stop&#34; buttons, this is the most complicated callback.
+
+        First if the client isn&#39;t the current controller it disables the control tabs for him,
+        updates his current controller info and shows a warning modal explaining what happened to him.
+
+        Otherwise it splits based on if he pressed &#34;Start&#34; or &#34;Stop&#34;.
+        If he pressed &#34;Start&#34;, it tries to start data acquisition and shows an info box
+        telling the client if it worked, failed or what, it also disables one of the buttons.
+        For &#34;Stop&#34; it just stops the data acquisition and shows a message with possibly a link to the data.
+        &#34;&#34;&#34;
+        prop_id = dash.callback_context.triggered[0][&#39;prop_id&#39;]
+        if (start_ncl or stop_ncl) and sid != ms.controller:
+            return [&#34;Someone has forcefully removed your control of the system.&#34;, prop_id.startswith(&#39;cp-start&#39;),
+                    prop_id.startswith(&#39;cp-stop&#39;), prop_id.startswith(&#39;cp-stop&#39;), prop_id.startswith(&#39;cp-stop&#39;), prop_id.startswith(&#39;cp-stop&#39;), &#34;&#34;]
+        out = []
+        if prop_id.startswith(&#39;cp-start&#39;):
+            if should_save and (not save_filename.isalnum()):
+                    return [&#34;The supplied filename is not valid, aborting. The filename must only contain letters and numbers.&#34;,
+                            False, True, False, False, &#34;Aborted due to invalid filename&#34;, &#34;&#34;]
+            ms.start_experiment(save_filename if should_save else None, Filetype.from_str(save_filetype),
+                    edge_detection_threshold=edge_detection_threshold, average_count=average_count, items=save_items,
+                    correction_func=linear_correct_func(correction_a, correction_b))
+            if should_save:
+                out = [&#34;&#34;, True, False, True, True]
+                if ms.saver:
+                    out.append(&#34;Started acquiring and saving to file \&#34;&#34; + ms.saver.full_filename + &#34;\&#34;&#34;)
+                elif should_save:
+                    out.append(&#34;Acquiring has started but there has been an error with saving the data&#34;)
+            else:
+                out = [&#34;&#34;, True, False, True, True, &#34;Acquisition has started successfully&#34;]
+        elif prop_id.startswith(&#39;cp-stop&#39;):
+            ms.stop_experiment()
+            msgbox = [&#34;The Acquisition has been successfully stopped.&#34;]
+            if ms.data:
+                if ms.saver:
+                    msgbox.append(html.A(
+                        &#34;Download the data here.&#34;,
+                        href=ms.saver.full_filename[1:]
+                    ))
+            out = [&#34;&#34;, False, True, False, False, msgbox]
+        else:
+            raise PreventUpdate()
+        return out + [&#34;&#34;]
+
+    @app.callback([
+            Output(&#39;cp-save-base_filename-row&#39;, &#39;style&#39;),
+            Output(&#39;cp-save-select_ft-row&#39;, &#39;style&#39;),
+            Output(&#39;cp-save-items-row&#39;, &#39;style&#39;)
+        ],
+        [
+            Input(&#39;cp-save-toggle&#39;, &#39;checked&#39;),
+            Input(&#39;cp-save-select_ft&#39;, &#39;value&#39;)
+        ])
+    def cp_save_ui_callbacks(should_save, filetype):
+        &#34;&#34;&#34;This toggles visibility of the save options based on if saving is enabled&#34;&#34;&#34;
+        out = [{}, {}, {}]
+        if not should_save:
+            out[0][&#39;display&#39;]= &#39;none&#39;
+            out[1][&#39;display&#39;]= &#39;none&#39;
+            out[2][&#39;display&#39;]= &#39;none&#39;
+        if filetype != &#34;hdf5&#34;:
+            out[2][&#39;display&#39;]= &#39;none&#39;
+        return out
+
+    @app.callback([
+            Output(&#39;cp-da-edge_detection_threshold&#39;, &#39;value&#39;),
+            Output(&#39;cp-da-correction_a&#39;, &#39;value&#39;),
+            Output(&#39;cp-da-correction_b&#39;, &#39;value&#39;),
+            Output(&#39;cp-da-average_count&#39;, &#39;value&#39;),
+            Output(&#39;ut-show-warning-modal-3&#39;, &#39;children&#39;),
+        ], [Input(&#39;cp-da-config_upload&#39;, &#39;contents&#39;)], [
+            State(&#39;cp-da-edge_detection_threshold&#39;, &#39;value&#39;),
+            State(&#39;cp-da-correction_a&#39;, &#39;value&#39;),
+            State(&#39;cp-da-correction_b&#39;, &#39;value&#39;),
+            State(&#39;cp-da-average_count&#39;, &#39;value&#39;),
+        ])
+    def upload_config(cont, edt, ca, cb, ac):
+        &#34;&#34;&#34;
+        This handles the processing configuration uploading.
+
+        It processes the file line by line, stripping each line. Then it tries
+        to split it on the &#39;=&#39; character into exactly two parts. Then if the
+        first part matches any of the property names, the second part is converted
+        to the correct type and assigned as the property value.
+
+        If anything goes wrong during it, then all of the values stay the same.
+        &#34;&#34;&#34;
+        if not cont:
+            raise PreventUpdate()
+        old_edt = edt
+        old_ca = ca
+        old_cb = cb
+        old_ac = ac
+        try:
+            for k, v in [map(lambda x: x.strip(), line.split(&#39;=&#39;)) for line in
+                    base64.b64decode(cont.split(&#39;,&#39;)[1]).decode().strip().split(&#39;\n&#39;)]:
+                if k == &#39;edge_detection_threshold&#39;:
+                    edt = float(v)
+                elif k == &#39;correction_a&#39;:
+                    ca = float(v)
+                elif k == &#39;correction_b&#39;:
+                    cb = float(v)
+                elif k == &#39;average_count&#39;:
+                    ac = int(v)
+                else:
+                    ms.debugger.warning(&#34;Config loading: \&#34;&#34; + k + &#34;\&#34; does not match any of the parameter names.&#34;)
+                    raise Exception()
+            return [edt, ca, cb, ac, &#34;&#34;]
+        except:
+            return [old_edt, old_ca, old_cb, old_ac, &#34;The uploaded file could not be parsed, try a different one.&#34;]
+
+    @app.callback(Output(&#39;cp-da-config_link&#39;, &#39;href&#39;), [
+            Input(&#39;cp-da-edge_detection_threshold&#39;, &#39;value&#39;),
+            Input(&#39;cp-da-correction_a&#39;, &#39;value&#39;),
+            Input(&#39;cp-da-correction_b&#39;, &#39;value&#39;),
+            Input(&#39;cp-da-average_count&#39;, &#39;value&#39;),
+            Input(&#39;ut-on_load-2&#39;, &#39;children&#39;)
+        ])
+    def save_config(edt, ca, cb, ac, not_used):
+        &#34;&#34;&#34;Sets the href on the download link to the new value whenever the parameters change.&#34;&#34;&#34;
+        config = &#39;edge_detection_threshold=&#39; + str(edt) + &#39;\n&#39; + &#39;correction_a=&#39; + str(ca) + &#39;\n&#39; + &#39;correction_b=&#39; + str(cb) + &#39;\n&#39; + &#39;average_count=&#39; + str(ac) + &#39;\n&#39;
+        return &#39;data:text/csv;charset=utf-8,&#39; + urllib.parse.quote(config),
+
+    @app.server.route(&#39;/logs/&lt;path:path&gt;&#39;)
+    def get_log(path):
+        &#34;&#34;&#34;This enables downloading logs, whenever a request is made to /logs/something,
+        the file named something is downloaded from the current log folder&#34;&#34;&#34;
+        result = flask.send_from_directory(ms.log_directory, path)
+        return result
+
+    return app</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="PINSoftware" href="index.html">PINSoftware</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="PINSoftware.DashApp.linear_correct_func" href="#PINSoftware.DashApp.linear_correct_func">linear_correct_func</a></code></li>
+<li><code><a title="PINSoftware.DashApp.get_app" href="#PINSoftware.DashApp.get_app">get_app</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.8.4</a>.</p>
+</footer>
+</body>
+</html>
