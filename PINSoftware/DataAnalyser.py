@@ -56,7 +56,7 @@ class DataAnalyser():
         self.plot_buffer_len = plot_buffer_len
         self.debugger = debugger
 
-        self.ys = [0]
+        self.ys = [0, 0, 0]
         self.markers = []
         self.marker_timestamps = []
 
@@ -123,7 +123,7 @@ class DataAnalyser():
         a warning is printed. I won't describe the logic here as it is described in the manual and also
         it may still be best to look through the code.
         """
-        diff = new_y - self.ys[-1]
+        diff = new_y - self.ys[-3]
         if abs(diff) > self.edge_detection_threshold:
             if diff < 0 and len(self.last_up_section) > 1 and len(self.last_down_section) > 1:
                 last_up_section = remove_outliers(self.last_up_section)
