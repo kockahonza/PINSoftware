@@ -23,11 +23,8 @@ The graph option shows a graph of the raw data on the host computer and the prof
 ## Documentation
 
 Documentation about the hardware and the setup can be found in the [PINManual](https://github.com/kockahonza/PINManual).
-Technical documentation is in the docstrings and a web page built from them can be found [here](https://kockahonza.github.io/PINSoftware).
-A pdf is also build from them which can be found in the `docs` folder (named `doc.pdf`).
-
-The web page is being built using [pdoc3](https://pdoc3.github.io/pdoc/), if you need to rebuild the page after changing the source you can run it using `pdoc --html --output-dir docs --template-dir docs/templates ./PINSoftware`.
-This builds the webpages in `docs/PINSoftware/`.
+Technical documentation is in the python docstrings, a [website](https://kockahonza.github.io/PINSoftware) and a [pdf](https://kockahonza.github.io/PINSoftware/doc.pdf) are build from it.
+Both are made using [pdoc3](https://pdoc3.github.io/pdoc/).
 
 ## Troubleshooting
 
