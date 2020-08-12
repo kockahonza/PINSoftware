@@ -110,7 +110,7 @@ class DataAnalyser():
 
         if self.average_index == self.average_count:
             self.averaged_processed_ys.append(self.average_running_sum / self.average_count)
-            self.averaged_processed_timestamps.append(self.processed_timestamps[-1])
+            self.averaged_processed_timestamps.append(self.processed_timestamps[-1] - self.average_count / 2)
             self.average_running_sum = 0
             self.average_index = 0
 

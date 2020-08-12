@@ -309,7 +309,7 @@ def get_app(ms : MachineState) -> dash.Dash:
                     html.P("""
                         The application is internally divided into two parts, the machine controls themselves and the user interface.
                         There are only one machine controls per server but there can be multiple user interfaces if multiple people open the website at once.
-                        Because of this there is a 'user' system and only the current controller can control the machine controls.
+                        Because of this there is a 'user' system and only the current controller can control the machine.
                         When you open the website you are given a session id which can be seen at the top of the Administration tab and looks like this "9fb86f8a-51f5-40f0-b629-1f508a904e6a".
                         Under the session id there are two buttons, those are used to grab and release control of the machine.
                         Under those is the current controller info box, this shows if there is a controller and who it is.
@@ -321,17 +321,17 @@ def get_app(ms : MachineState) -> dash.Dash:
                         In the Run controls tab you can start and stop data acquisition and choose how/if the data should be saved.
                         In the Processing controls tab you can modify parameters which are used during data analysis.
                     """),
-                    html.H3("Notes on data analysis"),
+                    html.H3("Processing parameters"),
                     html.P("""
                         The device processes the data by detecting sections and it then gets the differences between certain sections.
                         The Edge detection threshold parameter is the voltage difference which constitutes a section transition.
                         What is meant by that is that when the difference between the new datapoint and the average of the current section is greater than the EDT, then this is labeled as an edge and a new section begins.
                     """),
                     html.P("""
-                        Peak voltage is a term which refers to the max voltage of the peak.
+                        Peak voltage refers to the voltage difference between the lower section average and the peak of the up section.
                         If there are a 1000 pulses per second then there should be a 1000 peak voltages per second.
                         Correction a and Correction b modify this value.
-                        It has been observed that the sample and hold alters the voltages it gets, thereby this is necessary.
+                        It has been observed that the sample and hold alters the voltages it gets, thereby it is necessary to correct the values.
                         When the data analysis gets a new peak voltage it then multiplies that value by Correction a and adds Correction b to it.
                         The defaults have been calibrated for our setup using a signal generator and should be fine but you want to get raw data just set them to 1 and 0 respectively.
                     """),
@@ -339,7 +339,7 @@ def get_app(ms : MachineState) -> dash.Dash:
                         Lastly, there are also the Averaged peak voltages, those are calculated from Peak voltages by averaging a set amount of them, this is done to reduce noise.
                         The Average count parameter sets how many peak voltages should be averaged.
                     """),
-                    html.H3("Graph commentary"),
+                    html.H3("Graph controls and info"),
                     html.P("""
                         Both graphs have two options.
                         First is to show the graph and the second is to update it.
