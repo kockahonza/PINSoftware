@@ -159,7 +159,7 @@ def get_app(ms : MachineState) -&gt; dash.Dash:
                             width=&#39;auto&#39;
                         ),
                         justify=&#39;center&#39;,
-                        className=&#39;mt-2 mt-1&#39;
+                        className=&#39;mt-2 mb-2&#39;
                     ),
                     dbc.Row(
                         dbc.Col(
@@ -170,7 +170,7 @@ def get_app(ms : MachineState) -&gt; dash.Dash:
                             width=&#39;auto&#39;
                         ),
                         justify=&#39;center&#39;,
-                        className=&#39;mt-2 mt-1&#39;
+                        className=&#39;mt-3 mb-2&#39;
                     ),
                     dbc.Row(
                         dbc.Col(
@@ -179,15 +179,21 @@ def get_app(ms : MachineState) -&gt; dash.Dash:
                             width=&#39;auto&#39;
                         ),
                         justify=&#39;center&#39;,
-                        className=&#39;mt-2 mt-1&#39;
+                        className=&#39;mt-3 mb-2&#39;
                     ),
                     dbc.Row(
                         dbc.Col(
-                            dbc.Button(&#34;Delete all saved logs?&#34;, id=&#39;ad-delete-logs&#39;, color=&#39;danger&#39;),
+                            dbc.ButtonGroup([
+                                html.A(
+                                    dbc.Button(&#34;Show all logs&#34;, id=&#39;ad-show-logs&#39;, color=&#39;warning&#39;),
+                                    href=&#39;logs&#39;
+                                ),
+                                dbc.Button(&#34;Delete all saved logs?&#34;, id=&#39;ad-delete-logs&#39;, color=&#39;danger&#39;)
+                            ]),
                             width=&#39;auto&#39;
                         ),
                         justify=&#39;center&#39;,
-                        className=&#39;mt-2 mt-1&#39;
+                        className=&#39;mt-3 mb-1&#39;
                     )],
                     className=&#39;mt-3 mb-3&#39;
                 ), label=&#34;Administration&#34;, tab_id=&#39;administration-tab&#39;),
@@ -717,6 +723,24 @@ def get_app(ms : MachineState) -&gt; dash.Dash:
         &#34;&#34;&#34;Sets the href on the download link to the new value whenever the parameters change.&#34;&#34;&#34;
         config = &#39;edge_detection_threshold=&#39; + str(edt) + &#39;\n&#39; + &#39;correction_a=&#39; + str(ca) + &#39;\n&#39; + &#39;correction_b=&#39; + str(cb) + &#39;\n&#39; + &#39;average_count=&#39; + str(ac) + &#39;\n&#39;
         return &#39;data:text/csv;charset=utf-8,&#39; + urllib.parse.quote(config),
+
+    logs_page_template = &#34;&#34;&#34;
+        &lt;ul&gt;
+            {% for file in files %}
+            &lt;li&gt;
+                &lt;a href=&#34;{{ file }}&#34;&gt;{{ file }}&lt;/a&gt;
+            &lt;/li&gt;
+            {% endfor %}
+        &lt;/ul&gt;
+    &#34;&#34;&#34;
+
+    @app.server.route(&#39;/logs/&#39;)
+    def get_logs_dir():
+        files = filter(
+            lambda x: os.path.isfile(os.path.join(ms.log_directory, x)),
+            os.listdir(ms.log_directory)
+        )
+        return flask.render_template_string(logs_page_template, files=files)
 
     @app.server.route(&#39;/logs/&lt;path:path&gt;&#39;)
     def get_log(path):
@@ -868,7 +892,7 @@ Returns a <code>dash.Dash</code> instance to be run.</p></div>
                             width=&#39;auto&#39;
                         ),
                         justify=&#39;center&#39;,
-                        className=&#39;mt-2 mt-1&#39;
+                        className=&#39;mt-2 mb-2&#39;
                     ),
                     dbc.Row(
                         dbc.Col(
@@ -879,7 +903,7 @@ Returns a <code>dash.Dash</code> instance to be run.</p></div>
                             width=&#39;auto&#39;
                         ),
                         justify=&#39;center&#39;,
-                        className=&#39;mt-2 mt-1&#39;
+                        className=&#39;mt-3 mb-2&#39;
                     ),
                     dbc.Row(
                         dbc.Col(
@@ -888,15 +912,21 @@ Returns a <code>dash.Dash</code> instance to be run.</p></div>
                             width=&#39;auto&#39;
                         ),
                         justify=&#39;center&#39;,
-                        className=&#39;mt-2 mt-1&#39;
+                        className=&#39;mt-3 mb-2&#39;
                     ),
                     dbc.Row(
                         dbc.Col(
-                            dbc.Button(&#34;Delete all saved logs?&#34;, id=&#39;ad-delete-logs&#39;, color=&#39;danger&#39;),
+                            dbc.ButtonGroup([
+                                html.A(
+                                    dbc.Button(&#34;Show all logs&#34;, id=&#39;ad-show-logs&#39;, color=&#39;warning&#39;),
+                                    href=&#39;logs&#39;
+                                ),
+                                dbc.Button(&#34;Delete all saved logs?&#34;, id=&#39;ad-delete-logs&#39;, color=&#39;danger&#39;)
+                            ]),
                             width=&#39;auto&#39;
                         ),
                         justify=&#39;center&#39;,
-                        className=&#39;mt-2 mt-1&#39;
+                        className=&#39;mt-3 mb-1&#39;
                     )],
                     className=&#39;mt-3 mb-3&#39;
                 ), label=&#34;Administration&#34;, tab_id=&#39;administration-tab&#39;),
@@ -1426,6 +1456,24 @@ Returns a <code>dash.Dash</code> instance to be run.</p></div>
         &#34;&#34;&#34;Sets the href on the download link to the new value whenever the parameters change.&#34;&#34;&#34;
         config = &#39;edge_detection_threshold=&#39; + str(edt) + &#39;\n&#39; + &#39;correction_a=&#39; + str(ca) + &#39;\n&#39; + &#39;correction_b=&#39; + str(cb) + &#39;\n&#39; + &#39;average_count=&#39; + str(ac) + &#39;\n&#39;
         return &#39;data:text/csv;charset=utf-8,&#39; + urllib.parse.quote(config),
+
+    logs_page_template = &#34;&#34;&#34;
+        &lt;ul&gt;
+            {% for file in files %}
+            &lt;li&gt;
+                &lt;a href=&#34;{{ file }}&#34;&gt;{{ file }}&lt;/a&gt;
+            &lt;/li&gt;
+            {% endfor %}
+        &lt;/ul&gt;
+    &#34;&#34;&#34;
+
+    @app.server.route(&#39;/logs/&#39;)
+    def get_logs_dir():
+        files = filter(
+            lambda x: os.path.isfile(os.path.join(ms.log_directory, x)),
+            os.listdir(ms.log_directory)
+        )
+        return flask.render_template_string(logs_page_template, files=files)
 
     @app.server.route(&#39;/logs/&lt;path:path&gt;&#39;)
     def get_log(path):

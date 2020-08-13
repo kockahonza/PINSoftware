@@ -131,7 +131,7 @@ def get_app(ms : MachineState) -> dash.Dash:
                             width='auto'
                         ),
                         justify='center',
-                        className='mt-2 mt-1'
+                        className='mt-2 mb-2'
                     ),
                     dbc.Row(
                         dbc.Col(
@@ -142,7 +142,7 @@ def get_app(ms : MachineState) -> dash.Dash:
                             width='auto'
                         ),
                         justify='center',
-                        className='mt-2 mt-1'
+                        className='mt-3 mb-2'
                     ),
                     dbc.Row(
                         dbc.Col(
@@ -151,15 +151,21 @@ def get_app(ms : MachineState) -> dash.Dash:
                             width='auto'
                         ),
                         justify='center',
-                        className='mt-2 mt-1'
+                        className='mt-3 mb-2'
                     ),
                     dbc.Row(
                         dbc.Col(
-                            dbc.Button("Delete all saved logs?", id='ad-delete-logs', color='danger'),
+                            dbc.ButtonGroup([
+                                html.A(
+                                    dbc.Button("Show all logs", id='ad-show-logs', color='warning'),
+                                    href='logs'
+                                ),
+                                dbc.Button("Delete all saved logs?", id='ad-delete-logs', color='danger')
+                            ]),
                             width='auto'
                         ),
                         justify='center',
-                        className='mt-2 mt-1'
+                        className='mt-3 mb-1'
                     )],
                     className='mt-3 mb-3'
                 ), label="Administration", tab_id='administration-tab'),
@@ -689,6 +695,24 @@ def get_app(ms : MachineState) -> dash.Dash:
         """Sets the href on the download link to the new value whenever the parameters change."""
         config = 'edge_detection_threshold=' + str(edt) + '\n' + 'correction_a=' + str(ca) + '\n' + 'correction_b=' + str(cb) + '\n' + 'average_count=' + str(ac) + '\n'
         return 'data:text/csv;charset=utf-8,' + urllib.parse.quote(config),
+
+    logs_page_template = """
+        <ul>
+            {% for file in files %}
+            <li>
+                <a href="{{ file }}">{{ file }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    """
+
+    @app.server.route('/logs/')
+    def get_logs_dir():
+        files = filter(
+            lambda x: os.path.isfile(os.path.join(ms.log_directory, x)),
+            os.listdir(ms.log_directory)
+        )
+        return flask.render_template_string(logs_page_template, files=files)
 
     @app.server.route('/logs/<path:path>')
     def get_log(path):
