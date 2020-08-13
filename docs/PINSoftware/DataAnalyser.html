@@ -84,7 +84,7 @@ class DataAnalyser():
         self.plot_buffer_len = plot_buffer_len
         self.debugger = debugger
 
-        self.ys = [0]
+        self.ys = [0, 0, 0]
         self.markers = []
         self.marker_timestamps = []
 
@@ -151,7 +151,7 @@ class DataAnalyser():
         a warning is printed. I won&#39;t describe the logic here as it is described in the manual and also
         it may still be best to look through the code.
         &#34;&#34;&#34;
-        diff = new_y - self.ys[-1]
+        diff = new_y - self.ys[-3]
         if abs(diff) &gt; self.edge_detection_threshold:
             if diff &lt; 0 and len(self.last_up_section) &gt; 1 and len(self.last_down_section) &gt; 1:
                 last_up_section = remove_outliers(self.last_up_section)
@@ -304,7 +304,7 @@ to correct some systematic errors or do some calculations.</p></div>
         self.plot_buffer_len = plot_buffer_len
         self.debugger = debugger
 
-        self.ys = [0]
+        self.ys = [0, 0, 0]
         self.markers = []
         self.marker_timestamps = []
 
@@ -371,7 +371,7 @@ to correct some systematic errors or do some calculations.</p></div>
         a warning is printed. I won&#39;t describe the logic here as it is described in the manual and also
         it may still be best to look through the code.
         &#34;&#34;&#34;
-        diff = new_y - self.ys[-1]
+        diff = new_y - self.ys[-3]
         if abs(diff) &gt; self.edge_detection_threshold:
             if diff &lt; 0 and len(self.last_up_section) &gt; 1 and len(self.last_down_section) &gt; 1:
                 last_up_section = remove_outliers(self.last_up_section)
@@ -503,7 +503,7 @@ it may still be best to look through the code.</p></div>
     a warning is printed. I won&#39;t describe the logic here as it is described in the manual and also
     it may still be best to look through the code.
     &#34;&#34;&#34;
-    diff = new_y - self.ys[-1]
+    diff = new_y - self.ys[-3]
     if abs(diff) &gt; self.edge_detection_threshold:
         if diff &lt; 0 and len(self.last_up_section) &gt; 1 and len(self.last_down_section) &gt; 1:
             last_up_section = remove_outliers(self.last_up_section)

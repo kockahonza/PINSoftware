@@ -1,6 +1,6 @@
 ---
 description: |
-    API documentation for modules: PINSoftware, PINSoftware.DashApp, PINSoftware.DashComponents, PINSoftware.DataAnalyser, PINSoftware.DataSaver, PINSoftware.DataUpdater, PINSoftware.Debugger, PINSoftware.MachineState, PINSoftware.Profiler, PINSoftware.main.
+    API documentation for modules: PINSoftware, PINSoftware.DashApp, PINSoftware.DashComponents, PINSoftware.DataAnalyser, PINSoftware.DataSaver, PINSoftware.DataUpdater, PINSoftware.Debugger, PINSoftware.MachineState, PINSoftware.Profiler, PINSoftware.main, PINSoftware.util.
 
 lang: en
 
@@ -53,6 +53,7 @@ A note on naming, in the documentation I ofter refer to "peak voltage", in code 
 * [PINSoftware.MachineState](#PINSoftware.MachineState)
 * [PINSoftware.Profiler](#PINSoftware.Profiler)
 * [PINSoftware.main](#PINSoftware.main)
+* [PINSoftware.util](#PINSoftware.util)
 
 
 
@@ -1314,6 +1315,19 @@ This stops the current experiment and all the threads working on it
 This currently just calls <code>stop\_experiment</code> but there might be stuff added here,
 this is meant to be a sort of stop all button
 
+    
+##### Method `delete_logs` {#PINSoftware.MachineState.MachineState.delete_logs}
+
+
+
+
+>     def delete_logs(
+>         self
+>     )
+
+
+
+
 
 
     
@@ -1428,6 +1442,62 @@ Simple setter to stop the profiler
 
 The program entrypoint, here the arguments are parser and the program is started.
 If graphing is enabled, then the web server goes in a non-main thread, otherwise otherwise.
+
+
+
+
+    
+# Module `PINSoftware.util` {#PINSoftware.util}
+
+
+
+
+
+
+    
+## Functions
+
+
+    
+### Function `avg` {#PINSoftware.util.avg}
+
+
+
+
+>     def avg(
+>         data
+>     )
+
+
+
+
+    
+### Function `show_1` {#PINSoftware.util.show_1}
+
+
+
+
+>     def show_1(
+>         f,
+>         adjust_markers=True
+>     )
+
+
+
+
+    
+### Function `detect_gaps` {#PINSoftware.util.detect_gaps}
+
+
+
+
+>     def detect_gaps(
+>         f,
+>         series='processed_timestamps'
+>     )
+
+
+
 
 
 

@@ -158,7 +158,8 @@ def get_app(ms : MachineState) -&gt; dash.Dash:
                             id=&#39;ad-session_id&#39;,
                             width=&#39;auto&#39;
                         ),
-                        justify=&#39;center&#39;
+                        justify=&#39;center&#39;,
+                        className=&#39;mt-2 mt-1&#39;
                     ),
                     dbc.Row(
                         dbc.Col(
@@ -168,7 +169,8 @@ def get_app(ms : MachineState) -&gt; dash.Dash:
                             ]),
                             width=&#39;auto&#39;
                         ),
-                        justify=&#39;center&#39;
+                        justify=&#39;center&#39;,
+                        className=&#39;mt-2 mt-1&#39;
                     ),
                     dbc.Row(
                         dbc.Col(
@@ -176,7 +178,16 @@ def get_app(ms : MachineState) -&gt; dash.Dash:
                             id=&#39;ad-controller-info&#39;,
                             width=&#39;auto&#39;
                         ),
-                        justify=&#39;center&#39;
+                        justify=&#39;center&#39;,
+                        className=&#39;mt-2 mt-1&#39;
+                    ),
+                    dbc.Row(
+                        dbc.Col(
+                            dbc.Button(&#34;Delete all saved logs?&#34;, id=&#39;ad-delete-logs&#39;, color=&#39;danger&#39;),
+                            width=&#39;auto&#39;
+                        ),
+                        justify=&#39;center&#39;,
+                        className=&#39;mt-2 mt-1&#39;
                     )],
                     className=&#39;mt-3 mb-3&#39;
                 ), label=&#34;Administration&#34;, tab_id=&#39;administration-tab&#39;),
@@ -286,7 +297,7 @@ def get_app(ms : MachineState) -&gt; dash.Dash:
                                     dbc.Row(dbc.Col(dbc.FormGroup([
                                             dbc.Label(&#34;Edge detection threshold [V]:&#34;, html_for=&#39;cp-da-edge_detection_threshold&#39;, width=&#39;auto&#39;),
                                             dbc.Col(
-                                                dbc.Input(id=&#39;cp-da-edge_detection_threshold&#39;, type=&#39;number&#39;, min=0, value=0.005, step=0.0001),
+                                                dbc.Input(id=&#39;cp-da-edge_detection_threshold&#39;, type=&#39;number&#39;, min=0, value=0.003, step=0.0001),
                                                 width=3
                                             )
                                         ],
@@ -296,7 +307,7 @@ def get_app(ms : MachineState) -&gt; dash.Dash:
                                         dbc.Col(dbc.FormGroup([
                                                 dbc.Label(&#34;Correction a&#34;, html_for=&#39;cp-da-correction_a&#39;, width=&#39;auto&#39;),
                                                 dbc.Col(
-                                                    dbc.Input(id=&#39;cp-da-correction_a&#39;, type=&#39;number&#39;, value=2, step=0.01),
+                                                    dbc.Input(id=&#39;cp-da-correction_a&#39;, type=&#39;number&#39;, value=1, step=0.01),
                                                     width=5
                                                 )
                                             ],
@@ -305,7 +316,7 @@ def get_app(ms : MachineState) -&gt; dash.Dash:
                                         dbc.Col(dbc.FormGroup([
                                                 dbc.Label(&#34;Correction b&#34;, html_for=&#39;cp-da-correction_b&#39;, width=&#39;auto&#39;),
                                                 dbc.Col(
-                                                    dbc.Input(id=&#39;cp-da-correction_b&#39;, type=&#39;number&#39;, value=0.0022, step=0.0001),
+                                                    dbc.Input(id=&#39;cp-da-correction_b&#39;, type=&#39;number&#39;, value=0, step=0.0001),
                                                     width=5
                                                 )
                                             ],
@@ -315,7 +326,7 @@ def get_app(ms : MachineState) -&gt; dash.Dash:
                                     dbc.Row(dbc.Col(dbc.FormGroup([
                                             dbc.Label(&#34;Average count:&#34;, html_for=&#39;cp-da-average_count&#39;, width=&#39;auto&#39;),
                                             dbc.Col(
-                                                dbc.Input(id=&#39;cp-da-average_count&#39;, type=&#39;number&#39;, min=0, value=50, step=1),
+                                                dbc.Input(id=&#39;cp-da-average_count&#39;, type=&#39;number&#39;, min=0, value=200, step=1),
                                                 width=3
                                             )
                                         ],
@@ -431,6 +442,7 @@ def get_app(ms : MachineState) -&gt; dash.Dash:
         dbc.Container(id=&#39;extras&#39;, className=&#39;mb-5&#39;, style={&#39;display&#39;: &#39;none&#39;}, children=[
             dcc.Store(id=&#39;session-id&#39;, storage_type=&#39;session&#39;),
             dcc.Store(id=&#39;full-graph-indices&#39;, storage_type=&#39;session&#39;, data={&#39;pro_index&#39;: 0, &#39;avg_index&#39;: 0}),
+            html.Div(id=&#39;ut-fake-output&#39;),
             html.Div(id=&#39;ut-on_load&#39;),
             html.Div(id=&#39;ut-on_load-2&#39;),
             html.Div(id=&#39;ut-update-controller-status&#39;),
@@ -498,11 +510,17 @@ def get_app(ms : MachineState) -&gt; dash.Dash:
         if not ms.controller:
             return [False, True, True, True, &#34;There is currently no controller!&#34;, &#39;administration-tab&#39;]
         elif ms.controller == sid:
-            return [True, False, False, False, &#34;Tou are the current controller&#34;, active]
+            return [True, False, False, False, &#34;You are the current controller&#34;, active]
         else:
             infobox = [ms.controller + &#34; is the current controller&#34;]
             infobox.append(dbc.Button(&#34;Force release?&#34;, id=&#39;ad-force_release&#39;, color=&#39;danger&#39;, className=&#39;ml-3 mr-3&#39;))
             return [True, True, True, True, infobox, &#39;administration-tab&#39;]
+
+    @app.callback(Output(&#39;ut-fake-output&#39;, &#39;children&#39;), [Input(&#39;ad-delete-logs&#39;, &#39;n_clicks&#39;)])
+    def deleter_logs(n_clicks):
+        if n_clicks:
+            ms.delete_logs()
+        raise PreventUpdate()
 
     @app.callback([
             Output(&#39;ut-update-controller-status-2&#39;, &#39;children&#39;),
@@ -849,7 +867,8 @@ Returns a <code>dash.Dash</code> instance to be run.</p></div>
                             id=&#39;ad-session_id&#39;,
                             width=&#39;auto&#39;
                         ),
-                        justify=&#39;center&#39;
+                        justify=&#39;center&#39;,
+                        className=&#39;mt-2 mt-1&#39;
                     ),
                     dbc.Row(
                         dbc.Col(
@@ -859,7 +878,8 @@ Returns a <code>dash.Dash</code> instance to be run.</p></div>
                             ]),
                             width=&#39;auto&#39;
                         ),
-                        justify=&#39;center&#39;
+                        justify=&#39;center&#39;,
+                        className=&#39;mt-2 mt-1&#39;
                     ),
                     dbc.Row(
                         dbc.Col(
@@ -867,7 +887,16 @@ Returns a <code>dash.Dash</code> instance to be run.</p></div>
                             id=&#39;ad-controller-info&#39;,
                             width=&#39;auto&#39;
                         ),
-                        justify=&#39;center&#39;
+                        justify=&#39;center&#39;,
+                        className=&#39;mt-2 mt-1&#39;
+                    ),
+                    dbc.Row(
+                        dbc.Col(
+                            dbc.Button(&#34;Delete all saved logs?&#34;, id=&#39;ad-delete-logs&#39;, color=&#39;danger&#39;),
+                            width=&#39;auto&#39;
+                        ),
+                        justify=&#39;center&#39;,
+                        className=&#39;mt-2 mt-1&#39;
                     )],
                     className=&#39;mt-3 mb-3&#39;
                 ), label=&#34;Administration&#34;, tab_id=&#39;administration-tab&#39;),
@@ -977,7 +1006,7 @@ Returns a <code>dash.Dash</code> instance to be run.</p></div>
                                     dbc.Row(dbc.Col(dbc.FormGroup([
                                             dbc.Label(&#34;Edge detection threshold [V]:&#34;, html_for=&#39;cp-da-edge_detection_threshold&#39;, width=&#39;auto&#39;),
                                             dbc.Col(
-                                                dbc.Input(id=&#39;cp-da-edge_detection_threshold&#39;, type=&#39;number&#39;, min=0, value=0.005, step=0.0001),
+                                                dbc.Input(id=&#39;cp-da-edge_detection_threshold&#39;, type=&#39;number&#39;, min=0, value=0.003, step=0.0001),
                                                 width=3
                                             )
                                         ],
@@ -987,7 +1016,7 @@ Returns a <code>dash.Dash</code> instance to be run.</p></div>
                                         dbc.Col(dbc.FormGroup([
                                                 dbc.Label(&#34;Correction a&#34;, html_for=&#39;cp-da-correction_a&#39;, width=&#39;auto&#39;),
                                                 dbc.Col(
-                                                    dbc.Input(id=&#39;cp-da-correction_a&#39;, type=&#39;number&#39;, value=2, step=0.01),
+                                                    dbc.Input(id=&#39;cp-da-correction_a&#39;, type=&#39;number&#39;, value=1, step=0.01),
                                                     width=5
                                                 )
                                             ],
@@ -996,7 +1025,7 @@ Returns a <code>dash.Dash</code> instance to be run.</p></div>
                                         dbc.Col(dbc.FormGroup([
                                                 dbc.Label(&#34;Correction b&#34;, html_for=&#39;cp-da-correction_b&#39;, width=&#39;auto&#39;),
                                                 dbc.Col(
-                                                    dbc.Input(id=&#39;cp-da-correction_b&#39;, type=&#39;number&#39;, value=0.0022, step=0.0001),
+                                                    dbc.Input(id=&#39;cp-da-correction_b&#39;, type=&#39;number&#39;, value=0, step=0.0001),
                                                     width=5
                                                 )
                                             ],
@@ -1006,7 +1035,7 @@ Returns a <code>dash.Dash</code> instance to be run.</p></div>
                                     dbc.Row(dbc.Col(dbc.FormGroup([
                                             dbc.Label(&#34;Average count:&#34;, html_for=&#39;cp-da-average_count&#39;, width=&#39;auto&#39;),
                                             dbc.Col(
-                                                dbc.Input(id=&#39;cp-da-average_count&#39;, type=&#39;number&#39;, min=0, value=50, step=1),
+                                                dbc.Input(id=&#39;cp-da-average_count&#39;, type=&#39;number&#39;, min=0, value=200, step=1),
                                                 width=3
                                             )
                                         ],
@@ -1122,6 +1151,7 @@ Returns a <code>dash.Dash</code> instance to be run.</p></div>
         dbc.Container(id=&#39;extras&#39;, className=&#39;mb-5&#39;, style={&#39;display&#39;: &#39;none&#39;}, children=[
             dcc.Store(id=&#39;session-id&#39;, storage_type=&#39;session&#39;),
             dcc.Store(id=&#39;full-graph-indices&#39;, storage_type=&#39;session&#39;, data={&#39;pro_index&#39;: 0, &#39;avg_index&#39;: 0}),
+            html.Div(id=&#39;ut-fake-output&#39;),
             html.Div(id=&#39;ut-on_load&#39;),
             html.Div(id=&#39;ut-on_load-2&#39;),
             html.Div(id=&#39;ut-update-controller-status&#39;),
@@ -1189,11 +1219,17 @@ Returns a <code>dash.Dash</code> instance to be run.</p></div>
         if not ms.controller:
             return [False, True, True, True, &#34;There is currently no controller!&#34;, &#39;administration-tab&#39;]
         elif ms.controller == sid:
-            return [True, False, False, False, &#34;Tou are the current controller&#34;, active]
+            return [True, False, False, False, &#34;You are the current controller&#34;, active]
         else:
             infobox = [ms.controller + &#34; is the current controller&#34;]
             infobox.append(dbc.Button(&#34;Force release?&#34;, id=&#39;ad-force_release&#39;, color=&#39;danger&#39;, className=&#39;ml-3 mr-3&#39;))
             return [True, True, True, True, infobox, &#39;administration-tab&#39;]
+
+    @app.callback(Output(&#39;ut-fake-output&#39;, &#39;children&#39;), [Input(&#39;ad-delete-logs&#39;, &#39;n_clicks&#39;)])
+    def deleter_logs(n_clicks):
+        if n_clicks:
+            ms.delete_logs()
+        raise PreventUpdate()
 
     @app.callback([
             Output(&#39;ut-update-controller-status-2&#39;, &#39;children&#39;),

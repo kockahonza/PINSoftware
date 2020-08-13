@@ -27,6 +27,7 @@
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">import os
+import shutil
 
 from typing import List
 
@@ -169,7 +170,11 @@ class MachineState():
     def stop_everything(self):
         &#34;&#34;&#34;This currently just calls `stop_experiment` but there might be stuff added here,
         this is meant to be a sort of stop all button&#34;&#34;&#34;
-        self.stop_experiment()</code></pre>
+        self.stop_experiment()
+
+    def delete_logs(self):
+        shutil.rmtree(self.log_directory)
+        os.mkdir(self.log_directory)</code></pre>
 </details>
 </section>
 <section>
@@ -332,7 +337,11 @@ True, <code>dummy_data_file</code> should be specified otherwise the program wil
     def stop_everything(self):
         &#34;&#34;&#34;This currently just calls `stop_experiment` but there might be stuff added here,
         this is meant to be a sort of stop all button&#34;&#34;&#34;
-        self.stop_experiment()</code></pre>
+        self.stop_experiment()
+
+    def delete_logs(self):
+        shutil.rmtree(self.log_directory)
+        os.mkdir(self.log_directory)</code></pre>
 </details>
 <h3>Methods</h3>
 <dl>
@@ -528,6 +537,20 @@ this is meant to be a sort of stop all button</p></div>
     self.stop_experiment()</code></pre>
 </details>
 </dd>
+<dt id="PINSoftware.MachineState.MachineState.delete_logs"><code class="name flex">
+<span>def <span class="ident">delete_logs</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def delete_logs(self):
+    shutil.rmtree(self.log_directory)
+    os.mkdir(self.log_directory)</code></pre>
+</details>
+</dd>
 </dl>
 </dd>
 </dl>
@@ -558,6 +581,7 @@ this is meant to be a sort of stop all button</p></div>
 <li><code><a title="PINSoftware.MachineState.MachineState.start_experiment" href="#PINSoftware.MachineState.MachineState.start_experiment">start_experiment</a></code></li>
 <li><code><a title="PINSoftware.MachineState.MachineState.stop_experiment" href="#PINSoftware.MachineState.MachineState.stop_experiment">stop_experiment</a></code></li>
 <li><code><a title="PINSoftware.MachineState.MachineState.stop_everything" href="#PINSoftware.MachineState.MachineState.stop_everything">stop_everything</a></code></li>
+<li><code><a title="PINSoftware.MachineState.MachineState.delete_logs" href="#PINSoftware.MachineState.MachineState.delete_logs">delete_logs</a></code></li>
 </ul>
 </li>
 </ul>

@@ -1,4 +1,5 @@
 import os
+import shutil
 
 from typing import List
 
@@ -142,3 +143,7 @@ class MachineState():
         """This currently just calls `stop_experiment` but there might be stuff added here,
         this is meant to be a sort of stop all button"""
         self.stop_experiment()
+
+    def delete_logs(self):
+        shutil.rmtree(self.log_directory)
+        os.mkdir(self.log_directory)

@@ -130,7 +130,8 @@ def get_app(ms : MachineState) -> dash.Dash:
                             id='ad-session_id',
                             width='auto'
                         ),
-                        justify='center'
+                        justify='center',
+                        className='mt-2 mt-1'
                     ),
                     dbc.Row(
                         dbc.Col(
@@ -140,7 +141,8 @@ def get_app(ms : MachineState) -> dash.Dash:
                             ]),
                             width='auto'
                         ),
-                        justify='center'
+                        justify='center',
+                        className='mt-2 mt-1'
                     ),
                     dbc.Row(
                         dbc.Col(
@@ -148,7 +150,16 @@ def get_app(ms : MachineState) -> dash.Dash:
                             id='ad-controller-info',
                             width='auto'
                         ),
-                        justify='center'
+                        justify='center',
+                        className='mt-2 mt-1'
+                    ),
+                    dbc.Row(
+                        dbc.Col(
+                            dbc.Button("Delete all saved logs?", id='ad-delete-logs', color='danger'),
+                            width='auto'
+                        ),
+                        justify='center',
+                        className='mt-2 mt-1'
                     )],
                     className='mt-3 mb-3'
                 ), label="Administration", tab_id='administration-tab'),
@@ -403,6 +414,7 @@ def get_app(ms : MachineState) -> dash.Dash:
         dbc.Container(id='extras', className='mb-5', style={'display': 'none'}, children=[
             dcc.Store(id='session-id', storage_type='session'),
             dcc.Store(id='full-graph-indices', storage_type='session', data={'pro_index': 0, 'avg_index': 0}),
+            html.Div(id='ut-fake-output'),
             html.Div(id='ut-on_load'),
             html.Div(id='ut-on_load-2'),
             html.Div(id='ut-update-controller-status'),
@@ -470,11 +482,17 @@ def get_app(ms : MachineState) -> dash.Dash:
         if not ms.controller:
             return [False, True, True, True, "There is currently no controller!", 'administration-tab']
         elif ms.controller == sid:
-            return [True, False, False, False, "Tou are the current controller", active]
+            return [True, False, False, False, "You are the current controller", active]
         else:
             infobox = [ms.controller + " is the current controller"]
             infobox.append(dbc.Button("Force release?", id='ad-force_release', color='danger', className='ml-3 mr-3'))
             return [True, True, True, True, infobox, 'administration-tab']
+
+    @app.callback(Output('ut-fake-output', 'children'), [Input('ad-delete-logs', 'n_clicks')])
+    def deleter_logs(n_clicks):
+        if n_clicks:
+            ms.delete_logs()
+        raise PreventUpdate()
 
     @app.callback([
             Output('ut-update-controller-status-2', 'children'),
