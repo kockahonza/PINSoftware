@@ -29,7 +29,7 @@ def detect_gaps(f, series="processed_timestamps", t=1):
     This goes through the file and prints all the spots where the time between two successive data
     isn't `t`.
     """
+    gap = f.attrs['freq'] * (t / 1000)
     for pre, post in zip(f[series], f[series][1:]):
-        gap = f.attrs['freq'] * (t / 1000)
-        if post - pre != gap:
+        if abs(post - pre - gap) > 1:
             print(post - pre, pre, post)
