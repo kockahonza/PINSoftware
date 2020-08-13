@@ -1449,7 +1449,9 @@ If graphing is enabled, then the web server goes in a non-main thread, otherwise
     
 # Module `PINSoftware.util` {#PINSoftware.util}
 
-
+This file isn't a part of the server! This is just useful functions for working with the produced data.
+For example after the data has been recorded in an hd5 file, some functions plot the data in a nice way
+and so on.
 
 
 
@@ -1469,7 +1471,7 @@ If graphing is enabled, then the web server goes in a non-main thread, otherwise
 >     )
 
 
-
+Get the average of a list
 
     
 ### Function `show_1` {#PINSoftware.util.show_1}
@@ -1483,7 +1485,8 @@ If graphing is enabled, then the web server goes in a non-main thread, otherwise
 >     )
 
 
-
+Plots the files data. Moves the processed_ys to be at the same height as ys.
+Also plots debug markers, assumes that they are the peak voltage spikes - very useful for debugging.
 
     
 ### Function `detect_gaps` {#PINSoftware.util.detect_gaps}
@@ -1493,11 +1496,13 @@ If graphing is enabled, then the web server goes in a non-main thread, otherwise
 
 >     def detect_gaps(
 >         f,
->         series='processed_timestamps'
+>         series='processed_timestamps',
+>         t=1
 >     )
 
 
-
+This goes through the file and prints all the spots where the time between two successive data
+isn't <code>t</code>.
 
 
 
