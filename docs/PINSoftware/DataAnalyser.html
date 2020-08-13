@@ -58,6 +58,9 @@ class DataAnalyser():
     you can plot the `DataAnalyser.ys` with &#34;x0=0&#34; and &#34;dx=1&#34; and then plot the peak averaged directly and the data
     will be correctly scaled on the x axis. The problem is however that this assumes that the data comes at a
     precise frequency but the NI-6002 can offer that so it should be alright.
+
+    Once the `DataAnalyser.on_start` is called a profiler about irregular data is also started, each second
+    it prints how many irregular data issues there were.
     &#34;&#34;&#34;
     def __init__(self, data_frequency : int, plot_buffer_len : int = 200, debugger : Debugger = Debugger(),
             edge_detection_threshold : float = 0.005, average_count : int = 50, correction_func=lambda x: x):
@@ -155,7 +158,7 @@ class DataAnalyser():
         at this point is not in `DataAnalyser.ys` yet) and does some processing on it.
         It may add new values to `DataAnalyser.processed` and `DataAnalyser.averaged_processed_ys`
         if new values were found through `DataAnalyser.actual_append`. If the data does not add up
-        a warning is printed. I won&#39;t describe the logic here as it is described in the manual and also
+        it is added to irregular data. I won&#39;t describe the logic here as it is described in the manual and also
         it may still be best to look through the code.
         &#34;&#34;&#34;
         diff = new_y - self.ys[-3]
@@ -256,6 +259,8 @@ useful for two reasons, its easy to calculate so also fast. Bu mostly because la
 you can plot the <code>DataAnalyser.ys</code> with "x0=0" and "dx=1" and then plot the peak averaged directly and the data
 will be correctly scaled on the x axis. The problem is however that this assumes that the data comes at a
 precise frequency but the NI-6002 can offer that so it should be alright.</p>
+<p>Once the <code><a title="PINSoftware.DataAnalyser.DataAnalyser.on_start" href="#PINSoftware.DataAnalyser.DataAnalyser.on_start">DataAnalyser.on_start()</a></code> is called a profiler about irregular data is also started, each second
+it prints how many irregular data issues there were.</p>
 <p><code>data_frequency</code> is the frequency of the incoming data, this is used for calculating real timestamps
 and is saved if hdf5 saving is enabled.</p>
 <p><code>plot_buffer_len</code> determines how many datapoints should be plotted in the live plot graph (if the
@@ -288,6 +293,9 @@ to correct some systematic errors or do some calculations.</p></div>
     you can plot the `DataAnalyser.ys` with &#34;x0=0&#34; and &#34;dx=1&#34; and then plot the peak averaged directly and the data
     will be correctly scaled on the x axis. The problem is however that this assumes that the data comes at a
     precise frequency but the NI-6002 can offer that so it should be alright.
+
+    Once the `DataAnalyser.on_start` is called a profiler about irregular data is also started, each second
+    it prints how many irregular data issues there were.
     &#34;&#34;&#34;
     def __init__(self, data_frequency : int, plot_buffer_len : int = 200, debugger : Debugger = Debugger(),
             edge_detection_threshold : float = 0.005, average_count : int = 50, correction_func=lambda x: x):
@@ -385,7 +393,7 @@ to correct some systematic errors or do some calculations.</p></div>
         at this point is not in `DataAnalyser.ys` yet) and does some processing on it.
         It may add new values to `DataAnalyser.processed` and `DataAnalyser.averaged_processed_ys`
         if new values were found through `DataAnalyser.actual_append`. If the data does not add up
-        a warning is printed. I won&#39;t describe the logic here as it is described in the manual and also
+        it is added to irregular data. I won&#39;t describe the logic here as it is described in the manual and also
         it may still be best to look through the code.
         &#34;&#34;&#34;
         diff = new_y - self.ys[-3]
@@ -523,7 +531,7 @@ is run instead, but afterwards this is.</p></div>
 at this point is not in <code>DataAnalyser.ys</code> yet) and does some processing on it.
 It may add new values to <code>DataAnalyser.processed</code> and <code>DataAnalyser.averaged_processed_ys</code>
 if new values were found through <code>DataAnalyser.actual_append</code>. If the data does not add up
-a warning is printed. I won't describe the logic here as it is described in the manual and also
+it is added to irregular data. I won't describe the logic here as it is described in the manual and also
 it may still be best to look through the code.</p></div>
 <details class="source">
 <summary>
@@ -535,7 +543,7 @@ it may still be best to look through the code.</p></div>
     at this point is not in `DataAnalyser.ys` yet) and does some processing on it.
     It may add new values to `DataAnalyser.processed` and `DataAnalyser.averaged_processed_ys`
     if new values were found through `DataAnalyser.actual_append`. If the data does not add up
-    a warning is printed. I won&#39;t describe the logic here as it is described in the manual and also
+    it is added to irregular data. I won&#39;t describe the logic here as it is described in the manual and also
     it may still be best to look through the code.
     &#34;&#34;&#34;
     diff = new_y - self.ys[-3]

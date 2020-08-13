@@ -402,6 +402,9 @@ you can plot the <code>DataAnalyser.ys</code> with "x0=0" and "dx=1" and then pl
 will be correctly scaled on the x axis. The problem is however that this assumes that the data comes at a
 precise frequency but the NI-6002 can offer that so it should be alright.
 
+Once the <code>[DataAnalyser.on\_start()](#PINSoftware.DataAnalyser.DataAnalyser.on\_start "PINSoftware.DataAnalyser.DataAnalyser.on\_start")</code> is called a profiler about irregular data is also started, each second
+it prints how many irregular data issues there were.
+
 <code>data\_frequency</code> is the frequency of the incoming data, this is used for calculating real timestamps
 and is saved if hdf5 saving is enabled.
 
@@ -492,7 +495,7 @@ This is the main processing function. It gets the new y (which
 at this point is not in <code>DataAnalyser.ys</code> yet) and does some processing on it.
 It may add new values to <code>DataAnalyser.processed</code> and <code>DataAnalyser.averaged\_processed\_ys</code>
 if new values were found through <code>DataAnalyser.actual\_append</code>. If the data does not add up
-a warning is printed. I won't describe the logic here as it is described in the manual and also
+it is added to irregular data. I won't describe the logic here as it is described in the manual and also
 it may still be best to look through the code.
 
     

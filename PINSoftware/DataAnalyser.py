@@ -30,6 +30,9 @@ class DataAnalyser():
     you can plot the `DataAnalyser.ys` with "x0=0" and "dx=1" and then plot the peak averaged directly and the data
     will be correctly scaled on the x axis. The problem is however that this assumes that the data comes at a
     precise frequency but the NI-6002 can offer that so it should be alright.
+
+    Once the `DataAnalyser.on_start` is called a profiler about irregular data is also started, each second
+    it prints how many irregular data issues there were.
     """
     def __init__(self, data_frequency : int, plot_buffer_len : int = 200, debugger : Debugger = Debugger(),
             edge_detection_threshold : float = 0.005, average_count : int = 50, correction_func=lambda x: x):
@@ -127,7 +130,7 @@ class DataAnalyser():
         at this point is not in `DataAnalyser.ys` yet) and does some processing on it.
         It may add new values to `DataAnalyser.processed` and `DataAnalyser.averaged_processed_ys`
         if new values were found through `DataAnalyser.actual_append`. If the data does not add up
-        a warning is printed. I won't describe the logic here as it is described in the manual and also
+        it is added to irregular data. I won't describe the logic here as it is described in the manual and also
         it may still be best to look through the code.
         """
         diff = new_y - self.ys[-3]
