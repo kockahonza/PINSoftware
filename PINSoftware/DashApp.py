@@ -207,8 +207,8 @@ def get_app(ms : MachineState) -> dash.Dash:
                                             id='cp-save-items',
                                             options=[
                                                 {'label': "Save raw data", 'value': 'ys'},
-                                                {'label': "Save processed data", 'value': 'processed_ys'},
-                                                {'label': "Save averaged data", 'value': 'averaged_processed_ys'},
+                                                {'label': "Save peak voltages", 'value': 'processed_ys'},
+                                                {'label': "Save averaged peak voltages", 'value': 'averaged_processed_ys'},
                                                 {'label': "Save debug markers", 'value': 'markers'}
                                             ],
                                             value=['ys', 'processed_ys'],
