@@ -152,20 +152,6 @@ def get_app(ms : MachineState) -> dash.Dash:
                         ),
                         justify='center',
                         className='mt-3 mb-2'
-                    ),
-                    dbc.Row(
-                        dbc.Col(
-                            dbc.ButtonGroup([
-                                html.A(
-                                    dbc.Button("Show all logs", id='ad-show-logs', color='warning'),
-                                    href='logs'
-                                ),
-                                dbc.Button("Delete all saved logs?", id='ad-delete-logs', color='danger')
-                            ]),
-                            width='auto'
-                        ),
-                        justify='center',
-                        className='mt-3 mb-1'
                     )],
                     className='mt-3 mb-3'
                 ), label="Administration", tab_id='administration-tab'),
@@ -248,6 +234,20 @@ def get_app(ms : MachineState) -> dash.Dash:
                             width=8
                         ),
                         justify='center'
+                    ),
+                    dbc.Row(
+                        dbc.Col(
+                            dbc.ButtonGroup([
+                                html.A(
+                                    dbc.Button("Show all logs", id='ad-show-logs', color='warning'),
+                                    href='logs'
+                                ),
+                                dbc.Button("Delete all saved logs?", id='ad-delete-logs', color='danger')
+                            ]),
+                            width='auto'
+                        ),
+                        justify='center',
+                        className='mt-3 mb-1'
                     )]
                 ), label="Run controls", id='run-options', tab_id='run-options-tab', disabled=True),
                 dbc.Tab(dbc.Container([

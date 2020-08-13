@@ -180,20 +180,6 @@ def get_app(ms : MachineState) -&gt; dash.Dash:
                         ),
                         justify=&#39;center&#39;,
                         className=&#39;mt-3 mb-2&#39;
-                    ),
-                    dbc.Row(
-                        dbc.Col(
-                            dbc.ButtonGroup([
-                                html.A(
-                                    dbc.Button(&#34;Show all logs&#34;, id=&#39;ad-show-logs&#39;, color=&#39;warning&#39;),
-                                    href=&#39;logs&#39;
-                                ),
-                                dbc.Button(&#34;Delete all saved logs?&#34;, id=&#39;ad-delete-logs&#39;, color=&#39;danger&#39;)
-                            ]),
-                            width=&#39;auto&#39;
-                        ),
-                        justify=&#39;center&#39;,
-                        className=&#39;mt-3 mb-1&#39;
                     )],
                     className=&#39;mt-3 mb-3&#39;
                 ), label=&#34;Administration&#34;, tab_id=&#39;administration-tab&#39;),
@@ -276,6 +262,20 @@ def get_app(ms : MachineState) -&gt; dash.Dash:
                             width=8
                         ),
                         justify=&#39;center&#39;
+                    ),
+                    dbc.Row(
+                        dbc.Col(
+                            dbc.ButtonGroup([
+                                html.A(
+                                    dbc.Button(&#34;Show all logs&#34;, id=&#39;ad-show-logs&#39;, color=&#39;warning&#39;),
+                                    href=&#39;logs&#39;
+                                ),
+                                dbc.Button(&#34;Delete all saved logs?&#34;, id=&#39;ad-delete-logs&#39;, color=&#39;danger&#39;)
+                            ]),
+                            width=&#39;auto&#39;
+                        ),
+                        justify=&#39;center&#39;,
+                        className=&#39;mt-3 mb-1&#39;
                     )]
                 ), label=&#34;Run controls&#34;, id=&#39;run-options&#39;, tab_id=&#39;run-options-tab&#39;, disabled=True),
                 dbc.Tab(dbc.Container([
@@ -913,20 +913,6 @@ Returns a <code>dash.Dash</code> instance to be run.</p></div>
                         ),
                         justify=&#39;center&#39;,
                         className=&#39;mt-3 mb-2&#39;
-                    ),
-                    dbc.Row(
-                        dbc.Col(
-                            dbc.ButtonGroup([
-                                html.A(
-                                    dbc.Button(&#34;Show all logs&#34;, id=&#39;ad-show-logs&#39;, color=&#39;warning&#39;),
-                                    href=&#39;logs&#39;
-                                ),
-                                dbc.Button(&#34;Delete all saved logs?&#34;, id=&#39;ad-delete-logs&#39;, color=&#39;danger&#39;)
-                            ]),
-                            width=&#39;auto&#39;
-                        ),
-                        justify=&#39;center&#39;,
-                        className=&#39;mt-3 mb-1&#39;
                     )],
                     className=&#39;mt-3 mb-3&#39;
                 ), label=&#34;Administration&#34;, tab_id=&#39;administration-tab&#39;),
@@ -1009,6 +995,20 @@ Returns a <code>dash.Dash</code> instance to be run.</p></div>
                             width=8
                         ),
                         justify=&#39;center&#39;
+                    ),
+                    dbc.Row(
+                        dbc.Col(
+                            dbc.ButtonGroup([
+                                html.A(
+                                    dbc.Button(&#34;Show all logs&#34;, id=&#39;ad-show-logs&#39;, color=&#39;warning&#39;),
+                                    href=&#39;logs&#39;
+                                ),
+                                dbc.Button(&#34;Delete all saved logs?&#34;, id=&#39;ad-delete-logs&#39;, color=&#39;danger&#39;)
+                            ]),
+                            width=&#39;auto&#39;
+                        ),
+                        justify=&#39;center&#39;,
+                        className=&#39;mt-3 mb-1&#39;
                     )]
                 ), label=&#34;Run controls&#34;, id=&#39;run-options&#39;, tab_id=&#39;run-options-tab&#39;, disabled=True),
                 dbc.Tab(dbc.Container([
