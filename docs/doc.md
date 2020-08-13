@@ -431,6 +431,19 @@ to correct some systematic errors or do some calculations.
 
 
     
+##### Method `on_start` {#PINSoftware.DataAnalyser.DataAnalyser.on_start}
+
+
+
+
+>     def on_start(
+>         self
+>     )
+
+
+
+
+    
 ##### Method `actual_append_first` {#PINSoftware.DataAnalyser.DataAnalyser.actual_append_first}
 
 
@@ -496,6 +509,19 @@ it may still be best to look through the code.
 
 The main apppend function through which new data is added. It just passes
 the value to the processing function and appends it to <code>DataAnalyser.ys</code> in the end.
+
+    
+##### Method `on_stop` {#PINSoftware.DataAnalyser.DataAnalyser.on_stop}
+
+
+
+
+>     def on_stop(
+>         self
+>     )
+
+
+
 
     
 ##### Method `plot` {#PINSoftware.DataAnalyser.DataAnalyser.plot}

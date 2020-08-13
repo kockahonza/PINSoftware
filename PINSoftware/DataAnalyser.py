@@ -5,6 +5,7 @@ from os import path
 import numpy as np
 
 from PINSoftware.Debugger import Debugger
+from PINSoftware.Profiler import Profiler
 
 
 def remove_outliers(data):
@@ -78,7 +79,13 @@ class DataAnalyser():
         self.average_running_sum = 0
         self.average_index = 0
 
+        self.irregular_data_prof = Profiler("Irregular data", start_delay=0)
+
         self.ready_to_plot = True
+
+    def on_start(self):
+
+        self.irregular_data_prof.start()
 
     def actual_append_first(self, new_processed_y):
         """
@@ -145,7 +152,8 @@ class DataAnalyser():
                 else:
                     # self.markers.append(down_avg)
                     # self.marker_timestamps.append(len(self.ys))
-                    self.debugger.warning("Irregular data, something may be wrong.")
+                    # self.debugger.warning("Irregular data, something may be wrong.")
+                    self.irregular_data_prof.add_count()
 
             if len(self.last_up_section) > 0:
                 self.last_down_section = self.last_up_section
@@ -165,6 +173,9 @@ class DataAnalyser():
         self.ys.append(new_y)
 
         self.ready_to_plot = True
+
+    def on_stop(self):
+        self.irregular_data_prof.stop()
 
     def plot(self, plt):
         """This is what plots the data on the raw data graph if graphing is enabled"""

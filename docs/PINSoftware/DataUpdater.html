@@ -83,6 +83,7 @@ class BaseDataUpdater(threading.Thread):
         &#34;&#34;&#34;
         self.debugger.info(&#34;Starting the DataUpdater&#34;)
         self.on_start()
+        self.data.on_start()
         if self.profiler:
             self.profiler.start()
             while not self.should_stop:
@@ -92,6 +93,7 @@ class BaseDataUpdater(threading.Thread):
         else:
             while not self.should_stop:
                 self.loop()
+        self.data.on_stop()
         self.on_stop()
         self.debugger.info(&#34;Stopping the DataUpdater&#34;)
 
@@ -255,6 +257,7 @@ lays out the main loop (<code><a title="PINSoftware.DataUpdater.BaseDataUpdater.
         &#34;&#34;&#34;
         self.debugger.info(&#34;Starting the DataUpdater&#34;)
         self.on_start()
+        self.data.on_start()
         if self.profiler:
             self.profiler.start()
             while not self.should_stop:
@@ -264,6 +267,7 @@ lays out the main loop (<code><a title="PINSoftware.DataUpdater.BaseDataUpdater.
         else:
             while not self.should_stop:
                 self.loop()
+        self.data.on_stop()
         self.on_stop()
         self.debugger.info(&#34;Stopping the DataUpdater&#34;)
 
@@ -351,6 +355,7 @@ overridden and is a way to run some code at the end of the run, it.</p></div>
     &#34;&#34;&#34;
     self.debugger.info(&#34;Starting the DataUpdater&#34;)
     self.on_start()
+    self.data.on_start()
     if self.profiler:
         self.profiler.start()
         while not self.should_stop:
@@ -360,6 +365,7 @@ overridden and is a way to run some code at the end of the run, it.</p></div>
     else:
         while not self.should_stop:
             self.loop()
+    self.data.on_stop()
     self.on_stop()
     self.debugger.info(&#34;Stopping the DataUpdater&#34;)</code></pre>
 </details>

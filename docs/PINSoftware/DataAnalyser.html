@@ -33,6 +33,7 @@ from os import path
 import numpy as np
 
 from PINSoftware.Debugger import Debugger
+from PINSoftware.Profiler import Profiler
 
 
 def remove_outliers(data):
@@ -106,7 +107,13 @@ class DataAnalyser():
         self.average_running_sum = 0
         self.average_index = 0
 
+        self.irregular_data_prof = Profiler(&#34;Irregular data&#34;, start_delay=0)
+
         self.ready_to_plot = True
+
+    def on_start(self):
+
+        self.irregular_data_prof.start()
 
     def actual_append_first(self, new_processed_y):
         &#34;&#34;&#34;
@@ -173,7 +180,8 @@ class DataAnalyser():
                 else:
                     # self.markers.append(down_avg)
                     # self.marker_timestamps.append(len(self.ys))
-                    self.debugger.warning(&#34;Irregular data, something may be wrong.&#34;)
+                    # self.debugger.warning(&#34;Irregular data, something may be wrong.&#34;)
+                    self.irregular_data_prof.add_count()
 
             if len(self.last_up_section) &gt; 0:
                 self.last_down_section = self.last_up_section
@@ -193,6 +201,9 @@ class DataAnalyser():
         self.ys.append(new_y)
 
         self.ready_to_plot = True
+
+    def on_stop(self):
+        self.irregular_data_prof.stop()
 
     def plot(self, plt):
         &#34;&#34;&#34;This is what plots the data on the raw data graph if graphing is enabled&#34;&#34;&#34;
@@ -326,7 +337,13 @@ to correct some systematic errors or do some calculations.</p></div>
         self.average_running_sum = 0
         self.average_index = 0
 
+        self.irregular_data_prof = Profiler(&#34;Irregular data&#34;, start_delay=0)
+
         self.ready_to_plot = True
+
+    def on_start(self):
+
+        self.irregular_data_prof.start()
 
     def actual_append_first(self, new_processed_y):
         &#34;&#34;&#34;
@@ -393,7 +410,8 @@ to correct some systematic errors or do some calculations.</p></div>
                 else:
                     # self.markers.append(down_avg)
                     # self.marker_timestamps.append(len(self.ys))
-                    self.debugger.warning(&#34;Irregular data, something may be wrong.&#34;)
+                    # self.debugger.warning(&#34;Irregular data, something may be wrong.&#34;)
+                    self.irregular_data_prof.add_count()
 
             if len(self.last_up_section) &gt; 0:
                 self.last_down_section = self.last_up_section
@@ -414,6 +432,9 @@ to correct some systematic errors or do some calculations.</p></div>
 
         self.ready_to_plot = True
 
+    def on_stop(self):
+        self.irregular_data_prof.stop()
+
     def plot(self, plt):
         &#34;&#34;&#34;This is what plots the data on the raw data graph if graphing is enabled&#34;&#34;&#34;
         if self.ready_to_plot:
@@ -421,6 +442,20 @@ to correct some systematic errors or do some calculations.</p></div>
 </details>
 <h3>Methods</h3>
 <dl>
+<dt id="PINSoftware.DataAnalyser.DataAnalyser.on_start"><code class="name flex">
+<span>def <span class="ident">on_start</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def on_start(self):
+
+    self.irregular_data_prof.start()</code></pre>
+</details>
+</dd>
 <dt id="PINSoftware.DataAnalyser.DataAnalyser.actual_append_first"><code class="name flex">
 <span>def <span class="ident">actual_append_first</span></span>(<span>self, new_processed_y)</span>
 </code></dt>
@@ -525,7 +560,8 @@ it may still be best to look through the code.</p></div>
             else:
                 # self.markers.append(down_avg)
                 # self.marker_timestamps.append(len(self.ys))
-                self.debugger.warning(&#34;Irregular data, something may be wrong.&#34;)
+                # self.debugger.warning(&#34;Irregular data, something may be wrong.&#34;)
+                self.irregular_data_prof.add_count()
 
         if len(self.last_up_section) &gt; 0:
             self.last_down_section = self.last_up_section
@@ -556,6 +592,19 @@ the value to the processing function and appends it to <code>DataAnalyser.ys</co
     self.ys.append(new_y)
 
     self.ready_to_plot = True</code></pre>
+</details>
+</dd>
+<dt id="PINSoftware.DataAnalyser.DataAnalyser.on_stop"><code class="name flex">
+<span>def <span class="ident">on_stop</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def on_stop(self):
+    self.irregular_data_prof.stop()</code></pre>
 </details>
 </dd>
 <dt id="PINSoftware.DataAnalyser.DataAnalyser.plot"><code class="name flex">
@@ -598,11 +647,13 @@ the value to the processing function and appends it to <code>DataAnalyser.ys</co
 <ul>
 <li>
 <h4><code><a title="PINSoftware.DataAnalyser.DataAnalyser" href="#PINSoftware.DataAnalyser.DataAnalyser">DataAnalyser</a></code></h4>
-<ul class="">
+<ul class="two-column">
+<li><code><a title="PINSoftware.DataAnalyser.DataAnalyser.on_start" href="#PINSoftware.DataAnalyser.DataAnalyser.on_start">on_start</a></code></li>
 <li><code><a title="PINSoftware.DataAnalyser.DataAnalyser.actual_append_first" href="#PINSoftware.DataAnalyser.DataAnalyser.actual_append_first">actual_append_first</a></code></li>
 <li><code><a title="PINSoftware.DataAnalyser.DataAnalyser.actual_append_main" href="#PINSoftware.DataAnalyser.DataAnalyser.actual_append_main">actual_append_main</a></code></li>
 <li><code><a title="PINSoftware.DataAnalyser.DataAnalyser.handle_processing" href="#PINSoftware.DataAnalyser.DataAnalyser.handle_processing">handle_processing</a></code></li>
 <li><code><a title="PINSoftware.DataAnalyser.DataAnalyser.append" href="#PINSoftware.DataAnalyser.DataAnalyser.append">append</a></code></li>
+<li><code><a title="PINSoftware.DataAnalyser.DataAnalyser.on_stop" href="#PINSoftware.DataAnalyser.DataAnalyser.on_stop">on_stop</a></code></li>
 <li><code><a title="PINSoftware.DataAnalyser.DataAnalyser.plot" href="#PINSoftware.DataAnalyser.DataAnalyser.plot">plot</a></code></li>
 </ul>
 </li>

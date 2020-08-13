@@ -55,6 +55,7 @@ class BaseDataUpdater(threading.Thread):
         """
         self.debugger.info("Starting the DataUpdater")
         self.on_start()
+        self.data.on_start()
         if self.profiler:
             self.profiler.start()
             while not self.should_stop:
@@ -64,6 +65,7 @@ class BaseDataUpdater(threading.Thread):
         else:
             while not self.should_stop:
                 self.loop()
+        self.data.on_stop()
         self.on_stop()
         self.debugger.info("Stopping the DataUpdater")
 
