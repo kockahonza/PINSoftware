@@ -258,7 +258,7 @@ def get_app(ms : MachineState) -> dash.Dash:
                                     dbc.Row(dbc.Col(dbc.FormGroup([
                                             dbc.Label("Edge detection threshold [V]:", html_for='cp-da-edge_detection_threshold', width='auto'),
                                             dbc.Col(
-                                                dbc.Input(id='cp-da-edge_detection_threshold', type='number', min=0, value=0.005, step=0.0001),
+                                                dbc.Input(id='cp-da-edge_detection_threshold', type='number', min=0, value=0.003, step=0.0001),
                                                 width=3
                                             )
                                         ],
@@ -268,7 +268,7 @@ def get_app(ms : MachineState) -> dash.Dash:
                                         dbc.Col(dbc.FormGroup([
                                                 dbc.Label("Correction a", html_for='cp-da-correction_a', width='auto'),
                                                 dbc.Col(
-                                                    dbc.Input(id='cp-da-correction_a', type='number', value=2, step=0.01),
+                                                    dbc.Input(id='cp-da-correction_a', type='number', value=1, step=0.01),
                                                     width=5
                                                 )
                                             ],
@@ -277,7 +277,7 @@ def get_app(ms : MachineState) -> dash.Dash:
                                         dbc.Col(dbc.FormGroup([
                                                 dbc.Label("Correction b", html_for='cp-da-correction_b', width='auto'),
                                                 dbc.Col(
-                                                    dbc.Input(id='cp-da-correction_b', type='number', value=0.0022, step=0.0001),
+                                                    dbc.Input(id='cp-da-correction_b', type='number', value=0, step=0.0001),
                                                     width=5
                                                 )
                                             ],
@@ -287,7 +287,7 @@ def get_app(ms : MachineState) -> dash.Dash:
                                     dbc.Row(dbc.Col(dbc.FormGroup([
                                             dbc.Label("Average count:", html_for='cp-da-average_count', width='auto'),
                                             dbc.Col(
-                                                dbc.Input(id='cp-da-average_count', type='number', min=0, value=50, step=1),
+                                                dbc.Input(id='cp-da-average_count', type='number', min=0, value=200, step=1),
                                                 width=3
                                             )
                                         ],
