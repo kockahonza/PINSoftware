@@ -12,6 +12,8 @@ To build it yourself you will need `setuptools` and `wheel` installed, you can i
 Then to build it run `python setup.py sdist bdist_wheel`, that will create a bunch of folders and the .whl file you need is in the dist directory.
 To install the .whl file run `pip install filename.whl` where filename is the name of the .whl file.
 
+Once again, for the software to run you need to have the nidaqmx drivers installed, for more info look at the "Installation" section of the the README file in [nidaqmx-python](https://github.com/ni/nidaqmx-python).
+
 ## Running
 
 To run the server run `python -m PINSoftware`.
